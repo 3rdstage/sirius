@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	
+	<context:property-placeholder location="classpath:thirdstage/shop3/confs/spring.properties"/>
+	<context:annotation-config/>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbc.JDBCDriver" />
+		<property name="url" value="jdbc:hsqldb:hsql://127.0.0.1:9001/shop3;ifexists=true" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="maxActive" value="5" /> 
+		<property name="maxIdle" value="5" />
+		<property name="minIdle" value="0" />
+		<property name="initialSize" value="2" />
+	</bean>
+	
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="defaultTimeout" value="120"/>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" 
+				value="classpath:/thirdstage/shop3/confs/mybatis-config.xml"/>
+		<property name="configurationProperties">
+			<props>
+				<prop key="settings.cacheEnabled">
+					${thirdstage.shop.mybatis.settings.cacheEnabled}
+				</prop>
+				<prop key="settings.lazyLoadingEnabled">
+					${thirdstage.shop.mybatis.settings.lazyLoadingEnabled}
+				</prop>
+				<prop key="settings.aggressiveLazyLoading">
+					${thirdstage.shop.mybatis.settings.aggressiveLazyLoading}
+				</prop>
+				<prop key="settings.defaultExecutorType">
+					${thirdstage.shop.mybatis.settings.defaultExecutorType}
+				</prop>
+				<prop key="settings.defaultStatementTimeout">
+					${thirdstage.shop.mybatis.settings.defaultStatementTimeout}
+				</prop>
+			</props>
+		</property>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
+
+	<bean id="sqlSessionConfigMxBean" 
+		class="thirdstage.sirius.support.mybatis.DefaultMyBatisConfigMXBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+
+	<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+		<property name="locateExistingServerIfPossible" value="true"/>
+	</bean>
+	
+	<bean id="mbeanExporter" class="org.springframework.jmx.export.MBeanExporter">
+		<property name="server" ref="mbeanServer"/>
+		<property name="beans">
+			<map>
+				<entry key="thirdstage.shop3:name=sqlSessionConfig"
+					value-ref="sqlSessionConfigMxBean"/>	
+			</map>
+		</property>
+	</bean>
+	 
+	<bean class="thirdstage.sirius.support.mybatis.MyBatisXmlMapperBeanPostProcessor">
+		<description>
+		Post processor to load XML mapper files annotated by MyBatisXmlMapper.
+		</description>
+	</bean>
+	
+	<bean id="categoryDao" class="thirdstage.shop3.catalog.daos.CategoryDaoImpl"/>
+	<bean id="productDao" class="thirdstage.shop3.catalog.daos.ProductDaoImpl"/>
+</beans>

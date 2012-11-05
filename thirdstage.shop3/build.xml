@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="shop3" default="default" basedir="."
+	xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+	<typedef resource="org/apache/maven/artifact/ant/antlib.xml"
+		uri="antlib:org.apache.maven.artifact.ant">
+		<classpath>
+			<pathelement location="lib/maven-ant-tasks-2.1.3.jar"/>
+		</classpath>
+	</typedef>
+		
+
+	<description>
+		description
+    </description>
+
+	<!-- Get Maven Dependency -->
+	<artifact:pom id="this-pom" file="./pom.xml" />
+	<artifact:dependencies pomRefId="this-pom"
+		pathId="dependency.classpath" />
+	
+	
+	<target name="echo.env">
+		<echoproperties />
+		<echo>${toString:dependency.classpath}</echo>
+		<echo>${toString:project.home}</echo>
+	</target>
+
+
+	<target name="default" description="description">
+
+	</target>
+
+	<target name="hsqldb.startup">
+		<java classname="org.hsqldb.server.Server" fork="true">
+			<classpath refId="dependency.classpath" />
+			<arg line="--database.0 file:${this-pom.build.resources[0].directory}/thirdstage/shop3/confs/hsqldb/shop3 --dbname.0 shop3" />
+		</java>
+	</target>
+
+	<target name="hsqldb.gui">
+		<java classname="org.hsqldb.util.DatabaseManagerSwing" fork="true">
+			<classpath refId="dependency.classpath" />
+			<arg line="--user sa --url jdbc:hsqldb:hsql://127.0.0.1:9001/shop3 --port 9001" />
+		</java>
+	</target>
+
+	<target name="hsqldb.shutdown">
+		<sql classpathRef="dependency.classpath" driver="org.hsqldb.jdbc.JDBCDriver"
+			url="jdbc:hsqldb:hsql://127.0.0.1:9001/shop3" userid="sa" password=""
+			autocommit="true">SHUTDOWN</sql>
+	</target>
+	
+	<target name="hsqldb.help">
+		<java classname="org.hsqldb.server.Server" fork="true">
+			<classpath refId="dependency.classpath" />
+			<arg line="--help" />
+		</java>
+	</target>
+	
+</project>
