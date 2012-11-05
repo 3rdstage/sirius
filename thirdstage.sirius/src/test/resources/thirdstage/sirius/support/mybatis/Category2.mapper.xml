@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="thirdstage.shop3.test">
+	<select id="findTopCategories" 
+		resultType="thirdstage.shop3.catalog.values.Category">
+select 
+	id, 
+	name,
+	parent_id as parentId,
+	seq as displayOrder,
+	descn as description
+from sm_category
+where parent_id is null
+	</select>
+</mapper>
