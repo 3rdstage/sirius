@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<domain version="2.0">
+	<object type="Domain" id="B16C089B-BBBC-A26F-408B-9B9A71DBE136" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>CLOB_0_0_0</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<logicaltype oid="LOGDT028" name="CLOB" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="895C60A6-67C0-E699-6614-271B2F9E3FED" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>NUMERIC_0_10_0</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="precision" value="10" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="0" />
+		</parameters>
+		<logicaltype oid="LOGDT019" name="NUMERIC" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="0877CA6D-FAF0-283F-9EB4-C673F262035D" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>NUMERIC_0_19_0</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="precision" value="19" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="0" />
+		</parameters>
+		<logicaltype oid="LOGDT019" name="NUMERIC" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="A10EC855-E4EE-5C5A-C0B5-236BC5D91CA9" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>NUMERIC_0_1_0</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="precision" value="1" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="0" />
+		</parameters>
+		<logicaltype oid="LOGDT019" name="NUMERIC" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="712A3845-32E0-9969-50B8-533A76EB704A" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>Timestamp_0_0_0</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<logicaltype oid="LOGDT015" name="Timestamp" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="39DD7C12-DED7-3A82-626F-D488DF8256F3" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>VARCHAR_0_0_1000 char</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="1000 char" />
+		</parameters>
+		<logicaltype oid="LOGDT024" name="VARCHAR" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="40708537-06D7-A2D5-7AEC-8D097BB77F91" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>VARCHAR_0_0_12 char</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="12 char" />
+		</parameters>
+		<logicaltype oid="LOGDT024" name="VARCHAR" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="74D782CE-AC6C-DF47-11CE-9F8DE114B90B" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>VARCHAR_0_0_13 char</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="13 char" />
+		</parameters>
+		<logicaltype oid="LOGDT024" name="VARCHAR" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="E31B0F60-219C-CA4C-9B67-EB52304E37CA" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>VARCHAR_0_0_160 char</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="160 char" />
+		</parameters>
+		<logicaltype oid="LOGDT024" name="VARCHAR" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="FEA7029E-0F51-0483-B62F-B657AEB35C4A" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>VARCHAR_0_0_20 char</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="20 char" />
+		</parameters>
+		<logicaltype oid="LOGDT024" name="VARCHAR" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="5BE2B07B-F178-917E-F7C4-68E1968B1141" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>VARCHAR_0_0_2000 char</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="2000 char" />
+		</parameters>
+		<logicaltype oid="LOGDT024" name="VARCHAR" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="82EADA7A-3D13-F1C2-55AA-2B88B0A27CBA" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>VARCHAR_0_0_255 char</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="255 char" />
+		</parameters>
+		<logicaltype oid="LOGDT024" name="VARCHAR" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="799B211D-8BE0-B196-4CBF-1760AA84E84C" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="shop1.oracle_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>VARCHAR_0_0_80 char</name>
+		<comment>Temporary place holder for domains, actual domain information in BusinessTeam import...</comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="80 char" />
+		</parameters>
+		<logicaltype oid="LOGDT024" name="VARCHAR" />
+		<engineering>
+			<relational_design id="1E62290C-AA99-4A16-5063-B142ED985F5F" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+</domain>

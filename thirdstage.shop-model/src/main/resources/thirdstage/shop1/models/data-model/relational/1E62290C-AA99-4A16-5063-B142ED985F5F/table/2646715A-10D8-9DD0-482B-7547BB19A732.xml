@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<metadatadoc version="2.0">
+	<object type="Table" id="2646715A-10D8-9DD0-482B-7547BB19A732" visible_in_main_view="true" entitytype="" splittedTableID="" allow_type_substitution="true" minVolumes="0" expectedVolumes="0" maxVolumes="9999999" growthPercent="0" growthType="Year" normalForm="Third" adequatelyNormalized="NO" oid_is_pk="false" use_default_color="true" background_color="null" foreground_color="null">
+		<name>sm_user</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+			<parameter name="property.comment.rdbms" value="&amp;apos;&amp;apos;궗&amp;apos;슜&amp;apos;옄&amp;apos;" />
+		</properties>
+		<beforeDrop value="" />
+		<beforeCreate value="" />
+		<beforeAlter value="" />
+		<afterCreate value="" />
+		<afterAlter value="" />
+		<endOfScript value="" />
+		<spatial_table value="false" />
+		<oid_pk_columns />
+		<engineering should="true" />
+		<des_obj_version version="1.0" />
+		<fonts>
+			<font_object>
+				<parameter name="fo_type" value="Title" />
+				<parameter name="font_color" value="-16776961" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="1" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="Column" />
+				<parameter name="font_color" value="-16777216" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="Datatype" />
+				<parameter name="font_color" value="-16744448" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="PK Element" />
+				<parameter name="font_color" value="-16776961" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="FK Element" />
+				<parameter name="font_color" value="-16777216" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="UK Element" />
+				<parameter name="font_color" value="-16776961" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="Not Null" />
+				<parameter name="font_color" value="-65536" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="Key" />
+				<parameter name="font_color" value="-16777216" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+		</fonts>
+		<documents />
+		<parties />
+		<changerequests />
+		<measurements />
+		<contained>
+			<object type="Column" id="AE7BE6BE-C505-9C78-01BE-DCD9103CA276" visible_in_main_view="false" use_default_color="true" background_color="null" foreground_color="null" unique="false" allownull="false" usedomainconstraints="true" is_oid="false" structured_attribute_id="" fk="false">
+				<name>login_id</name>
+				<comment></comment>
+				<notes></notes>
+				<alter type="created">
+					<user>3rdstage</user>
+					<timestamp>2009-03-20 01:33:07</timestamp>
+				</alter>
+				<alter type="changed">
+					<user>3rdstage</user>
+					<timestamp>2009-03-20 01:33:07</timestamp>
+				</alter>
+				<properties>
+					<parameter name="design.owner" value="data-model" />
+					<parameter name="object.existsinrepository" value="true" />
+				</properties>
+				<engineering should="true" />
+				<des_obj_version version="1.0" />
+				<domain oid="40708537-06D7-A2D5-7AEC-8D097BB77F91" file="shop1.oracle_Domains" />
+				<datatype dttype="var" size="12 char" typename="VARCHAR2" />
+				<reference value="false" />
+				<logicaltype dttype="VARCHAR" oid="LOGDT024" />
+				<use value="domain" />
+				<sourcetype sort="" />
+				<formula desc="" />
+				<subtypeSubstitution value="true" />
+				<restricted_substitution value="false" />
+				<eng_attribute_id eng_id="none" />
+				<documents />
+				<parties />
+				<changerequests />
+				<measurements />
+			</object>
+			<object type="Column" id="932E349A-BC8C-C5A9-C4E4-0BA3B07753A4" visible_in_main_view="false" use_default_color="true" background_color="null" foreground_color="null" unique="false" allownull="true" usedomainconstraints="true" is_oid="false" structured_attribute_id="" fk="false">
+				<name>is_locked</name>
+				<comment></comment>
+				<notes></notes>
+				<alter type="created">
+					<user>3rdstage</user>
+					<timestamp>2009-03-20 01:33:07</timestamp>
+				</alter>
+				<alter type="changed">
+					<user>3rdstage</user>
+					<timestamp>2009-03-20 01:33:07</timestamp>
+				</alter>
+				<properties>
+					<parameter name="design.owner" value="data-model" />
+					<parameter name="object.existsinrepository" value="true" />
+				</properties>
+				<engineering should="true" />
+				<des_obj_version version="1.0" />
+				<domain oid="A10EC855-E4EE-5C5A-C0B5-236BC5D91CA9" file="shop1.oracle_Domains" />
+				<datatype dttype="packed" precision="1" scale="0" typename="NUMBER" />
+				<reference value="false" />
+				<logicaltype dttype="NUMERIC" oid="LOGDT019" />
+				<use value="domain" />
+				<sourcetype sort="" />
+				<formula desc="" />
+				<subtypeSubstitution value="true" />
+				<restricted_substitution value="false" />
+				<eng_attribute_id eng_id="none" />
+				<documents />
+				<parties />
+				<changerequests />
+				<measurements />
+			</object>
+			<object type="Column" id="B742BF64-AB87-3AD5-817F-622E13D735CD" visible_in_main_view="false" use_default_color="true" background_color="null" foreground_color="null" unique="false" allownull="true" usedomainconstraints="true" is_oid="false" structured_attribute_id="" fk="false">
+				<name>is_passwd_expired</name>
+				<comment></comment>
+				<notes></notes>
+				<alter type="created">
+					<user>3rdstage</user>
+					<timestamp>2009-03-20 01:33:07</timestamp>
+				</alter>
+				<alter type="changed">
+					<user>3rdstage</user>
+					<timestamp>2009-03-20 01:33:07</timestamp>
+				</alter>
+				<properties>
+					<parameter name="design.owner" value="data-model" />
+					<parameter name="object.existsinrepository" value="true" />
+				</properties>
+				<engineering should="true" />
+				<des_obj_version version="1.0" />
+				<domain oid="A10EC855-E4EE-5C5A-C0B5-236BC5D91CA9" file="shop1.oracle_Domains" />
+				<datatype dttype="packed" precision="1" scale="0" typename="NUMBER" />
+				<reference value="false" />
+				<logicaltype dttype="NUMERIC" oid="LOGDT019" />
+				<use value="domain" />
+				<sourcetype sort="" />
+				<formula desc="" />
+				<subtypeSubstitution value="true" />
+				<restricted_substitution value="false" />
+				<eng_attribute_id eng_id="none" />
+				<documents />
+				<parties />
+				<changerequests />
+				<measurements />
+			</object>
+			<object type="Column" id="9663082A-834C-F04E-81EA-55F41314E279" visible_in_main_view="false" use_default_color="true" background_color="null" foreground_color="null" unique="false" allownull="true" usedomainconstraints="true" is_oid="false" structured_attribute_id="" fk="false">
+				<name>passwd</name>
+				<comment></comment>
+				<notes></notes>
+				<alter type="created">
+					<user>3rdstage</user>
+					<timestamp>2009-03-20 01:33:07</timestamp>
+				</alter>
+				<alter type="changed">
+					<user>3rdstage</user>
+					<timestamp>2009-03-20 01:33:07</timestamp>
+				</alter>
+				<properties>
+					<parameter name="design.owner" value="data-model" />
+					<parameter name="object.existsinrepository" value="true" />
+				</properties>
+				<engineering should="true" />
+				<des_obj_version version="1.0" />
+				<domain oid="40708537-06D7-A2D5-7AEC-8D097BB77F91" file="shop1.oracle_Domains" />
+				<datatype dttype="var" size="12 char" typename="VARCHAR2" />
+				<reference value="false" />
+				<logicaltype dttype="VARCHAR" oid="LOGDT024" />
+				<use value="domain" />
+				<sourcetype sort="" />
+				<formula desc="" />
+				<subtypeSubstitution value="true" />
+				<restricted_substitution value="false" />
+				<eng_attribute_id eng_id="none" />
+				<documents />
+				<parties />
+				<changerequests />
+				<measurements />
+			</object>
+			<object type="Column" id="7C68CC41-1E67-67A4-8FE3-217F7D47B686" visible_in_main_view="false" use_default_color="true" background_color="null" foreground_color="null" unique="false" allownull="true" usedomainconstraints="true" is_oid="false" structured_attribute_id="" fk="false">
+				<name>reg_datetime</name>
+				<comment></comment>
+				<notes></notes>
+				<alter type="created">
+					<user>3rdstage</user>
+					<timestamp>2009-03-20 01:33:07</timestamp>
+				</alter>
+				<alter type="changed">
+					<user>3rdstage</user>
+					<timestamp>2009-03-20 01:33:07</timestamp>
+				</alter>
+				<properties>
+					<parameter name="design.owner" value="data-model" />
+					<parameter name="object.existsinrepository" value="true" />
+				</properties>
+				<engineering should="true" />
+				<des_obj_version version="1.0" />
+				<domain oid="712A3845-32E0-9969-50B8-533A76EB704A" file="shop1.oracle_Domains" />
+				<datatype dttype="packed" precision="" scale="" typename="TIMESTAMP" />
+				<reference value="false" />
+				<logicaltype dttype="Timestamp" oid="LOGDT015" />
+				<use value="domain" />
+				<sourcetype sort="" />
+				<formula desc="" />
+				<subtypeSubstitution value="true" />
+				<restricted_substitution value="false" />
+				<eng_attribute_id eng_id="none" />
+				<documents />
+				<parties />
+				<changerequests />
+				<measurements />
+			</object>
+		</contained>
+		<key>
+			<object type="Index" id="CEF7868A-7C03-900C-5B84-FB84B047C187" visible_in_main_view="false" use_default_color="true" background_color="null" foreground_color="null" pk="true" indexstate="Primary Constraint">
+				<name></name>
+				<comment></comment>
+				<notes></notes>
+				<alter type="created">
+					<user>3rdstage</user>
+					<timestamp>2009-03-20 01:33:07</timestamp>
+				</alter>
+				<alter type="changed">
+					<user>3rdstage</user>
+					<timestamp>2009-03-20 01:33:07</timestamp>
+				</alter>
+				<properties>
+					<parameter name="design.owner" value="data-model" />
+					<parameter name="object.existsinrepository" value="true" />
+				</properties>
+				<engineering should="true" />
+				<des_obj_version version="1.0" />
+				<functional></functional>
+				<contains type="Column" sortorder="ASC">AE7BE6BE-C505-9C78-01BE-DCD9103CA276</contains>
+				<documents />
+				<parties />
+				<changerequests />
+				<measurements />
+			</object>
+		</key>
+	</object>
+</metadatadoc>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2009. 3. 17 ?????? 12:56:05 by Hibernate Tools 3.2.0.CR1 -->
+<hibernate-mapping>
+    <class name="thirdstage.shop1.entities.Category" table="sm_category">
+        <comment>&#236;&#131;&#129;&#237;&#146;&#136;&#235;&#182;&#132;&#235;&#165;&#152;</comment>
+        <id name="id" type="java.lang.Long" access="field">
+            <column name="id" length="10" />
+            <generator class="native">
+                <param name="sequence">seq_category</param>
+                <param name="max_lo">49</param>
+            </generator>
+        </id>
+        <property name="description" type="java.lang.String" access="field" lazy="true">
+            <column name="descn" length="1000" />
+        </property>
+        <property name="name" type="java.lang.String" access="field">
+            <column name="name" length="80" not-null="true" />
+        </property>
+        <many-to-one name="parentCategory" class="thirdstage.shop1.entities.Category" access="field" cascade="persist" fetch="join">
+            <column name="parent_id" length="10" />
+        </many-to-one>
+        <property name="sequence" type="int" access="field">
+            <column name="seq" length="5" />
+        </property>
+    </class>
+</hibernate-mapping>

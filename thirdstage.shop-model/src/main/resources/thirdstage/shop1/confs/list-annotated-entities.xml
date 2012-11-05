@@ -1,0 +1,8 @@
+<mapping class="thirdstage.shop1.entities.Category" />
+<mapping class="thirdstage.shop1.entities.Product" />
+<mapping class="thirdstage.shop1.entities.Account" />
+<mapping class="thirdstage.shop1.entities.Customer" />
+<mapping class="thirdstage.shop1.entities.Supplier" />
+<mapping class="thirdstage.shop1.entities.User" />
+<mapping class="thirdstage.shop1.entities.Role" />
+<mapping class="thirdstage.shop1.entities.Menu" />

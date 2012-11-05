@@ -1,0 +1,8 @@
+<mapping resource="thirdstage/shop1/entities/Category.hbm.xml" />
+<mapping resource="thirdstage/shop1/entities/Product.hbm.xml" />
+<mapping resource="thirdstage/shop1/entities/Account.hbm.xml" />
+<mapping resource="thirdstage/shop1/entities/Customer.hbm.xml" />
+<mapping resource="thirdstage/shop1/entities/Supplier.hbm.xml" />
+<mapping resource="thirdstage/shop1/entities/User.hbm.xml" />
+<mapping resource="thirdstage/shop1/entities/Role.hbm.xml" />
+<mapping resource="thirdstage/shop1/entities/Menu.hbm.xml" />

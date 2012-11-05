@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="shop1-hibernate-export" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+	<artifact:dependencies pathId="dependency.classpath">
+		<dependency groupId="org.hibernate" artifactId="hibernate-tools" version="3.2.0.ga" />
+		<dependency groupId="org.hibernate" artifactId="hibernate-core" version="3.3.1.GA" />
+		<dependency groupId="org.hibernate" artifactId="hibernate-annotations" version="3.4.0.GA" />
+		<dependency groupId="org.hibernate" artifactId="hibernate-validator" version="3.0.0.ga" />
+		<dependency groupId="org.slf4j" artifactId="slf4j-log4j12" version="1.5.2"/>
+		<dependency groupId="commons-logging" artifactId="commons-logging" version="1.1.1"/>
+	</artifact:dependencies>
+
+	<!-- Define Ant4Eclipse Tasks -->
+	<taskdef resource="net/sf/ant4eclipse/antlib.xml" />
+	<getEclipseClasspath pathId="eclipse.classpath" project="../../../../../.." />
+
+	<!-- Define properties -->
+	<property name="src.dir" value="../../../../java/thirdstage/shop1/entities"/>
+	
+	<!-- Define classpath -->
+	<path id="classpath">
+		<path refid="dependency.classpath" />
+		<path refid="eclipse.classpath" />
+	</path>
+
+	<!-- Define Hibernate Tools Task -->
+	<taskdef name="hibernatetool" 
+		classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="classpath" />
+		
+	<target name="print-env">
+		<echo message="soruce directory is : ${src.dir}"/>
+		<echo message="${toString:dependency.classpath}" />
+		<echo message="${toString:eclipse.classpath}" />
+		<echo message="${toString:classpath}" />
+	</target>
+
+	<target name="generate-hbmxml">
+		<hibernatetool destdir="../../../../java">
+			<annotationconfiguration 
+				configurationfile="hibernate-oracle.cfg.xml" 
+				namingstrategy="thirdstage.shop1.util.DataNamingStrategy"/>
+			<hbm2hbmxml/>
+		</hibernatetool>
+	</target>
+	
+	<target name="oracle.generate-ddl">
+		<hibernatetool destdir="../ddls">
+			<annotationconfiguration 
+				configurationfile="hibernate-oracle.cfg.xml"/>
+			<hbm2ddl export="false" drop="true" create="true"
+				outputfilename="shop1.oracle.ddl" format="true"/>
+		</hibernatetool>
+	</target>
+
+	<target name="oracle.generate-ddl-with-naming">
+		<hibernatetool destdir="../ddls">
+			<annotationconfiguration 
+				configurationfile="hibernate-oracle.cfg.xml"
+				namingstrategy="thirdstage.shop1.util.DataNamingStrategy"/>
+			<hbm2ddl export="false" drop="true" create="true"
+				outputfilename="shop1.oracle.ddl" format="true"/>
+		</hibernatetool>
+	</target>
+	
+	<target name="oracle.generate-ddl-with-xml-hbm">
+		<hibernatetool destdir="../ddls">
+			<configuration 
+				configurationfile="hibernate-oracle-with-xml-hbm.cfg.xml"/>
+			<hbm2ddl export="false" drop="true" create="true"
+				outputfilename="shop1-from-xml-hbm.oracle.ddl" format="true"/>
+		</hibernatetool>
+	</target>
+
+	<target name="oracle.generate-doc">
+		<hibernatetool destdir="../docs/oracle">
+			<annotationconfiguration 
+				configurationfile="hibernate-oracle.cfg.xml" 
+				namingstrategy="thirdstage.shop1.util.DataNamingStrategy"/>
+			<hbm2doc/>
+		</hibernatetool>
+	</target>
+	
+	<target name="mysql.generate-ddl">
+		<hibernatetool destdir="../ddls">
+			<annotationconfiguration 
+				configurationfile="hibernate-mysql.cfg.xml"/>
+			<hbm2ddl export="false" drop="true" create="true"
+				outputfilename="shop1.mysql.ddl" format="true"/>
+		</hibernatetool>
+	</target>
+	
+	<target name="mysql.generate-ddl-with-naming">
+		<hibernatetool destdir="../ddls">
+			<annotationconfiguration 
+				configurationfile="hibernate-mysql.cfg.xml" 
+				namingstrategy="thirdstage.shop1.util.DataNamingStrategy"/>
+			<hbm2ddl export="false" drop="true" create="true"
+				outputfilename="shop1.mysql.ddl" format="true"/>
+		</hibernatetool>
+	</target>
+
+</project>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<model version="2.0">
+	<version version="2.3" design_id="02782C77-E2BD-B3E6-A172-F430C3414B98" />
+	<object>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:10:52</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:44:59</timestamp>
+		</alter>
+	</object>
+	<engineering_params delete_without_origin="false" engineer_coordinates="true" engineer_generated="false" show_engineering_intree="false" apply_naming_std="false" use_pref_abbreviation="true" upload_directory="" />
+	<eng_compare show_sel_prop_only="true" not_apply_for_new_objects="true" exclude_from_tree="false">
+		<entity_table>
+			<property name="Name" selected="true" />
+			<property name="Comment" selected="true" />
+			<property name="Comment in RDBMS" selected="true" />
+			<property name="Notes" selected="true" />
+			<property name="TempTable Scope" selected="true" />
+			<property name="Table Type" selected="true" />
+			<property name="Structured Type" selected="true" />
+			<property name="Type Substitution (Super-Type Object)" selected="true" />
+			<property name="Min Volumes" selected="true" />
+			<property name="Expected Volumes" selected="true" />
+			<property name="Max Volumes" selected="true" />
+			<property name="Growth Percent" selected="true" />
+			<property name="Growth Type" selected="true" />
+			<property name="Normal Form" selected="true" />
+			<property name="Adequately Normalized" selected="true" />
+		</entity_table>
+		<attribute_column>
+			<property name="Name" selected="true" />
+			<property name="Data Type" selected="true" />
+			<property name="Data Type Kind" selected="true" />
+			<property name="Mandatory" selected="true" />
+			<property name="Default Value" selected="true" />
+			<property name="Use Domain Constraint" selected="true" />
+			<property name="Comment" selected="true" />
+			<property name="Comment in RDBMS" selected="true" />
+			<property name="Notes" selected="true" />
+			<property name="Source Type" selected="true" />
+			<property name="Formula Description" selected="true" />
+			<property name="Type Substitution" selected="true" />
+			<property name="Scope" selected="true" />
+		</attribute_column>
+		<key_index>
+			<property name="Name" selected="true" />
+			<property name="Comment" selected="true" />
+			<property name="Comment in RDBMS" selected="true" />
+			<property name="Notes" selected="true" />
+			<property name="Primary Key" selected="true" />
+			<property name="Attributes/Columns" selected="true" />
+		</key_index>
+		<relation_fk>
+			<property name="Name" selected="true" />
+			<property name="Comment" selected="true" />
+			<property name="Comment in RDBMS" selected="true" />
+			<property name="Notes" selected="true" />
+		</relation_fk>
+		<entityview_view>
+			<property name="Name" selected="true" />
+			<property name="Comment" selected="true" />
+			<property name="Comment in RDBMS" selected="true" />
+			<property name="Notes" selected="true" />
+			<property name="Structured Type" selected="true" />
+			<property name="Where" selected="true" />
+			<property name="Having" selected="true" />
+			<property name="User Defined SQL" selected="true" />
+		</entityview_view>
+	</eng_compare>
+	<changerequests id="" />
+	<design type="Data Types" id="7F0ABAB6-127A-421F-475E-25116E342ADD" main_view_id="19D8D62F-A69E-2F40-9828-ECBCC827B245" should_be_open="true" is_visible="false">
+		<name>DataTypes</name>
+		<comment></comment>
+		<notes></notes>
+	</design>
+	<design type="LogicalDesign" id="FDAA6577-244A-AE8B-D041-A17D10AC678E" main_view_id="7A95DB51-07B2-3338-BF93-DD17173AA3CC" should_be_open="true" is_visible="true">
+		<name>Logical</name>
+		<comment></comment>
+		<notes></notes>
+	</design>
+	<design type="RelationalModel" id="1E62290C-AA99-4A16-5063-B142ED985F5F" main_view_id="C2B82577-3DA6-55E5-A581-AA32D568AC53" should_be_open="true" is_visible="true">
+		<name>shop1.oracle</name>
+		<comment></comment>
+		<notes></notes>
+	</design>
+	<design type="Process Model" id="EC49D17A-327E-0D14-3ACA-74367C2662A8">
+		<name>Process Model</name>
+		<comment></comment>
+		<notes></notes>
+	</design>
+	<design type="Business Information" id="0CA334CE-8512-5F23-C343-C06919864B99" main_view_id="null" should_be_open="true" is_visible="false">
+		<name>Business Information</name>
+		<comment></comment>
+		<notes></notes>
+	</design>
+	<design type="OWB Metadata" id="3BADD2C3-6A7D-71CD-4467-D6D6249C053B" main_view_id="A802D7EE-2949-A467-08AA-7A1BD3B026A9" should_be_open="true" is_visible="false">
+		<name>OWB Metadata</name>
+		<comment></comment>
+		<notes></notes>
+	</design>
+	<domains>
+		<domain name="defaultdomains" role="uses" />
+		<domain name="shop1.oracle_Domains" role="contains" />
+	</domains>
+</model>

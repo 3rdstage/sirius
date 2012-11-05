@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<metadatadoc version="2.0">
+	<!-- Specific properties for physical objects of type: Structured Types -->
+
+	<object oid="7F0ABAB6-127A-421F-475E-25116E342ADD@StructuredType0" type="Structure Type" role="contains" marked_generate="true" />
+	<!-- Specific properties for physical objects of type: TypeElements -->
+
+	<!-- Specific properties for physical objects of type: Methods -->
+
+	<!-- Specific properties for physical objects of type: Method Parameters -->
+
+	<!-- Specific properties for physical objects of type: Collection Types -->
+
+		<!-- RDBMS objects of type: Databases -->
+
+		<!-- RDBMS objects of type: Tablespaces -->
+
+		<!-- RDBMS objects of type: Temp Tablespaces -->
+
+		<!-- RDBMS objects of type: Undo Tablespaces -->
+
+		<!-- RDBMS objects of type: DataFile -->
+
+		<!-- RDBMS objects of type: RLG -->
+
+		<!-- RDBMS objects of type: Users -->
+
+	<object oid="1EDE9F44-90C4-6429-7EE8-51AD1AB810B0" type="User" role="contains" marked_generate="true" />
+		<!-- RDBMS objects of type: QuotaItem -->
+
+	<!-- Specific properties for physical objects of type: Tables -->
+
+	<object oid="2646715A-10D8-9DD0-482B-7547BB19A732" type="Table" role="contains" marked_generate="true" />
+	<object oid="3EACA45E-278D-7E5D-9567-A77BB1D2EACE" type="Table" role="contains" marked_generate="true" />
+	<object oid="59D6F2EE-DF18-1DFE-C6EA-157E6D21B036" type="Table" role="contains" marked_generate="true" />
+	<object oid="729BB7A9-4978-B1D3-53D6-18AB54FB5314" type="Table" role="contains" marked_generate="true" />
+	<object oid="81FE9DC1-9802-8DFB-7484-2798911E3296" type="Table" role="contains" marked_generate="true" />
+	<object oid="92AD8AED-6D22-48AF-9821-BBE289B8E5E0" type="Table" role="contains" marked_generate="true" />
+	<object oid="B5BE2558-FC75-3167-3287-5D5E11ED5928" type="Table" role="contains" marked_generate="true" />
+	<object oid="BDBAD49B-7F17-69FA-3EDB-1B9E9D76F1AD" type="Table" role="contains" marked_generate="true" />
+	<object oid="D7155A24-CA31-5826-DA92-D5F78196166B" type="Table" role="contains" marked_generate="true" />
+	<object oid="EDCC18A7-27A5-FDC8-0C43-7A2AFC1483A1" type="Table" role="contains" marked_generate="true" />
+		<!-- RDBMS objects of type: External Tables -->
+
+		<!-- RDBMS objects of type: ExternCol -->
+
+	<!-- Specific properties for physical objects of type: Columns -->
+
+	<object oid="0C3249C4-C632-1EF9-F352-487B7A443F03" type="Column" role="contains" marked_generate="true" />
+	<object oid="1013FEA0-C50B-34DF-512F-48C85382CFAF" type="Column" role="contains" marked_generate="true" />
+	<object oid="1B74FCD8-0DFF-BC55-6590-DD0963293087" type="Column" role="contains" marked_generate="true" />
+	<object oid="1E6DBA61-803A-3F7B-132E-B5D2CFE3C676" type="Column" role="contains" marked_generate="true" />
+	<object oid="1F2DE6A1-F01B-E4DF-C5EE-3F3F96CC5F14" type="Column" role="contains" marked_generate="true" />
+	<object oid="21725A6E-72E5-C7B9-A39F-8A73ACA91D11" type="Column" role="contains" marked_generate="true" />
+	<object oid="39D1BA14-0370-B626-D293-E8966D20DDB3" type="Column" role="contains" marked_generate="true" />
+	<object oid="51B8AE0C-FC83-860A-EDF6-952E37F4C074" type="Column" role="contains" marked_generate="true" />
+	<object oid="6272B41D-E18C-A1A6-96B5-3CF1114502E4" type="Column" role="contains" marked_generate="true" />
+	<object oid="6418F16F-B1AC-B7F5-6994-E500F75A8232" type="Column" role="contains" marked_generate="true" />
+	<object oid="6607A544-9835-0B1E-1430-E17C7A2C3E5A" type="Column" role="contains" marked_generate="true" />
+	<object oid="70ADDB71-5CC3-CBB8-F1DA-1783802352CB" type="Column" role="contains" marked_generate="true" />
+	<object oid="75E81CC5-F1D9-255E-3C17-60E76E119938" type="Column" role="contains" marked_generate="true" />
+	<object oid="7C68CC41-1E67-67A4-8FE3-217F7D47B686" type="Column" role="contains" marked_generate="true" />
+	<object oid="816E31B7-6158-8959-E8F7-5FD0AE2DA3FE" type="Column" role="contains" marked_generate="true" />
+	<object oid="82F96A87-B124-BA3B-D9FF-0D75F1A45A7E" type="Column" role="contains" marked_generate="true" />
+	<object oid="85519103-94CA-2942-5E7D-C6B05262F459" type="Column" role="contains" marked_generate="true" />
+	<object oid="8694E47E-F87E-DAC9-C46B-D1F1C04BF8A3" type="Column" role="contains" marked_generate="true" />
+	<object oid="895C78E5-991A-A901-04DB-5F03B9837A37" type="Column" role="contains" marked_generate="true" />
+	<object oid="8FA04D86-4D95-86D8-1F47-1F134DE266ED" type="Column" role="contains" marked_generate="true" />
+	<object oid="92C78A15-8ADA-C54F-BAEA-1478E67783AA" type="Column" role="contains" marked_generate="true" />
+	<object oid="9321937B-57AE-6A7E-9753-A843C283C0AF" type="Column" role="contains" marked_generate="true" />
+	<object oid="932E349A-BC8C-C5A9-C4E4-0BA3B07753A4" type="Column" role="contains" marked_generate="true" />
+	<object oid="94E38CD8-036E-090A-CFAF-FD70A4DE8098" type="Column" role="contains" marked_generate="true" />
+	<object oid="96537873-6FE5-1AA9-48D6-77DA0077098E" type="Column" role="contains" marked_generate="true" />
+	<object oid="9663082A-834C-F04E-81EA-55F41314E279" type="Column" role="contains" marked_generate="true" />
+	<object oid="99E01C11-DCF7-9A01-6044-3E93DBCA59A8" type="Column" role="contains" marked_generate="true" />
+	<object oid="A6E4D7A5-6852-79BC-E053-9102B2A15FA6" type="Column" role="contains" marked_generate="true" />
+	<object oid="AE7BE6BE-C505-9C78-01BE-DCD9103CA276" type="Column" role="contains" marked_generate="true" />
+	<object oid="B742BF64-AB87-3AD5-817F-622E13D735CD" type="Column" role="contains" marked_generate="true" />
+	<object oid="BCD41DBD-B970-5B0F-BA2A-0584F80354A6" type="Column" role="contains" marked_generate="true" />
+	<object oid="C40DAF04-5C09-01E9-B81E-7879D92C430F" type="Column" role="contains" marked_generate="true" />
+	<object oid="C56EBC31-C0C2-D9D1-39D9-677F682187F8" type="Column" role="contains" marked_generate="true" />
+	<object oid="C8843722-D5E0-2FAF-A320-8DE3ECC9E130" type="Column" role="contains" marked_generate="true" />
+	<object oid="CAE9BF97-C279-0108-4232-195C856667DB" type="Column" role="contains" marked_generate="true" />
+	<object oid="CCA065BD-780F-7051-2EBD-B7458E84E574" type="Column" role="contains" marked_generate="true" />
+	<object oid="CD9C4A41-237B-0547-B0EC-31412C55059A" type="Column" role="contains" marked_generate="true" />
+	<object oid="D248EF1A-39AC-0F08-B451-D9A6ACAB7DED" type="Column" role="contains" marked_generate="true" />
+	<object oid="DECA6DF5-2B5D-B7EF-E14A-5EA73DA1D9ED" type="Column" role="contains" marked_generate="true" />
+	<object oid="E8F1C8F7-CFE0-7CD0-F94F-9B0425458EC9" type="Column" role="contains" marked_generate="true" />
+	<object oid="F4DDE02F-23C4-92FF-A0CB-6076B030CBA8" type="Column" role="contains" marked_generate="true" />
+	<object oid="FA432388-4A98-DD6E-324A-7E97F0BD4497" type="Column" role="contains" marked_generate="true" />
+	<!-- Specific properties for physical objects of type:  -->
+
+	<object oid="635E5C46-F165-B7CE-4E97-D379DEFA1E5A" type="Index" role="contains" marked_generate="true" />
+	<object oid="B9D5EAD3-F916-7CD9-1CAF-D82276780D9E" type="Index" role="contains" marked_generate="true" />
+	<object oid="E9D47842-19D9-CD74-136B-0AD0C532FD56" type="Index" role="contains" marked_generate="true" />
+	<!-- Specific properties for physical objects of type:  -->
+
+	<object oid="019D34D8-9954-08A0-7543-F8CBD0D66500" type="PrimaryKey" role="contains" marked_generate="true" />
+	<object oid="09024D57-8D17-D54B-0167-FCB153F7F9CB" type="PrimaryKey" role="contains" marked_generate="true" />
+	<object oid="0EFDE1FA-0802-493B-0D31-35D81285C6E3" type="PrimaryKey" role="contains" marked_generate="true" />
+	<object oid="5D628A0F-22BB-413D-2480-29345BF5EDE8" type="PrimaryKey" role="contains" marked_generate="true" />
+	<object oid="6D2CC6F7-3C0A-523A-EB45-0E58652AC05A" type="PrimaryKey" role="contains" marked_generate="true" />
+	<object oid="893B3399-6A7A-16E1-E446-D0885469A136" type="PrimaryKey" role="contains" marked_generate="true" />
+	<object oid="9BEA7545-57BD-22CD-99F8-FBCEB0A51D91" type="PrimaryKey" role="contains" marked_generate="true" />
+	<object oid="CDC85460-EE63-CAA8-396A-8046BB8B1CAF" type="PrimaryKey" role="contains" marked_generate="true" />
+	<object oid="CEF7868A-7C03-900C-5B84-FB84B047C187" type="PrimaryKey" role="contains" marked_generate="true" />
+	<!-- Specific properties for physical objects of type:  -->
+
+	<object oid="1C0A531A-AB1E-EEED-8E0D-DE2F26AA86FE" type="ForeignKey" role="contains" marked_generate="true" />
+	<object oid="342415D8-FCE4-0DE9-B5A8-CBC8BD3358A7" type="ForeignKey" role="contains" marked_generate="true" />
+	<object oid="3F8C4C23-4D43-99ED-E1F6-CEA7D7CFD040" type="ForeignKey" role="contains" marked_generate="true" />
+	<object oid="5E423C4D-B026-BA65-C619-E883EB6778DC" type="ForeignKey" role="contains" marked_generate="true" />
+	<object oid="8DD22516-D1DC-53FE-D325-3695E4500ECB" type="ForeignKey" role="contains" marked_generate="true" />
+	<object oid="BF9C8B22-E4F1-23B5-33FA-C26ED435AEF3" type="ForeignKey" role="contains" marked_generate="true" />
+	<object oid="CA650070-280E-37B1-D7E9-A25AC341CDCD" type="ForeignKey" role="contains" marked_generate="true" />
+	<object oid="CEF9A1B2-B0E9-4D06-3ACF-F5D81F18160E" type="ForeignKey" role="contains" marked_generate="true" />
+		<!-- RDBMS objects of type: ListTemplatePart -->
+
+		<!-- RDBMS objects of type: Clusters -->
+
+		<!-- RDBMS objects of type: CI -->
+
+		<!-- RDBMS objects of type: Segment Templates -->
+
+		<!-- RDBMS objects of type: Rollback Segments -->
+
+		<!-- RDBMS objects of type: Snapshots -->
+
+		<!-- RDBMS objects of type: PL -->
+
+		<!-- RDBMS objects of type: Partition -->
+
+		<!-- RDBMS objects of type: LP -->
+
+		<!-- RDBMS objects of type: LS -->
+
+		<!-- RDBMS objects of type: HP -->
+
+		<!-- RDBMS objects of type: LobStorage -->
+
+		<!-- RDBMS objects of type: IHP -->
+
+		<!-- RDBMS objects of type: LobStorage -->
+
+		<!-- RDBMS objects of type: Roles -->
+
+	<!-- Specific properties for physical objects of type: Views -->
+
+		<!-- RDBMS objects of type: Sequences -->
+
+	<object oid="CA8DD6EF-6B05-E632-7767-0C4ACDAA6661" type="Sequence" role="contains" marked_generate="true" />
+	<object oid="2625D2CF-8213-FA28-6E92-C8C024AE4FFA" type="Sequence" role="contains" marked_generate="true" />
+	<object oid="3B3D38E1-08E2-7E86-803B-2A6ACF66E37C" type="Sequence" role="contains" marked_generate="true" />
+	<object oid="175ABA63-2141-1B40-F8C1-DB143D47DDE6" type="Sequence" role="contains" marked_generate="true" />
+		<!-- RDBMS objects of type: Permissions -->
+
+		<!-- RDBMS objects of type: IGPL -->
+
+		<!-- RDBMS objects of type: IGP -->
+
+		<!-- RDBMS objects of type: CC -->
+
+		<!-- RDBMS objects of type: Synonyms -->
+
+	<!-- Specific properties for physical objects of type:  -->
+
+	<object oid="4AA9D505-E34E-8969-F42A-7FC93B8B4A38" type="Unique" role="contains" marked_generate="true" />
+		<!-- RDBMS objects of type: NNC -->
+
+		<!-- RDBMS objects of type: TCC -->
+
+		<!-- RDBMS objects of type: Directories -->
+
+		<!-- RDBMS objects of type: Trg -->
+
+		<!-- RDBMS objects of type: Stored Procedures -->
+
+		<!-- RDBMS objects of type: Level -->
+
+		<!-- RDBMS objects of type: Hierarchy -->
+
+		<!-- RDBMS objects of type: Attr -->
+
+		<!-- RDBMS objects of type: Dimensions -->
+
+		<!-- RDBMS objects of type: BJI -->
+
+		<!-- RDBMS objects of type: Contexts -->
+
+		<!-- RDBMS objects of type: Disk Groups -->
+
+		<!-- RDBMS objects of type: FG -->
+
+		<!-- RDBMS objects of type: ASM -->
+
+		<!-- RDBMS objects of type: LIP -->
+
+</metadatadoc>

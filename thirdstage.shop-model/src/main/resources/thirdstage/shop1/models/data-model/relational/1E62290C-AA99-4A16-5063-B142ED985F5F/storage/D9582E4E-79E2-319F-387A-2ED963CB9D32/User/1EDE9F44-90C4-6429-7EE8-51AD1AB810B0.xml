@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<metadatadoc version="2.0">
+	<object type="User" id="1EDE9F44-90C4-6429-7EE8-51AD1AB810B0">
+		<name>shop1</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="object.property.auto.AccountLock" value="NO" />
+			<parameter name="object.property.auto.AdminOption" value="NO" />
+			<parameter name="object.property.auto.AuthType" value="BY_PASSWORD" />
+			<parameter name="object.property.auto.DefTableSpace" value="NO_OBJECT" />
+			<parameter name="object.property.auto.ExternalName" value="" />
+			<parameter name="object.property.auto.GeneratedInRDBMS" value="false" />
+			<parameter name="object.property.auto.IdentifiedByPassword" value="" />
+			<parameter name="object.property.auto.Identifier" value="" />
+			<parameter name="object.property.auto.LongName" value="shop1" />
+			<parameter name="object.property.auto.MarkedGenerate" value="true" />
+			<parameter name="object.property.auto.NameHasQuotes" value="false" />
+			<parameter name="object.property.auto.PasswordExpire" value="NO" />
+			<parameter name="object.property.auto.Privileges" value="" />
+			<parameter name="object.property.auto.Profile" value="" />
+			<parameter name="object.property.auto.RawObject" value="false" />
+			<parameter name="object.property.auto.ReadOnly" value="false" />
+			<parameter name="object.property.auto.Roles" value="" />
+			<parameter name="object.property.auto.TempTSGroupName" value="" />
+			<parameter name="object.property.auto.TempTableSpace" value="NO_OBJECT" />
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+	</object>
+</metadatadoc>

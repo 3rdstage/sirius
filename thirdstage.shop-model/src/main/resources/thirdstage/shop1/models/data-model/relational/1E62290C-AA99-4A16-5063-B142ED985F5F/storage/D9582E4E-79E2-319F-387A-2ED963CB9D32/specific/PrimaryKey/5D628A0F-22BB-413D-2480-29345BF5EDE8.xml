@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<metadatadoc version="2.0">
+	<object type="PrimaryKey" id="5D628A0F-22BB-413D-2480-29345BF5EDE8">
+		<name>StorageObject_1</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="object.property.auto.Clustered" value="false" />
+			<parameter name="object.property.auto.CommentChanged" value="false" />
+			<parameter name="object.property.auto.CommentInRDBMSChanged" value="false" />
+			<parameter name="object.property.auto.ComputeStatistics" value="NO" />
+			<parameter name="object.property.auto.CreateIndexStatement" value="" />
+			<parameter name="object.property.auto.Deferrable" value="NO" />
+			<parameter name="object.property.auto.DeletedInPhysicalDesign" value="false" />
+			<parameter name="object.property.auto.DropEnabled" value="false" />
+			<parameter name="object.property.auto.Enable" value="YES" />
+			<parameter name="object.property.auto.ExceptionsTable" value="NO_OBJECT" />
+			<parameter name="object.property.auto.ExistingIndexName" value="" />
+			<parameter name="object.property.auto.GeneratedInRDBMS" value="false" />
+			<parameter name="object.property.auto.IndexGlobalPL" value="NO_OBJECT" />
+			<parameter name="object.property.auto.IndexSegment" value="NO_OBJECT" />
+			<parameter name="object.property.auto.IndexSort" value="NO" />
+			<parameter name="object.property.auto.Initially" value="IMMEDIATE" />
+			<parameter name="object.property.auto.Logging" value="NO" />
+			<parameter name="object.property.auto.LongName" value="StorageObject_1" />
+			<parameter name="object.property.auto.MarkGenerateIfFK" value="true" />
+			<parameter name="object.property.auto.MarkedGenerate" value="true" />
+			<parameter name="object.property.auto.Name" value="StorageObject_1" />
+			<parameter name="object.property.auto.NameHasQuotes" value="false" />
+			<parameter name="object.property.auto.ObjectID" value="5D628A0F-22BB-413D-2480-29345BF5EDE8" />
+			<parameter name="object.property.auto.Partitioned" value="false" />
+			<parameter name="object.property.auto.RawObject" value="false" />
+			<parameter name="object.property.auto.ReadOnly" value="false" />
+			<parameter name="object.property.auto.ShouldFollowNameChanges" value="true" />
+			<parameter name="object.property.auto.TableSpace" value="NO_OBJECT" />
+			<parameter name="object.property.auto.UsingIndex" value="NO" />
+			<parameter name="object.property.auto.Validate" value="YES" />
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+	</object>
+</metadatadoc>

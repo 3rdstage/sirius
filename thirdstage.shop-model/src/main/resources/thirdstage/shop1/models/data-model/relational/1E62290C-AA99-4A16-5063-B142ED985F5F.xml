@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<design version="2.0" defaultRDBMSSite="D9582E4E-79E2-319F-387A-2ED963CB9D32" notation="1" show_all_details="true" show_names_only="false" show_elements="false" show_datatype="false" show_keys="false" auto_route="true" box_in_box="false">
+	<ref>
+		<objectid role="contains" type="Table" oid="729BB7A9-4978-B1D3-53D6-18AB54FB5314" marked_generate="true">
+			<graphical>
+				<parameter name="background_color" value="NULL" />
+				<parameter name="foreground_color" value="NULL" />
+				<parameter name="h" value="197.0" />
+				<parameter name="use_default_color" value="true" />
+				<parameter name="w" value="300.0" />
+				<parameter name="x" value="40.0" />
+				<parameter name="y" value="151.0" />
+			</graphical>
+		</objectid>
+		<objectid role="contains" type="Table" oid="EDCC18A7-27A5-FDC8-0C43-7A2AFC1483A1" marked_generate="true">
+			<graphical>
+				<parameter name="background_color" value="NULL" />
+				<parameter name="foreground_color" value="NULL" />
+				<parameter name="h" value="141.0" />
+				<parameter name="use_default_color" value="true" />
+				<parameter name="w" value="300.0" />
+				<parameter name="x" value="561.0" />
+				<parameter name="y" value="207.0" />
+			</graphical>
+		</objectid>
+		<objectid role="contains" type="Table" oid="59D6F2EE-DF18-1DFE-C6EA-157E6D21B036" marked_generate="true">
+			<graphical>
+				<parameter name="background_color" value="NULL" />
+				<parameter name="foreground_color" value="NULL" />
+				<parameter name="h" value="71.0" />
+				<parameter name="use_default_color" value="true" />
+				<parameter name="w" value="300.0" />
+				<parameter name="x" value="20.0" />
+				<parameter name="y" value="20.0" />
+			</graphical>
+		</objectid>
+		<objectid role="contains" type="Table" oid="B5BE2558-FC75-3167-3287-5D5E11ED5928" marked_generate="true">
+			<graphical>
+				<parameter name="background_color" value="NULL" />
+				<parameter name="foreground_color" value="NULL" />
+				<parameter name="h" value="99.0" />
+				<parameter name="use_default_color" value="true" />
+				<parameter name="w" value="300.0" />
+				<parameter name="x" value="20.0" />
+				<parameter name="y" value="585.0" />
+			</graphical>
+		</objectid>
+		<objectid role="contains" type="Table" oid="81FE9DC1-9802-8DFB-7484-2798911E3296" marked_generate="true">
+			<graphical>
+				<parameter name="background_color" value="NULL" />
+				<parameter name="foreground_color" value="NULL" />
+				<parameter name="h" value="113.0" />
+				<parameter name="use_default_color" value="true" />
+				<parameter name="w" value="300.0" />
+				<parameter name="x" value="20.0" />
+				<parameter name="y" value="1108.0" />
+			</graphical>
+		</objectid>
+		<objectid role="contains" type="Table" oid="D7155A24-CA31-5826-DA92-D5F78196166B" marked_generate="true">
+			<graphical>
+				<parameter name="background_color" value="NULL" />
+				<parameter name="foreground_color" value="NULL" />
+				<parameter name="h" value="127.0" />
+				<parameter name="use_default_color" value="true" />
+				<parameter name="w" value="300.0" />
+				<parameter name="x" value="561.0" />
+				<parameter name="y" value="20.0" />
+			</graphical>
+		</objectid>
+		<objectid role="contains" type="Table" oid="BDBAD49B-7F17-69FA-3EDB-1B9E9D76F1AD" marked_generate="true">
+			<graphical>
+				<parameter name="background_color" value="NULL" />
+				<parameter name="foreground_color" value="NULL" />
+				<parameter name="h" value="71.0" />
+				<parameter name="use_default_color" value="true" />
+				<parameter name="w" value="300.0" />
+				<parameter name="x" value="390.0" />
+				<parameter name="y" value="817.0" />
+			</graphical>
+		</objectid>
+		<objectid role="contains" type="Table" oid="92AD8AED-6D22-48AF-9821-BBE289B8E5E0" marked_generate="true">
+			<graphical>
+				<parameter name="background_color" value="NULL" />
+				<parameter name="foreground_color" value="NULL" />
+				<parameter name="h" value="71.0" />
+				<parameter name="use_default_color" value="true" />
+				<parameter name="w" value="300.0" />
+				<parameter name="x" value="30.0" />
+				<parameter name="y" value="907.0" />
+			</graphical>
+		</objectid>
+		<objectid role="contains" type="Table" oid="3EACA45E-278D-7E5D-9567-A77BB1D2EACE" marked_generate="true">
+			<graphical>
+				<parameter name="background_color" value="NULL" />
+				<parameter name="foreground_color" value="NULL" />
+				<parameter name="h" value="57.0" />
+				<parameter name="use_default_color" value="true" />
+				<parameter name="w" value="300.0" />
+				<parameter name="x" value="20.0" />
+				<parameter name="y" value="408.0" />
+			</graphical>
+		</objectid>
+		<objectid role="contains" type="Table" oid="2646715A-10D8-9DD0-482B-7547BB19A732" marked_generate="true">
+			<graphical>
+				<parameter name="background_color" value="NULL" />
+				<parameter name="foreground_color" value="NULL" />
+				<parameter name="h" value="113.0" />
+				<parameter name="use_default_color" value="true" />
+				<parameter name="w" value="300.0" />
+				<parameter name="x" value="20.0" />
+				<parameter name="y" value="744.0" />
+			</graphical>
+		</objectid>
+	</ref>
+	<view_synonyms />
+	<view_fkeys>
+		<objectid role="represents" type="FKIndexAssociation" oid="3B02C904-757A-F167-55EE-E10FBDAA1264" viewid_source="sm_category#0" viewid_target="sm_category#0">
+			<points>
+				<point x_coordinate="711.0" y_coordinate="207.0" />
+				<point x_coordinate="876.0" y_coordinate="277.5" />
+				<point x_coordinate="876.0" y_coordinate="363.0" />
+				<point x_coordinate="711.0" y_coordinate="363.0" />
+				<point x_coordinate="711.0" y_coordinate="207.0" />
+			</points>
+			<labels>
+				<main_label x_coordinate="752.0" y_coordinate="308.0" width="76.0" height="20.0" use_default_color="true" background_color="null" foreground_color="null">
+					<fonts>
+						<font_object>
+							<parameter name="fo_type" value="Text" />
+							<parameter name="font_color" value="-16777216" />
+							<parameter name="font_name" value="Dialog" />
+							<parameter name="font_size" value="10" />
+							<parameter name="font_style" value="0" />
+						</font_object>
+					</fonts>
+				</main_label>
+			</labels>
+			<graphical>
+				<parameter name="use_default_color" value="true" />
+			</graphical>
+		</objectid>
+		<objectid role="represents" type="FKIndexAssociation" oid="3AF32BE9-A66A-67F3-9CAD-133163D1D3A2" viewid_source="sm_account#0" viewid_target="sm_customer#0">
+			<points>
+				<point x_coordinate="190.0" y_coordinate="151.0" />
+				<point x_coordinate="197.0" y_coordinate="177.0" />
+				<point x_coordinate="177.0" y_coordinate="177.0" />
+				<point x_coordinate="170.0" y_coordinate="20.0" />
+			</points>
+			<labels>
+				<main_label x_coordinate="140.0" y_coordinate="116.0" width="78.0" height="20.0" use_default_color="true" background_color="null" foreground_color="null">
+					<fonts>
+						<font_object>
+							<parameter name="fo_type" value="Text" />
+							<parameter name="font_color" value="-16777216" />
+							<parameter name="font_name" value="Dialog" />
+							<parameter name="font_size" value="10" />
+							<parameter name="font_style" value="0" />
+						</font_object>
+					</fonts>
+				</main_label>
+			</labels>
+			<graphical>
+				<parameter name="use_default_color" value="true" />
+			</graphical>
+		</objectid>
+		<objectid role="represents" type="FKIndexAssociation" oid="D68703DB-336F-FB81-3FD3-6273A7A84B37" viewid_source="sm_user#0" viewid_target="sm_login#0">
+			<points>
+				<point x_coordinate="170.0" y_coordinate="744.0" />
+				<point x_coordinate="170.0" y_coordinate="721.0" />
+				<point x_coordinate="170.0" y_coordinate="721.0" />
+				<point x_coordinate="170.0" y_coordinate="585.0" />
+			</points>
+			<labels>
+				<main_label x_coordinate="141.0" y_coordinate="704.0" width="59.0" height="20.0" use_default_color="true" background_color="null" foreground_color="null">
+					<fonts>
+						<font_object>
+							<parameter name="fo_type" value="Text" />
+							<parameter name="font_color" value="-16777216" />
+							<parameter name="font_name" value="Dialog" />
+							<parameter name="font_size" value="10" />
+							<parameter name="font_style" value="0" />
+						</font_object>
+					</fonts>
+				</main_label>
+			</labels>
+			<graphical>
+				<parameter name="use_default_color" value="true" />
+			</graphical>
+		</objectid>
+		<objectid role="represents" type="FKIndexAssociation" oid="27645FFA-17C2-3458-F7DC-0022AC298D03" viewid_source="sm_menu#0" viewid_target="sm_menu#0">
+			<points>
+				<point x_coordinate="170.0" y_coordinate="1108.0" />
+				<point x_coordinate="335.0" y_coordinate="1164.5" />
+				<point x_coordinate="335.0" y_coordinate="1236.0" />
+				<point x_coordinate="170.0" y_coordinate="1236.0" />
+				<point x_coordinate="170.0" y_coordinate="1108.0" />
+			</points>
+			<labels>
+				<main_label x_coordinate="218.0" y_coordinate="1188.0" width="62.0" height="20.0" use_default_color="true" background_color="null" foreground_color="null">
+					<fonts>
+						<font_object>
+							<parameter name="fo_type" value="Text" />
+							<parameter name="font_color" value="-16777216" />
+							<parameter name="font_name" value="Dialog" />
+							<parameter name="font_size" value="10" />
+							<parameter name="font_style" value="0" />
+						</font_object>
+					</fonts>
+				</main_label>
+			</labels>
+			<graphical>
+				<parameter name="use_default_color" value="true" />
+			</graphical>
+		</objectid>
+		<objectid role="represents" type="FKIndexAssociation" oid="0C8040C6-E5CB-0037-17AA-B790A7039CA8" viewid_source="sm_category#0" viewid_target="sm_product#0">
+			<points>
+				<point x_coordinate="711.0" y_coordinate="207.0" />
+				<point x_coordinate="718.0" y_coordinate="177.0" />
+				<point x_coordinate="718.0" y_coordinate="177.0" />
+				<point x_coordinate="711.0" y_coordinate="20.0" />
+			</points>
+			<labels>
+				<main_label x_coordinate="683.0" y_coordinate="167.0" width="71.0" height="20.0" use_default_color="true" background_color="null" foreground_color="null">
+					<fonts>
+						<font_object>
+							<parameter name="fo_type" value="Text" />
+							<parameter name="font_color" value="-16777216" />
+							<parameter name="font_name" value="Dialog" />
+							<parameter name="font_size" value="10" />
+							<parameter name="font_style" value="0" />
+						</font_object>
+					</fonts>
+				</main_label>
+			</labels>
+			<graphical>
+				<parameter name="use_default_color" value="true" />
+			</graphical>
+		</objectid>
+		<objectid role="represents" type="FKIndexAssociation" oid="62737879-BE47-DDD1-30C9-783D4505A693" viewid_source="sm_role#0" viewid_target="sm_role_menu#0">
+			<points>
+				<point x_coordinate="540.0" y_coordinate="817.0" />
+				<point x_coordinate="367.0" y_coordinate="845.5" />
+				<point x_coordinate="367.0" y_coordinate="935.5" />
+				<point x_coordinate="180.0" y_coordinate="907.0" />
+			</points>
+			<labels>
+				<main_label x_coordinate="317.0" y_coordinate="887.0" width="86.0" height="20.0" use_default_color="true" background_color="null" foreground_color="null">
+					<fonts>
+						<font_object>
+							<parameter name="fo_type" value="Text" />
+							<parameter name="font_color" value="-16777216" />
+							<parameter name="font_name" value="Dialog" />
+							<parameter name="font_size" value="10" />
+							<parameter name="font_style" value="0" />
+						</font_object>
+					</fonts>
+				</main_label>
+			</labels>
+			<graphical>
+				<parameter name="use_default_color" value="true" />
+			</graphical>
+		</objectid>
+		<objectid role="represents" type="FKIndexAssociation" oid="975C0F55-F685-12D7-D134-0DB0C0DD18C8" viewid_source="sm_menu#0" viewid_target="sm_role_menu#0">
+			<points>
+				<point x_coordinate="170.0" y_coordinate="1108.0" />
+				<point x_coordinate="177.0" y_coordinate="1057.0" />
+				<point x_coordinate="187.0" y_coordinate="1057.0" />
+				<point x_coordinate="180.0" y_coordinate="907.0" />
+			</points>
+			<labels>
+				<main_label x_coordinate="140.0" y_coordinate="1033.0" width="86.0" height="20.0" use_default_color="true" background_color="null" foreground_color="null">
+					<fonts>
+						<font_object>
+							<parameter name="fo_type" value="Text" />
+							<parameter name="font_color" value="-16777216" />
+							<parameter name="font_name" value="Dialog" />
+							<parameter name="font_size" value="10" />
+							<parameter name="font_style" value="0" />
+						</font_object>
+					</fonts>
+				</main_label>
+			</labels>
+			<graphical>
+				<parameter name="use_default_color" value="true" />
+			</graphical>
+		</objectid>
+		<objectid role="represents" type="FKIndexAssociation" oid="0A518E68-6145-A0A9-8C52-9E5ACFFDA8E8" viewid_source="sm_account#0" viewid_target="sm_supplier#0">
+			<points>
+				<point x_coordinate="190.0" y_coordinate="151.0" />
+				<point x_coordinate="183.0" y_coordinate="385.0" />
+				<point x_coordinate="163.0" y_coordinate="385.0" />
+				<point x_coordinate="170.0" y_coordinate="408.0" />
+			</points>
+			<labels>
+				<main_label x_coordinate="136.0" y_coordinate="368.0" width="72.0" height="20.0" use_default_color="true" background_color="null" foreground_color="null">
+					<fonts>
+						<font_object>
+							<parameter name="fo_type" value="Text" />
+							<parameter name="font_color" value="-16777216" />
+							<parameter name="font_name" value="Dialog" />
+							<parameter name="font_size" value="10" />
+							<parameter name="font_style" value="0" />
+						</font_object>
+					</fonts>
+				</main_label>
+			</labels>
+			<graphical>
+				<parameter name="use_default_color" value="true" />
+			</graphical>
+		</objectid>
+	</view_fkeys>
+	<type_substitutions />
+	<marked_generate_for_indexes>
+		<objectid oid="09024D57-8D17-D54B-0167-FCB153F7F9CB" marked_generate="true" />
+		<objectid oid="893B3399-6A7A-16E1-E446-D0885469A136" marked_generate="true" />
+		<objectid oid="CDC85460-EE63-CAA8-396A-8046BB8B1CAF" marked_generate="true" />
+		<objectid oid="9BEA7545-57BD-22CD-99F8-FBCEB0A51D91" marked_generate="true" />
+		<objectid oid="019D34D8-9954-08A0-7543-F8CBD0D66500" marked_generate="true" />
+		<objectid oid="6D2CC6F7-3C0A-523A-EB45-0E58652AC05A" marked_generate="true" />
+		<objectid oid="0EFDE1FA-0802-493B-0D31-35D81285C6E3" marked_generate="true" />
+		<objectid oid="4AA9D505-E34E-8969-F42A-7FC93B8B4A38" marked_generate="true" />
+		<objectid oid="5D628A0F-22BB-413D-2480-29345BF5EDE8" marked_generate="true" />
+		<objectid oid="CEF7868A-7C03-900C-5B84-FB84B047C187" marked_generate="true" />
+		<objectid oid="635E5C46-F165-B7CE-4E97-D379DEFA1E5A" marked_generate="true" />
+		<objectid oid="E9D47842-19D9-CD74-136B-0AD0C532FD56" marked_generate="true" />
+		<objectid oid="B9D5EAD3-F916-7CD9-1CAF-D82276780D9E" marked_generate="true" />
+		<objectid oid="8DD22516-D1DC-53FE-D325-3695E4500ECB" marked_generate="true" />
+		<objectid oid="3F8C4C23-4D43-99ED-E1F6-CEA7D7CFD040" marked_generate="true" />
+		<objectid oid="1C0A531A-AB1E-EEED-8E0D-DE2F26AA86FE" marked_generate="true" />
+		<objectid oid="CEF9A1B2-B0E9-4D06-3ACF-F5D81F18160E" marked_generate="true" />
+		<objectid oid="BF9C8B22-E4F1-23B5-33FA-C26ED435AEF3" marked_generate="true" />
+		<objectid oid="CA650070-280E-37B1-D7E9-A25AC341CDCD" marked_generate="true" />
+		<objectid oid="342415D8-FCE4-0DE9-B5A8-CBC8BD3358A7" marked_generate="true" />
+		<objectid oid="5E423C4D-B026-BA65-C619-E883EB6778DC" marked_generate="true" />
+	</marked_generate_for_indexes>
+	<subordinate_displays />
+	<physical_sub_views_collection />
+	<diagram_views />
+	<documents />
+	<parties />
+	<naming_options>
+		<naming_option class_name="oracle.dbtools.crest.model.design.relational.Table" max_name_length="30" case_type="2" valid_characters="null" all_valid="true" />
+		<naming_option class_name="oracle.dbtools.crest.model.design.relational.Column" max_name_length="30" case_type="2" valid_characters="null" all_valid="true" />
+		<naming_option class_name="oracle.dbtools.crest.model.design.relational.TableView" max_name_length="30" case_type="2" valid_characters="null" all_valid="true" />
+	</naming_options>
+</design>

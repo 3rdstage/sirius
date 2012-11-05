@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<design version="2.0" notation="1" show_all_details="true" show_names_only="false" show_elements="false" show_datatype="false" show_keys="false" auto_route="true" box_in_box="false">
+	<ref>
+		<objectid role="contains" type="StructuredType" oid="7F0ABAB6-127A-421F-475E-25116E342ADD@StructuredType0">
+			<graphical>
+				<parameter name="background_color" value="NULL" />
+				<parameter name="foreground_color" value="NULL" />
+				<parameter name="h" value="39.0" />
+				<parameter name="use_default_color" value="true" />
+				<parameter name="w" value="108.0" />
+				<parameter name="x" value="20.0" />
+				<parameter name="y" value="20.0" />
+			</graphical>
+		</objectid>
+	</ref>
+	<view_relations />
+	<subordinate_displays />
+	<datatype_sub_views_collection />
+	<documents />
+	<parties />
+	<diagram_views />
+</design>

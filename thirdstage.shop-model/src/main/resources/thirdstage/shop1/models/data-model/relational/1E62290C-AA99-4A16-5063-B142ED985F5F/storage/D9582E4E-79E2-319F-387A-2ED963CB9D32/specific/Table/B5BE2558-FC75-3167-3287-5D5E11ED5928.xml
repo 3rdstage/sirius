@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<metadatadoc version="2.0">
+	<object type="Table" id="B5BE2558-FC75-3167-3287-5D5E11ED5928">
+		<name>sm_login</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="object.property.auto.BackupOption" value="Rename" />
+			<parameter name="object.property.auto.Cache" value="NO" />
+			<parameter name="object.property.auto.Cluster" value="NO_OBJECT" />
+			<parameter name="object.property.auto.ClusterColumns" value="" />
+			<parameter name="object.property.auto.CommentChanged" value="false" />
+			<parameter name="object.property.auto.CommentInRDBMSChanged" value="false" />
+			<parameter name="object.property.auto.DataSegmentCompression" value="NO" />
+			<parameter name="object.property.auto.Degree" value="" />
+			<parameter name="object.property.auto.DeletedInPhysicalDesign" value="false" />
+			<parameter name="object.property.auto.DropEnabled" value="false" />
+			<parameter name="object.property.auto.GeneratePK" value="true" />
+			<parameter name="object.property.auto.GeneratedInRDBMS" value="false" />
+			<parameter name="object.property.auto.IOTMappingTable" value="NO" />
+			<parameter name="object.property.auto.IotCompress" value="0" />
+			<parameter name="object.property.auto.IotIncluding" value="NO_OBJECT" />
+			<parameter name="object.property.auto.IotOverflowSegment" value="NO_OBJECT" />
+			<parameter name="object.property.auto.IotPctThreshold" value="1" />
+			<parameter name="object.property.auto.Logging" value="YES" />
+			<parameter name="object.property.auto.LongName" value="shop1.sm_login" />
+			<parameter name="object.property.auto.MarkedGenerate" value="true" />
+			<parameter name="object.property.auto.Monitoring" value="NO" />
+			<parameter name="object.property.auto.Name" value="sm_login" />
+			<parameter name="object.property.auto.NameHasQuotes" value="false" />
+			<parameter name="object.property.auto.ObjectID" value="B5BE2558-FC75-3167-3287-5D5E11ED5928" />
+			<parameter name="object.property.auto.OidIndexName" value="" />
+			<parameter name="object.property.auto.OidIndexSegment" value="NO_OBJECT" />
+			<parameter name="object.property.auto.Organization" value="HEAP" />
+			<parameter name="object.property.auto.PKName" value="" />
+			<parameter name="object.property.auto.Parallel" value="NO" />
+			<parameter name="object.property.auto.PartitionList" value="NO_OBJECT" />
+			<parameter name="object.property.auto.Partitioned" value="NO" />
+			<parameter name="object.property.auto.ParttitionedRowMovement" value="ENABLE" />
+			<parameter name="object.property.auto.RawObject" value="false" />
+			<parameter name="object.property.auto.ReadOnly" value="false" />
+			<parameter name="object.property.auto.RestoreOption" value="Restore" />
+			<parameter name="object.property.auto.Segment" value="NO_OBJECT" />
+			<parameter name="object.property.auto.ShouldFollowNameChanges" value="true" />
+			<parameter name="object.property.auto.Snapshot" value="NO_OBJECT" />
+			<parameter name="object.property.auto.SuplementalLogColumns" value="" />
+			<parameter name="object.property.auto.SuplementalLogConditions" value="ON UPDATE" />
+			<parameter name="object.property.auto.SuplementalLogGroupName" value="" />
+			<parameter name="object.property.auto.TableSpace" value="NO_OBJECT" />
+			<parameter name="object.property.auto.TempPreserveRows" value="YES" />
+			<parameter name="object.property.auto.Temporary" value="NO" />
+			<parameter name="object.property.auto.User" value="1EDE9F44-90C4-6429-7EE8-51AD1AB810B0" />
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+	</object>
+</metadatadoc>

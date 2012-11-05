@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="order">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="id">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<!--
+								<xsd:minLength value="12"/> <xsd:maxLength value="12"/>
+							-->
+							<xsd:pattern value="[0-9A-Za-z]{12}" />
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="customerId">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:pattern value="[0-9A-Za-z]+" />
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="poNo" type="xsd:string" />
+				<xsd:element name="orderedDate" type="xsd:date" />
+				<xsd:element name="orderedTime" type="xsd:time" />
+				<xsd:element name="totalPrice">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="10" />
+							<xsd:fractionDigits value="2" />
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

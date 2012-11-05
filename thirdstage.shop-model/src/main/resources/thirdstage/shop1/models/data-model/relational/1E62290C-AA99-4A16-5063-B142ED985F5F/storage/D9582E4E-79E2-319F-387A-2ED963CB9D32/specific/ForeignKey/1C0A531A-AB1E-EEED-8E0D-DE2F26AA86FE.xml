@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<metadatadoc version="2.0">
+	<object type="ForeignKey" id="1C0A531A-AB1E-EEED-8E0D-DE2F26AA86FE">
+		<name>fk_login_1</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="object.property.auto.Clustered" value="false" />
+			<parameter name="object.property.auto.CommentChanged" value="false" />
+			<parameter name="object.property.auto.CommentInRDBMSChanged" value="false" />
+			<parameter name="object.property.auto.Deferrable" value="NO" />
+			<parameter name="object.property.auto.DeletedInPhysicalDesign" value="false" />
+			<parameter name="object.property.auto.DropEnabled" value="false" />
+			<parameter name="object.property.auto.Enable" value="YES" />
+			<parameter name="object.property.auto.ExceptionsTable" value="NO_OBJECT" />
+			<parameter name="object.property.auto.GeneratedInRDBMS" value="false" />
+			<parameter name="object.property.auto.Initially" value="IMMEDIATE" />
+			<parameter name="object.property.auto.LongName" value="fk_login_1" />
+			<parameter name="object.property.auto.MarkGenerateIfFK" value="true" />
+			<parameter name="object.property.auto.MarkedGenerate" value="true" />
+			<parameter name="object.property.auto.Name" value="fk_login_1" />
+			<parameter name="object.property.auto.NameHasQuotes" value="false" />
+			<parameter name="object.property.auto.ObjectID" value="1C0A531A-AB1E-EEED-8E0D-DE2F26AA86FE" />
+			<parameter name="object.property.auto.OnDelete" value="CASCADE" />
+			<parameter name="object.property.auto.Partitioned" value="false" />
+			<parameter name="object.property.auto.RawObject" value="false" />
+			<parameter name="object.property.auto.ReadOnly" value="false" />
+			<parameter name="object.property.auto.Rely" value="NO" />
+			<parameter name="object.property.auto.ShouldFollowNameChanges" value="true" />
+			<parameter name="object.property.auto.Validate" value="YES" />
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+	</object>
+</metadatadoc>

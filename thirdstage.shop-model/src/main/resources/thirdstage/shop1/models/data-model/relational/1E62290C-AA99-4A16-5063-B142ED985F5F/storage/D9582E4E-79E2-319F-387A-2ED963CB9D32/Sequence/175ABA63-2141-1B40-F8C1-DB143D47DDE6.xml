@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<metadatadoc version="2.0">
+	<object type="Sequence" id="175ABA63-2141-1B40-F8C1-DB143D47DDE6">
+		<name>seq_role</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>3rdstage</user>
+			<timestamp>2009-03-20 01:33:07</timestamp>
+		</alter>
+		<properties>
+			<parameter name="object.property.auto.Cache" value="" />
+			<parameter name="object.property.auto.Cycle" value="NO" />
+			<parameter name="object.property.auto.GeneratedInRDBMS" value="false" />
+			<parameter name="object.property.auto.IncrementBy" value="" />
+			<parameter name="object.property.auto.LongName" value="shop1.seq_role" />
+			<parameter name="object.property.auto.MarkedGenerate" value="true" />
+			<parameter name="object.property.auto.MaxValue" value="" />
+			<parameter name="object.property.auto.MinValue" value="" />
+			<parameter name="object.property.auto.NameHasQuotes" value="false" />
+			<parameter name="object.property.auto.Order" value="NO" />
+			<parameter name="object.property.auto.RawObject" value="false" />
+			<parameter name="object.property.auto.ReadOnly" value="false" />
+			<parameter name="object.property.auto.StartWith" value="" />
+			<parameter name="object.property.auto.User" value="1EDE9F44-90C4-6429-7EE8-51AD1AB810B0" />
+			<parameter name="design.owner" value="data-model" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+	</object>
+</metadatadoc>

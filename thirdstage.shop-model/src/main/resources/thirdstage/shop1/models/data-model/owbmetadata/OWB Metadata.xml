@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<design version="2.0" notation="1" show_all_details="true" show_names_only="false" show_elements="false" show_datatype="false" show_keys="false" auto_route="true" box_in_box="false">
+	<ref />
+	<view_relations />
+	<subordinate_displays />
+	<sub_views_collection />
+	<documents />
+	<parties />
+	<diagram_views />
+</design>

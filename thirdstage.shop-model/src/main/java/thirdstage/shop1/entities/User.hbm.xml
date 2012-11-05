@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2009. 3. 17 ?????? 12:56:05 by Hibernate Tools 3.2.0.CR1 -->
+<hibernate-mapping>
+    <class name="thirdstage.shop1.entities.User" table="sm_user">
+        <comment>&#236;&#130;&#172;&#236;&#154;&#169;&#236;&#158;&#144;</comment>
+        <id name="loginId" type="java.lang.String" access="field">
+            <column name="login_id" length="12" />
+            <generator class="assigned"></generator>
+        </id>
+        <property name="isLocked" type="boolean" access="field">
+            <column name="is_locked" />
+        </property>
+        <property name="isPasswordExpired" type="boolean" access="field">
+            <column name="is_passwd_expired" />
+        </property>
+        <list name="loginHistory" inverse="false">
+            <key>
+                <column name="login_id" not-null="true" />
+            </key>
+            <index column="idx" />
+            <element type="string" column="dummy" />
+        </list>
+        <property name="password" type="java.lang.String" access="field">
+            <column name="passwd" length="12" />
+        </property>
+        <property name="registeredDatetime" type="calendar" access="field">
+            <column name="reg_datetime" />
+        </property>
+    </class>
+</hibernate-mapping>
