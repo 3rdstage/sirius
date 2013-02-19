@@ -17,5 +17,5 @@ The top level packages or modules of the application are :
 * order
 * delivery
 * partner
-* warehouse
+* warehouse 
 * event
