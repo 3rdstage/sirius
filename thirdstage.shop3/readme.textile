@@ -1,0 +1,21 @@
+h3. shop3 
+
+This is simplified shopping application for experiment or prototyping.
+The architecture of this application is established using the following leading
+open-source frameworks.
+
+* Spring
+* Spring MVC
+* iBATIS 2.x
+* SLF4J
+* JUnit 
+
+The top level packages or modules of the application are :
+
+* catalog
+* customer
+* order
+* delivery
+* partner
+* warehouse 
+* event
