@@ -1,0 +1,93 @@
+{
+	"$schema" : "http://json-schema.org/draft-04/schema#",
+	"title" : "Meta for Pie Chart",
+	"type" : "object",
+	
+	"properties" : {
+		"title" : {
+			"type" : "object",
+			"title" : "Title",
+			"properties" : {
+				"text" : { "type" : "string", "minLength" : 1 },
+				"position" : {
+					"$ref" : "#/definitions/Rectagular6Positions",
+					"default" : "TopCenter"
+				}
+			},
+			"pie" : {
+				"type" : "object",
+				"title" : "Pie",
+				"properties" : {
+					"width" : { "type" : "integer", "minimum" : 1 },
+					"height" : { "type" : "integer", "minimum" : 1 },
+					"start-angle" : { "$ref" : "#/definitions/Angle" },
+					"clockwise" : { "type" : "boolean", "default" : true },
+					"auto-color" : { "type" : "boolean", "default" : false},
+					"auto-order" : { "type" : "boolean", "default" : false}
+				}
+			},
+			"sectors" : {
+				"type" : "array",
+				"items" : {
+					"type" : "object",
+					"properties" : {
+						"name" : { "type" : "string" },
+						"title" : { "type" : "string" },
+						"value" : { },
+						"order" : { "type" : "integer", "minimum" : 1 }
+						
+					}
+				},
+				"minItems" : 1
+			},
+			"legend" : {
+				"type" : "object",
+				"properties" : {
+					"shows" : {
+						"type" : "boolean",
+						"default" : true
+					},
+					"position" : {
+						"$ref" : "#/definitions/RectangularSidePositions",
+						"default" : "Right"
+					}
+				}
+			},
+			"data" : {
+				"$ref" : "#/definitions/Data"
+			},
+			"style" : {
+				"$ref" : "#/definitions/Style"
+			}
+		}
+	},
+	
+	"definitions" : {
+		"Rectagular6Positions" : {
+			"enum" : ["TopLeft", "TopCenter", "TopRight", 
+				"MidLeft", "MidCenter", "MidRight",
+				"BottomLeft", "BottomCenter", "BottomRight"]
+		},
+		"RectangularSidePositions" : {
+			"enum" : ["Top", "Bottom", "Left", "Right"]
+		},
+		"Angle" : {
+			"type" : "integer",
+			"minimum" : 1,
+			"maximum" : 360
+		},
+		"Data" : {
+			"type" : "object",
+			"properties" : {
+				"source" : { "type" : "string", "pattern" : "[a-zA-Z][_a-zA-Z0-9]*" },
+				"interval" : { "type" : "integer", "minimum" : 1 }
+			}
+		},
+		"Style" : {
+			"type" : "object",
+			"properties" : {
+				"class" : { "type" : "string", "pattern" : "([a-zA-Z][a-zA-Z0-9]*:)?[a-zA-Z][-_a-zA-Z0-9]*" }
+			}
+		}
+	}
+}
