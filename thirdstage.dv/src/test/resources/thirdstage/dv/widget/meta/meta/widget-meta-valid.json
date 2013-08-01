@@ -1,0 +1,76 @@
+{
+
+	"name" : "pie-chart",
+	"ver" : "1.0",
+	"parts" : [
+		{
+			"name" : "sector",
+			"properties" : [
+				{
+					"name" : "title",
+					"type" : "string",
+					"constraints" : {
+						"min-length" : 1
+					},
+					"required" : true,
+					"title" : "Title"
+				},
+				{ 
+					"name" : "start-angle",
+					"type" : "int",
+					"constraints" : {
+						"min-inclusive" : 0,
+						"max-inclusive" : 360
+					},
+					"required" : true,
+					"title" : "Start Angle"
+				},
+				{
+					"name" : "end-angle",
+					"type" : "int",
+					"constraints" : {
+						"min-inclusive" : 0,
+						"max-inclusive" : 360
+					},
+					"required" : true
+				},			
+				{
+					"name" : "color",
+					"type" : "string",
+					"required" : false
+				},
+				{
+					"name" : "value",
+					"type" : "any-type",
+					"required" : false
+				}
+			]
+		}
+	],
+	"properties" : [
+		{
+			"name" : "width",
+			"type" : "int", 
+			"constraints" : {
+				"min-exclusive" : 0
+			},
+			"required" : true,
+			"default" : 100
+		},
+		{
+			"name" : "height",
+			"type" : "int",
+			"constraints" : {
+				"min-exclusive" : 0
+			},
+			"required" : true,
+			"default" : 100
+		},
+		{
+			"name" : "auto-color",
+			"type" : "boolean",
+			"required" : false,
+			"default" : false
+		}
+	]
+}

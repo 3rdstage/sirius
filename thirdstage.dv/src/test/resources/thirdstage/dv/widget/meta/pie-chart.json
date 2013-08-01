@@ -1,0 +1,46 @@
+"pie-chart" : {
+	
+	"title" : {
+		"text" : "The market share of smart-phone OS",
+		"position" : "top-center"
+	},
+	"pie" : {
+		"width" : 400,
+		"height" : 400,
+		"start-angle" : 0,
+		"clockwise" : true,
+		"auto-color" : true,
+		"auto-order" : false,
+	},
+	"sectors" : [
+		{
+			"name" : "android",
+			"title" : "Android",
+			"value" : 200,
+			"order" : 1
+		},
+		{
+			"name" : "ios",
+			"title" : "iOS",
+			"value" : 120,
+			"order" : 2
+		},
+		{
+			"name" : "others",
+			"title" : "Others",
+			"value" : 30,
+			"order" : 3
+		},
+	],
+	"legend" : {
+		"shows" : true,
+		"position" : "right"
+	},
+	"data" : {
+		"source" : "ds2030",
+		"interval" : 2000
+	},
+	"style" : {
+		"class" : "dv:pc"
+	}
+}

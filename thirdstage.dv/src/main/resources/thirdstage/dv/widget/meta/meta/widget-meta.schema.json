@@ -1,0 +1,74 @@
+{
+	
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description" : "Defines meta for meta to define structures of widget",
+	"type" : "object",
+	"properties" : {
+		"name" : {
+			"type" : "string",
+			"pattern" : "[a-zA-Z][-_:.0-9a-zA-Z]*",
+			"title" : "Name"
+		},
+		"ver" : {
+			"type" : "string",
+			"description" : "the version of meta",
+			"title" : "Version"
+		},
+		"parts" : {
+			"type" : "array",
+			"items" : {"$ref" : "#"},
+			"minItems" : 1,
+			"description" : "the component that constitute the widget"
+		},
+		"properties" : {
+			"type" : "array",
+			"items" : {
+				"type" : "object",
+				"properties" : {
+					"name" : {
+						"type" : "string",
+						"pattern" : "[a-zA-Z][-_:.0-9a-zA-Z]*",
+						"title" : "Name"
+					}, 
+					"type" : {
+						"type" : "string",
+					    "enum" : ["any-type", "boolean", "int", "decimal", "string", "datetime", "date", "time"],
+						"title" : "Type"
+					},
+					"constraints" : {
+						"type" : "object",
+						"properties" : {
+							"max-inclusive" : {	"type" : "number" },
+							"max-exclusive" : { "type" : "number" },
+							"min-inclusive" : { "type" : "number" },
+							"min-exclusive" : { "type" : "number" },
+							"length" : { "type" : "integer", "minimum" : 1 },
+							"max-length" : { "type" : "integer", "minimum" : 0 },
+							"min-length" : { "type" : "integer", "minimum" : 0 },
+							"pattern" : { "type" : "string", "minLength" : 1 }
+						},
+						"title" : "Constraints"
+					},
+					"required" : { "type" : "boolean", "default" : false },
+					"default" : { 
+						"anyOf" : [
+							{ "type" : "boolean" },
+							{ "type" : "integer" },
+							{ "type" : "number" },
+							{ "type" : "string" },
+							{ "type" : "null" }
+						]
+					},
+					"title" : { "type" : "string" },
+					"description" : { "type" : "string" }
+				},
+				"required" : ["name", "type"]
+			},
+			"minItems" : 1,
+			"uniqueItems" : true		
+		},
+		"title" : { "type" : "string" },
+		"description" : { "type" : "string" }
+	},
+	"required" : ["name", "properties"]
+}

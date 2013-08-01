@@ -1,0 +1,134 @@
+<xsd:schema
+	xmlns="http://www.3rdstage.org/schema/widget-meta" 
+	targetNamespace="http://www.3rdstage.org/schema/widget-meta"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:sch="http://www.ascc.net/xml/Schematron"
+	xmlns:cm="http://www.3rdstage.org/schema/widget-meta"
+	elementFormDefault="qualified">
+
+<xsd:annotation>
+	<xsd:appinfo>
+		<sch:title>Schematron Validation</sch:title>
+		<sch:ns prefix="d" uri="http://www.3rdstage.org/schema/widget-meta"/>
+		
+		<!-- TODO(Sangmoon Oh, 2013-07-27) Add schematron rules
+		Candidates
+		   max-inclusive, max-exclusive >= min-inclusive, min-exclusive
+		   max-length >= min-length
+		 -->
+	</xsd:appinfo>
+	<xsd:documentation>
+adding the following attribute to the schema element will prevent 
+applying this schema to the document without namespace declarations
+using xmlns or xsi:noNamespaceSchemaLocation attribute
+
+	xmlns="http://www.3rdstage.org/schema/widget-meta" 
+	targetNamespace="http://www.3rdstage.org/schema/widget-meta"
+	</xsd:documentation>
+</xsd:annotation>
+
+<!-- TODO(Sangmoon Oh) : needs more thought on widget-meta, widget-type or widget(maybe not) -->
+<xsd:element name="widget-meta" type="widget-metaType"/>
+
+<xsd:complexType name="widget-metaType">
+	<xsd:sequence>
+		<xsd:element name="name">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="[a-zA-Z][-_:.0-9a-zA-Z]*"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:element>
+		<xsd:element name="ver" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+		<xsd:element name="parts" maxOccurs="1" minOccurs="0">
+			<xsd:complexType>
+				<xsd:sequence maxOccurs="unbounded">
+					<!-- TODO(Sangmoon Oh) : needs more review on cardinality of part -->
+					<xsd:element name="part" type="widget-metaType" minOccurs="1" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:key name="uniquePartName">
+				<xsd:selector xpath="cm:part/cm:name"/>
+				<xsd:field xpath="."/>
+			</xsd:key>
+		</xsd:element>
+		<xsd:element name="properties" maxOccurs="1" minOccurs="0">
+			<xsd:complexType>
+				<xsd:sequence maxOccurs="unbounded">
+					<xsd:element name="property" type="propertyType" minOccurs="1"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:key name="uniquePropertyName">
+				<xsd:selector xpath="cm:property/cm:name"/>
+				<xsd:field xpath="."/>
+			</xsd:key>
+		</xsd:element>
+		<!-- TODO(Sangmoon Oh, 2013-07-24) : Applying i18n on title (for display) and description (for explanation)-->
+		<xsd:element name="title" type="xsd:normalizedString" minOccurs="0"/>
+		<xsd:element name="description" type="xsd:string" minOccurs="0"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="propertyType">
+	<xsd:sequence>
+		<xsd:element name="name">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="[a-zA-Z][-_:.0-9a-zA-Z]*"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:element>
+		<xsd:element name="type">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation> 
+					For more detailed meaning of boolean, int, decimal, string, data,
+					refer http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#built-in-datatypes
+						</xsd:documentation>
+					</xsd:annotation>
+					<xsd:enumeration value="any-type"/>
+					<xsd:enumeration value="boolean"/>
+					<xsd:enumeration value="int"/>
+					<xsd:enumeration value="decimal"/>
+					<xsd:enumeration value="string"/>
+					<xsd:enumeration value="datetime"/>
+					<xsd:enumeration value="date"/>
+					<xsd:enumeration value="time"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:element>
+		<xsd:element name="constraints" type="constraintsType"
+			maxOccurs="1" minOccurs="0" />
+		<xsd:element name="required" type="xsd:boolean" maxOccurs="1" minOccurs="0"/>
+		<xsd:element name="default" type="xsd:anySimpleType" maxOccurs="1" minOccurs="0"/>
+		<xsd:element name="title" type="xsd:normalizedString" minOccurs="0"/>
+		<xsd:element name="description" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="constraintsType">
+	<xsd:annotation>
+		<xsd:documentation>
+		For more on each constraints, 
+		refer http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#rf-facets
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:all>
+		<xsd:element name="max-inclusive" type="xsd:decimal" minOccurs="0"/>
+		<xsd:element name="max-exclusive" type="xsd:decimal" minOccurs="0"/>
+		<xsd:element name="min-inclusive" type="xsd:decimal" minOccurs="0"/>
+		<xsd:element name="min-exclusive" type="xsd:decimal" minOccurs="0"/>
+		<xsd:element name="length" type="xsd:nonNegativeInteger" minOccurs="0"/>
+		<xsd:element name="max-length" type="xsd:nonNegativeInteger" minOccurs="0"/>
+		<xsd:element name="min-length" type="xsd:nonNegativeInteger" minOccurs="0"/>
+		<xsd:element name="pattern" type="xsd:string" minOccurs="0"/>
+		<!-- TODO(Sangmoon Oh, 2013-07-27) : Enum constraint
+		Consider to add enum constraint. Strongly necessary.
+		-->
+	</xsd:all>
+</xsd:complexType>
+
+
+
+</xsd:schema>

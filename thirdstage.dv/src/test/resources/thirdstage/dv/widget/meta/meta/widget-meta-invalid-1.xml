@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<widget-meta xmlns="http://www.3rdstage.org/schema/widget-meta">
+	<name>pie-chart</name>
+	<ver>1.0</ver>
+	<parts>
+		<part>
+			<name>sector</name>
+			<properties>
+				<property>
+					<name>#title#</name> <!-- invalid element : # is not allowed name -->
+					<type>string</type>
+					<constraints>
+						<min-length>1</min-length>
+					</constraints>
+					<required>true</required>
+				</property>
+				<property>
+					<name>start-angle</name>
+					<type>int</type>
+					<constraints>
+						<min>0</min>  <!-- invalid element : no 'min' facet, 'min-inclusive' or 'min-exclusive' -->
+						<max-inclusive>360</max-inclusive>
+					</constraints>
+					<required>Y</required> <!-- invalid element, not xsd:boolean type -->
+				</property>
+				<property>
+					<name>end-angle</name>
+					<type>int</type>
+					<constraints>
+						<min-inclusive>0</min-inclusive>
+						<max-inclusive>360</max-inclusive>
+					</constraints>
+					<required>true</required>
+				</property>
+				<property>
+					<name>color</name>
+					<type>string</type>
+					<required>false</required>
+				</property>
+				<property>
+					<name>value</name>
+					<type>any-type</type>
+					<required>false</required>
+				</property>
+			</properties>
+		</part>
+	</parts>
+	<properties>
+		<property>
+			<name>width</name>
+			<type>int</type>
+			<constraints>
+				<min-exclusive>0</min-exclusive>
+			</constraints>
+			<required>true</required>
+			<default>100</default>
+		</property>
+		<property>
+			<name>width</name> <!-- invalid element : duplicate name -->
+			<type>int</type>
+			<constraints>
+				<min-exclusive>0</min-exclusive>
+			</constraints>
+			<required>true</required>
+			<default>100</default>
+		</property>
+		<property>
+			<name>auto-color</name>
+			<type>boolean</type>
+			<required>false</required>
+			<default>false</default>
+		</property>
+
+	</properties>
+</widget-meta>

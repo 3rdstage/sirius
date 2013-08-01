@@ -1,0 +1,47 @@
+
+# TODO(Sangmoon Oh) : It's unsolved to define recursive type referencing which is not so difficult 
+# with W3C Schema. For example, in this schema element part is not widget type, that means it can't
+# sub-parts.
+
+grammar{
+	start = WidgetMeta
+	
+	WidgetMeta = element widget-meta {	
+		WidgetMeta.Name,
+		WidgetMeta.Ver,
+		element parts {
+			element part {
+				WidgetMeta.Name,
+				element properties {	WidgetMeta.Property+ }?,
+				element description { xsd:string }?
+			}+
+		}?,
+		element description { xsd:string }?
+	}
+	
+	WidgetMeta.Name = element name {	xsd:string { pattern = "[a-zA-Z][\-_:.0-9a-zA-Z]*" }}
+	
+	WidgetMeta.Ver = element ver { xsd:string }
+	
+	WidgetMeta.Property = element property {
+		element name { xsd:string { pattern = "[a-zA-Z][\-_:.0-9a-zA-Z]*" }},
+		element type { string "any-type" | string "boolean" | string "int" |
+								string "decimal" | string "datetime" | string "date" | string "time" },
+		element constraints { WidgetMeta.Constraint+ }?,
+		element required { xsd:boolean }?,
+		element default { text }?,
+		element description { xsd:string }?
+	}
+	
+	## constraining elements follows constraint facet of XML schema.
+	WidgetMeta.Constraint = element constraint {
+		element max-inclusive { xsd:decimal }?
+		& element max-exclusive { xsd:decimal }?
+		& element min-inclusive { xsd:decimal }?
+		& element min-exclusive { xsd:decimal }?
+		& element length { xsd:nonNegativeInteger }?
+		& element max-length { xsd:nonNegativeInteger }?		
+		& element min-length { xsd:nonNegativeInteger }?		
+		& element pattern { xsd:string }?		
+	}
+}
