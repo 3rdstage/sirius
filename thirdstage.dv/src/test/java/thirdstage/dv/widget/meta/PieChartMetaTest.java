@@ -8,6 +8,8 @@ import junit.framework.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import thirdstage.dv.util.JsonUtils;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonschema.main.JsonSchema;
@@ -51,4 +53,22 @@ public class PieChartMetaTest {
 		Assert.assertTrue(rpt.isSuccess());
 	}
 
+	@Test
+	public void testValidityOfMetaUsingUtil() throws Exception{
+		
+		boolean result = JsonUtils.validateJson(schemaUrl1, System.out);
+		
+		Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void testValidityOfDocUsingUtil() throws Exception{
+		boolean result = JsonUtils.validateJson(docUrl1, System.out);
+	}
+	
+	@Test
+	public void testValidityOfDocUsingUtil2() throws Exception{
+		boolean result = JsonUtils.validateJson(schemaUrl1, docUrl1, System.out);
+	}
+	
 }
