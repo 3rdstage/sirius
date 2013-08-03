@@ -64,6 +64,20 @@
 	</repositories>
 	<dependencies>
 		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>2.0.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency><dependency>
+	<groupId>edu.washington.cs.types.checker</groupId>
+	<artifactId>checker-framework</artifactId>
+	<version>1.6.4</version>
+</dependency><dependency>
+	<groupId>javax.validation</groupId>
+	<artifactId>validation-api</artifactId>
+	<version>1.1.0.Final</version>
+</dependency><dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.6.4</version>
@@ -131,17 +145,17 @@
 			<version>2.5.6</version>
 		</dependency>
 		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.20</version>
+		</dependency><dependency>
 			<groupId>net.sf.saxon</groupId>
 			<artifactId>Saxon-HE</artifactId>
 			<version>9.5.0.1</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.freemarker</groupId>
-			<artifactId>freemarker</artifactId>
-			<version>2.3.20</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>com.thaiopensource</groupId>
 			<artifactId>jing</artifactId>
@@ -158,17 +172,18 @@
 			<version>20050913</version>
 		</dependency>
 		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.2.2</version>
+		</dependency><dependency>
 			<groupId>com.github.fge</groupId>
 			<artifactId>json-schema-validator</artifactId>
 			<version>2.0.1</version>
 		</dependency>
-		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>javax.annotation-api</artifactId>
-			<version>1.2-b03</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
+		
+		
+
+
 	</dependencies>
 
 </project>
