@@ -1,5 +1,6 @@
 {
 	"$schema" : "http://json-schema.org/draft-04/schema#",
+	"id" : "http://www.thirdstage.org/dv/schema/json/piechart#",
 	"name" : "pie-chart-meta",
 	"title" : "Meta for Pie Chart",
 	"type" : "object",
@@ -11,7 +12,7 @@
 			"properties" : {
 				"text" : { "type" : "string", "minLength" : 1 },
 				"position" : {
-					"$ref" : "#/definitions/Rectagular6Positions",
+					"$ref" : "http://www.thirdstage.org/dv/schema/json/piechart#/definitions/Rectagular6Positions",
 					"default" : "TopCenter"
 				}
 			}
@@ -22,7 +23,7 @@
 			"properties" : {
 				"width" : { "type" : "integer", "minimum" : 1 },
 				"height" : { "type" : "integer", "minimum" : 1 },
-				"start-angle" : { "$ref" : "#/definitions/Angle" },
+				"start-angle" : { "$ref" : "http://www.thirdstage.org/dv/schema/json/piechart#/definitions/Angle" },
 				"clockwise" : { "type" : "boolean", "default" : true },
 				"auto-color" : { "type" : "boolean", "default" : false},
 				"auto-order" : { "type" : "boolean", "default" : false}
@@ -49,16 +50,16 @@
 					"default" : true
 				},
 				"position" : {
-					"$ref" : "#/definitions/RectangularSidePositions",
+					"$ref" : "http://www.thirdstage.org/dv/schema/json/piechart#/definitions/RectangularSidePositions",
 					"default" : "Right"
 				}
 			}
 		},
 		"data" : {
-			"$ref" : "#/definitions/Data"
+			"$ref" : "http://www.thirdstage.org/dv/schema/json/piechart#/definitions/Data"
 		},
 		"style" : {
-			"$ref" : "#/definitions/Style"
+			"$ref" : "http://www.thirdstage.org/dv/schema/json/piechart#/definitions/Style"
 		}
 	},
 
