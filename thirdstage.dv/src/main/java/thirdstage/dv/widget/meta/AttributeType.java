@@ -7,7 +7,8 @@ public enum AttributeType {
 	BOOLEAN,
 	INTEGER,
 	NUMBER,
-	STRING;
+	STRING,
+	UNKNOWN;
 	
 	public static AttributeType valueFromJsonType(@Nonnull String jsonType){
 		if(jsonType == null) throw new IllegalArgumentException("The parameter should not null");

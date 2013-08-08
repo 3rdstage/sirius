@@ -4,15 +4,15 @@ package thirdstage.dv.widget.meta;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class WidgetMetaBuilderTest {
+public class WidgetMetaLoaderTest {
 
 	@Test
 	public void testBuild() throws Exception {
 		
-		WidgetMetaBuilder builder = new WidgetMetaBuilder();
+		WidgetMetaLoader loader = new WidgetMetaLoader();
 		
 		String path = "classpath:thirdstage/dv/widget/meta/pie-chart.meta.json";
-		WidgetMeta meta = builder.build(path);
+		WidgetMeta meta = loader.load(path);
 		
 		System.out.println(meta.toString());
 		

@@ -1,0 +1,34 @@
+
+
+
+
+
+
+h3. Contract on meta.
+
+* meta is a simplified JsonSchema
+** meta is Json Schema but provides some of the .... 
+
+* meta is object whose members are one of the followings
+** @$schema@
+** @id@
+** @name@
+** @title@
+** @description@
+** @properties@
+** @definitions@
+
+* @$schema@, @id@, @name@, @title@, @description@, @properties@ follows the same semantics and syntax with those of Json Schema
+
+* The members of @properties@ SHOULD BE object or array of object and they are called *PART*.
+* Part is object and its members SHOULD BE simple type.
+* Part can be defined with only a reference on a member of @definitions@.
+** When the definition of part contains a reference as a child, the definition cannot contains other children.
+* The definition of part's member can have references on a member of @definitions@.
+
+* Can the definition of property have more than 2 references ?
+* Definition type : 2 type
+** type 1 can be referenced from the member of *@Attribute@* meta
+** type 2 can be referenced from the member of *@Part@* meta
+
+
