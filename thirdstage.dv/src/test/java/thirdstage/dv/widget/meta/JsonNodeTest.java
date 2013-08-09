@@ -138,9 +138,6 @@ public class JsonNodeTest {
 	}
 	
 	
-
-	
-	
 	@Test
 	public void testSchemaWalker() throws Exception{
 		
@@ -200,5 +197,6 @@ public class JsonNodeTest {
 
 		Assert.assertEquals(members.size(), 1);
 		Assert.assertTrue(members.containsKey("enum"));
+
 	}
 }
