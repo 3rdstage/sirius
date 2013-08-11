@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jackson.jsonpointer.JsonPointer;
 import com.github.fge.jsonschema.SchemaVersion;
 import com.github.fge.jsonschema.expand.SchemaExpander;
 import com.github.fge.jsonschema.load.Dereferencing;
@@ -148,7 +149,7 @@ public class JsonNodeTest {
 		
 		SchemaWalkingConfiguration swCfg = SchemaWalkingConfiguration.byDefault()
 				.thaw().setLoadingConfiguration(cfg).freeze();
-		SchemaWalker sw = new ResolvingSchemaWalker(st, swCfg);
+		SchemaWalker sw = new ResolvingSchemaWalker(st);
 		sw.walk(new SchemaExpander(st), new ConsoleProcessingReport());
 		
 		JsonNode nd = st.getNode().get("properties").get("title")
@@ -168,5 +169,34 @@ public class JsonNodeTest {
 		Assert.assertEquals(members.size(), 2);
 		Assert.assertTrue(members.containsKey("$ref"));
 		Assert.assertTrue(members.containsKey("default"));
+	}
+	
+	
+	@Test
+	public void testJsonPointer() throws Exception{
+		
+		LoadingConfiguration cfg = LoadingConfiguration.byDefault()
+				.thaw().dereferencing(Dereferencing.CANONICAL)
+				.freeze();
+				
+		SchemaTree st = new CanonicalSchemaTree(node1);
+		
+		SchemaTree st2 = st.setPointer(new JsonPointer("/definitions/Rectagular6Positions"));
+		
+		JsonNode nd = st2.getNode();
+		Iterator<String> names = nd.fieldNames();
+
+		String name = null;
+		Map<String, String> members = new HashMap<String, String>();
+		while(names.hasNext()){
+			name = names.next();
+			members.put(name, nd.get(name).asText());
+			
+			System.out.printf("key : %1$s, value : %2$s \n", name, members.get(name));
+		}
+
+		Assert.assertEquals(members.size(), 1);
+		Assert.assertTrue(members.containsKey("enum"));
+
 	}
 }

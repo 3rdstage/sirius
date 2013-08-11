@@ -37,14 +37,14 @@ public class PartMeta {
 	
 	@Override
 	public String toString(){
-		StringBuilder sb = new StringBuilder().append("{")
-			.append("  name : ").append(this.getName()).append("\n")
-			.append("  title : ").append(this.getTitle()).append("\n");
+		StringBuilder sb = new StringBuilder().append("   {\n")
+			.append("     name : ").append(this.getName()).append("\n")
+			.append("     title : ").append(this.getTitle()).append("\n");
 		
 		for(AttributeMeta am : this.attributes){
-			sb.append("  ").append(am.toString()).append("\n");
+			sb.append("     ").append(am.toString()).append("\n");
 		}
 		
-		return sb.append("}").toString();
+		return sb.append("   }").toString();
 	}
 }

@@ -39,12 +39,12 @@ public class WidgetMeta {
 	
 	@Override
 	public String toString(){
-		StringBuilder sb = new StringBuilder().append("{")
+		StringBuilder sb = new StringBuilder().append("{\n")
 			.append("  name : ").append(this.getName()).append("\n")
 			.append("  title : ").append(this.getTitle()).append("\n");
 		
 		for(PartMeta pm : this.parts){
-			sb.append("  ").append(pm.toString()).append("\n");
+			sb.append(pm.toString()).append("\n");
 		}
 		
 		return sb.append("}").toString();

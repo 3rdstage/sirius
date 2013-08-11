@@ -64,11 +64,13 @@
 
 	"definitions" : {
 		"Rectagular6Positions" : {
+			"type" : "string",
 			"enum" : ["TopLeft", "TopCenter", "TopRight",
 				"MidLeft", "MidCenter", "MidRight",
 				"BottomLeft", "BottomCenter", "BottomRight"]
 		},
 		"RectangularSidePositions" : {
+			"type" : "string",
 			"enum" : ["Top", "Bottom", "Left", "Right"]
 		},
 		"Angle" : {
