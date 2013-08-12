@@ -40,5 +40,5 @@ h3. TODO
 * SWT WidgetEditor
 * Internalization or Localization
 * Path notation/expression and utility
-* Auto reloading
+* Auto reloading 
 

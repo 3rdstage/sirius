@@ -1,4 +1,4 @@
-package thirdstage.dv.widget.meta;
+package thirdstage.dv.widget.meta; 
 
 import java.io.File;
 import java.net.URL;
