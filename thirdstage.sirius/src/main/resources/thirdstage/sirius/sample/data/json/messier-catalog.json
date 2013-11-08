@@ -1,0 +1,1100 @@
+[
+	{
+		"number": "M1",
+		"type": "Supernova remnant",
+		"distance": 6.3,
+		"constellation": "Taurus",
+		"ngc-number": "NGC 1952",
+		"common-name": "Crab Nebula",
+		"apparent-magnitude": 8.2,
+		"image-url": "http://messier.seds.org/Jpg/m1.jpg",
+		"desc-url": "http://messier.seds.org/m/m001.html"
+	}, {
+		"number": "M2",
+		"type": "Cluster, globular",
+		"distance": 36.0,
+		"constellation": "Aquarius",
+		"ngc-number": "NGC 7089",
+		"common-name": " ",
+		"apparent-magnitude": 6.5,
+		"image-url": "http://messier.seds.org/Jpg/m2.jpg",
+		"desc-url": "http://messier.seds.org/m/m002.html"
+	}, {
+		"number": "M3",
+		"type": "Cluster, globular",
+		"distance": 31.0,
+		"constellation": "Canes Venatici",
+		"ngc-number": "NGC 5272",
+		"common-name": " ",
+		"apparent-magnitude": 6.4,
+		"image-url": "http://messier.seds.org/Jpg/m3.jpg",
+		"desc-url": "http://messier.seds.org/m/m003.html"
+	}, {
+		"number": "M4",
+		"type": "Cluster, globular",
+		"distance": 7.0,
+		"constellation": "Scorpius",
+		"ngc-number": "NGC 6121",
+		"common-name": " ",
+		"apparent-magnitude": 5.9,
+		"image-url": "http://messier.seds.org/Jpg/m4.jpg",
+		"desc-url": "http://messier.seds.org/m/m004.html"
+	}, {
+		"number": "M5",
+		"type": "Cluster, globular",
+		"distance": 23.0,
+		"constellation": "Serpens",
+		"ngc-number": "NGC 5904",
+		"common-name": " ",
+		"apparent-magnitude": 7.0,
+		"image-url": "http://messier.seds.org/Jpg/m5.jpg",
+		"desc-url": "http://messier.seds.org/m/m005.html"
+	}, {
+		"number": "M6",
+		"type": "Cluster, open",
+		"distance": 2.0,
+		"constellation": "Scorpius",
+		"ngc-number": "NGC 6405",
+		"common-name": "Butterfly Cluster",
+		"apparent-magnitude": 4.5,
+		"image-url": "http://messier.seds.org/Jpg/m6.jpg",
+		"desc-url": "http://messier.seds.org/m/m006.html"
+	}, {
+		"number": "M7",
+		"type": "Cluster, open",
+		"distance": 1.0,
+		"constellation": "Scorpius",
+		"ngc-number": "NGC 6475",
+		"common-name": "Ptolemy Cluster",
+		"apparent-magnitude": 3.5,
+		"image-url": "http://messier.seds.org/Jpg/m7.jpg",
+		"desc-url": "http://messier.seds.org/m/m007.html"
+	}, {
+		"number": "M8",
+		"type": "Nebula with cluster",
+		"distance": 6.5,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6523",
+		"common-name": "Lagoon Nebula",
+		"apparent-magnitude": 6.0,
+		"image-url": "http://messier.seds.org/Jpg/m8.jpg",
+		"desc-url": "http://messier.seds.org/m/m008.html"
+	}, {
+		"number": "M9",
+		"type": "Cluster, globular",
+		"distance": 26.0,
+		"constellation": "Ophiuchus",
+		"ngc-number": "NGC 6333",
+		"common-name": " ",
+		"apparent-magnitude": 9.0,
+		"image-url": "http://messier.seds.org/Jpg/m9.jpg",
+		"desc-url": "http://messier.seds.org/m/m009.html"
+	}, {
+		"number": "M10",
+		"type": "Cluster, globular",
+		"distance": 13.0,
+		"constellation": "Ophiuchus",
+		"ngc-number": "NGC 6254",
+		"common-name": " ",
+		"apparent-magnitude": 7.5,
+		"image-url": "http://messier.seds.org/Jpg/m10.jpg",
+		"desc-url": "http://messier.seds.org/m/m010.html"
+	}, {
+		"number": "M11",
+		"type": "Cluster, open",
+		"distance": 6.0,
+		"constellation": "Scutum",
+		"ngc-number": "NGC 6705",
+		"common-name": "Wild Duck Cluster",
+		"apparent-magnitude": 7.0,
+		"image-url": "http://messier.seds.org/Jpg/m11.jpg",
+		"desc-url": "http://messier.seds.org/m/m011.html"
+	}, {
+		"number": "M12",
+		"type": "Cluster, globular",
+		"distance": 18.0,
+		"constellation": "Ophiuchus",
+		"ngc-number": "NGC 6218",
+		"common-name": " ",
+		"apparent-magnitude": 8.0,
+		"image-url": "http://messier.seds.org/Jpg/m12.jpg",
+		"desc-url": "http://messier.seds.org/m/m012.html"
+	}, {
+		"number": "M13",
+		"type": "Cluster, globular",
+		"distance": 22.0,
+		"constellation": "Hercules",
+		"ngc-number": "NGC 6205",
+		"common-name": "Great Globular Cluster in Hercules",
+		"apparent-magnitude": 5.8,
+		"image-url": "http://messier.seds.org/Jpg/m13.jpg",
+		"desc-url": "http://messier.seds.org/m/m013.html"
+	}, {
+		"number": "M14",
+		"type": "Cluster, globular",
+		"distance": 27.0,
+		"constellation": "Ophiuchus",
+		"ngc-number": "NGC 6402",
+		"common-name": " ",
+		"apparent-magnitude": 9.5,
+		"image-url": "http://messier.seds.org/Jpg/m14.jpg",
+		"desc-url": "http://messier.seds.org/m/m014.html"
+	}, {
+		"number": "M15",
+		"type": "Cluster, globular",
+		"distance": 33.0,
+		"constellation": "Pegasus",
+		"ngc-number": "NGC 7078",
+		"common-name": "",
+		"apparent-magnitude": 6.2,
+		"image-url": "http://messier.seds.org/Jpg/m15.jpg",
+		"desc-url": "http://messier.seds.org/m/m015.html"
+	}, {
+		"number": "M16",
+		"type": "Nebula, H II region with cluster",
+		"distance": 7.0,
+		"constellation": "Serpens",
+		"ngc-number": "NGC 6611",
+		"common-name": "Eagle Nebula",
+		"apparent-magnitude": 6.5,
+		"image-url": "http://messier.seds.org/Jpg/m16.jpg",
+		"desc-url": "http://messier.seds.org/m/m016.html"
+	}, {
+		"number": "M17",
+		"type": "Nebula, H II region with cluster",
+		"distance": 5.0,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6618",
+		"common-name": "Omega, Swan, Horseshoe, or Lobster Nebula",
+		"apparent-magnitude": 6.0,
+		"image-url": "http://messier.seds.org/Jpg/m17.jpg",
+		"desc-url": "http://messier.seds.org/m/m017.html"
+	}, {
+		"number": "M18",
+		"type": "Cluster, open",
+		"distance": 6.0,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6613",
+		"common-name": " ",
+		"apparent-magnitude": 8.0,
+		"image-url": "http://messier.seds.org/Jpg/m18.jpg",
+		"desc-url": "http://messier.seds.org/m/m018.html"
+	}, {
+		"number": "M19",
+		"type": "Cluster, globular",
+		"distance": 27.0,
+		"constellation": "Ophiuchus",
+		"ngc-number": "NGC 6273",
+		"common-name": " ",
+		"apparent-magnitude": 8.5,
+		"image-url": "http://messier.seds.org/Jpg/m19.jpg",
+		"desc-url": "http://messier.seds.org/m/m019.html"
+	}, {
+		"number": "M20",
+		"type": "Nebula, H II region with cluster",
+		"distance": 5.2,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6514",
+		"common-name": "Trifid Nebula",
+		"apparent-magnitude": 6.3,
+		"image-url": "http://messier.seds.org/Jpg/m20.jpg",
+		"desc-url": "http://messier.seds.org/m/m020.html"
+	}, {
+		"number": "M21",
+		"type": "Cluster, open",
+		"distance": 3.0,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6531",
+		"common-name": " ",
+		"apparent-magnitude": 7.0,
+		"image-url": "http://messier.seds.org/Jpg/m21.jpg",
+		"desc-url": "http://messier.seds.org/m/m021.html"
+	}, {
+		"number": "M22",
+		"type": "Cluster, globular",
+		"distance": 10.0,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6656",
+		"common-name": "Sagittarius Cluster",
+		"apparent-magnitude": 5.1,
+		"image-url": "http://messier.seds.org/Jpg/m22.jpg",
+		"desc-url": "http://messier.seds.org/m/m022.html"
+	}, {
+		"number": "M23",
+		"type": "Cluster, open",
+		"distance": 4.5,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6494",
+		"common-name": " ",
+		"apparent-magnitude": 6.0,
+		"image-url": "http://messier.seds.org/Jpg/m23.jpg",
+		"desc-url": "http://messier.seds.org/m/m023.html"
+	}, {
+		"number": "M24",
+		"type": "Milky Way star cloud",
+		"distance": 10.0,
+		"constellation": "Sagittarius",
+		"ngc-number": "IC 4715",
+		"common-name": "Sagittarius Star Cloud",
+		"apparent-magnitude": 4.6,
+		"image-url": "http://messier.seds.org/Jpg/m24.jpg",
+		"desc-url": "http://messier.seds.org/m/m024.html"
+	}, {
+		"number": "M25",
+		"type": "Cluster, open",
+		"distance": 2.0,
+		"constellation": "Sagittarius",
+		"ngc-number": "IC 4725",
+		"common-name": " ",
+		"apparent-magnitude": 4.9,
+		"image-url": "http://messier.seds.org/Jpg/m25.jpg",
+		"desc-url": "http://messier.seds.org/m/m025.html"
+	}, {
+		"number": "M26",
+		"type": "Cluster, open",
+		"distance": 5.0,
+		"constellation": "Scutum",
+		"ngc-number": "NGC 6694",
+		"common-name": " ",
+		"apparent-magnitude": 9.5,
+		"image-url": "http://messier.seds.org/Jpg/m26.jpg",
+		"desc-url": "http://messier.seds.org/m/m026.html"
+	}, {
+		"number": "M27",
+		"type": "Nebula, planetary",
+		"distance": 1.25,
+		"constellation": "Vulpecula",
+		"ngc-number": "NGC 6853",
+		"common-name": "Dumbbell Nebula",
+		"apparent-magnitude": 7.5,
+		"image-url": "http://messier.seds.org/Jpg/m27.jpg",
+		"desc-url": "http://messier.seds.org/m/m027.html"
+	}, {
+		"number": "M28",
+		"type": "Cluster, globular",
+		"distance": 18.0,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6626",
+		"common-name": " ",
+		"apparent-magnitude": 8.5,
+		"image-url": "http://messier.seds.org/Jpg/m28.jpg",
+		"desc-url": "http://messier.seds.org/m/m028.html"
+	}, {
+		"number": "M29",
+		"type": "Cluster, open",
+		"distance": 7.2,
+		"constellation": "Cygnus",
+		"ngc-number": "NGC 6913",
+		"common-name": " ",
+		"apparent-magnitude": 9.0,
+		"image-url": "http://messier.seds.org/Jpg/m29.jpg",
+		"desc-url": "http://messier.seds.org/m/m029.html"
+	}, {
+		"number": "M30",
+		"type": "Cluster, globular",
+		"distance": 25.0,
+		"constellation": "Capricornus",
+		"ngc-number": "NGC 7099",
+		"common-name": " ",
+		"apparent-magnitude": 8.5,
+		"image-url": "http://messier.seds.org/Jpg/m30.jpg",
+		"desc-url": "http://messier.seds.org/m/m030.html"
+	}, {
+		"number": "M31",
+		"type": "Galaxy, spiral",
+		"distance": 2500.0,
+		"constellation": "Andromeda",
+		"ngc-number": "NGC 224",
+		"common-name": "Andromeda Galaxy",
+		"apparent-magnitude": 3.4,
+		"image-url": "http://messier.seds.org/Jpg/m31.jpg",
+		"desc-url": "http://messier.seds.org/m/m031.html"
+	}, {
+		"number": "M32",
+		"type": "Galaxy, dwarf elliptical",
+		"distance": 2900.0,
+		"constellation": "Andromeda",
+		"ngc-number": "NGC 221",
+		"common-name": " ",
+		"apparent-magnitude": 8.1,
+		"image-url": "http://messier.seds.org/Jpg/m32.jpg",
+		"desc-url": "http://messier.seds.org/m/m032.html"
+	}, {
+		"number": "M33",
+		"type": "Galaxy, spiral",
+		"distance": 2810.0,
+		"constellation": "Triangulum",
+		"ngc-number": "NGC 598",
+		"common-name": "Triangulum Galaxy",
+		"apparent-magnitude": 5.7,
+		"image-url": "http://messier.seds.org/Jpg/m33.jpg",
+		"desc-url": "http://messier.seds.org/m/m033.html"
+	}, {
+		"number": "M34",
+		"type": "Cluster, open",
+		"distance": 1.4,
+		"constellation": "Perseus",
+		"ngc-number": "NGC 1039",
+		"common-name": " ",
+		"apparent-magnitude": 6.0,
+		"image-url": "http://messier.seds.org/Jpg/m34.jpg",
+		"desc-url": "http://messier.seds.org/m/m034.html"
+	}, {
+		"number": "M35",
+		"type": "Cluster, open",
+		"distance": 2.8,
+		"constellation": "Gemini",
+		"ngc-number": "NGC 2168",
+		"common-name": " ",
+		"apparent-magnitude": 5.5,
+		"image-url": "http://messier.seds.org/Jpg/m35.jpg",
+		"desc-url": "http://messier.seds.org/m/m035.html"
+	}, {
+		"number": "M36",
+		"type": "Cluster, open",
+		"distance": 4.1,
+		"constellation": "Auriga",
+		"ngc-number": "NGC 1960",
+		"common-name": " ",
+		"apparent-magnitude": 6.5,
+		"image-url": "http://messier.seds.org/Jpg/m36.jpg",
+		"desc-url": "http://messier.seds.org/m/m036.html"
+	}, {
+		"number": "M37",
+		"type": "Cluster, open",
+		"distance": 4.6,
+		"constellation": "Auriga",
+		"ngc-number": "NGC 2099",
+		"common-name": " ",
+		"apparent-magnitude": 6.0,
+		"image-url": "http://messier.seds.org/Jpg/m37.jpg",
+		"desc-url": "http://messier.seds.org/m/m037.html"
+	}, {
+		"number": "M38",
+		"type": "Cluster, open",
+		"distance": 4.2,
+		"constellation": "Auriga",
+		"ngc-number": "NGC 1912",
+		"common-name": " ",
+		"apparent-magnitude": 7.0,
+		"image-url": "http://messier.seds.org/Jpg/m38.jpg",
+		"desc-url": "http://messier.seds.org/m/m038.html"
+	}, {
+		"number": "M39",
+		"type": "Cluster, open",
+		"distance": 0.8,
+		"constellation": "Cygnus",
+		"ngc-number": "NGC 7092",
+		"common-name": " ",
+		"apparent-magnitude": 5.5,
+		"image-url": "http://messier.seds.org/Jpg/m39.jpg",
+		"desc-url": "http://messier.seds.org/m/m039.html"
+	}, {
+		"number": "M40",
+		"type": "Double star WNC4",
+		"distance": 0.5,
+		"constellation": "Ursa Major",
+		"ngc-number": " ",
+		"common-name": "Winnecke 4",
+		"apparent-magnitude": 9.0,
+		"image-url": "http://messier.seds.org/Jpg/m40.jpg",
+		"desc-url": "http://messier.seds.org/m/m040.html"
+	}, {
+		"number": "M41",
+		"type": "Cluster, open",
+		"distance": 2.3,
+		"constellation": "Canis Major",
+		"ngc-number": "NGC 2287",
+		"common-name": " ",
+		"apparent-magnitude": 4.5,
+		"image-url": "http://messier.seds.org/Jpg/m41.jpg",
+		"desc-url": "http://messier.seds.org/m/m041.html"
+	}, {
+		"number": "M42",
+		"type": "Nebula, H II region",
+		"distance": 1.6,
+		"constellation": "Orion",
+		"ngc-number": "NGC 1976",
+		"common-name": "Orion Nebula",
+		"apparent-magnitude": 4.0,
+		"image-url": "http://messier.seds.org/Jpg/m42.jpg",
+		"desc-url": "http://messier.seds.org/m/m042.html"
+	}, {
+		"number": "M43",
+		"type": "Nebula, H II region\n(part of the Orion Nebula)",
+		"distance": 1.6,
+		"constellation": "Orion",
+		"ngc-number": "NGC 1982",
+		"common-name": "De Mairan's Nebula",
+		"apparent-magnitude": 7.0,
+		"image-url": "http://messier.seds.org/Jpg/m43.jpg",
+		"desc-url": "http://messier.seds.org/m/m043.html"
+	}, {
+		"number": "M44",
+		"type": "Cluster, open",
+		"distance": 0.6,
+		"constellation": "Cancer",
+		"ngc-number": "NGC 2632",
+		"common-name": "Beehive Cluster",
+		"apparent-magnitude": 3.7,
+		"image-url": "http://messier.seds.org/Jpg/m44.jpg",
+		"desc-url": "http://messier.seds.org/m/m044.html"
+	}, {
+		"number": "M45",
+		"type": "Cluster, open",
+		"distance": 0.4,
+		"constellation": "Taurus",
+		"ngc-number": " ",
+		"common-name": "Pleiades",
+		"apparent-magnitude": 1.6,
+		"image-url": "http://messier.seds.org/Jpg/m45.jpg",
+		"desc-url": "http://messier.seds.org/m/m045.html"
+	}, {
+		"number": "M46",
+		"type": "Cluster, open",
+		"distance": 5.4,
+		"constellation": "Puppis",
+		"ngc-number": "NGC 2437",
+		"common-name": " ",
+		"apparent-magnitude": 6.5,
+		"image-url": "http://messier.seds.org/Jpg/m46.jpg",
+		"desc-url": "http://messier.seds.org/m/m046.html"
+	}, {
+		"number": "M47",
+		"type": "Cluster, open",
+		"distance": 1.6,
+		"constellation": "Puppis",
+		"ngc-number": "NGC 2422",
+		"common-name": " ",
+		"apparent-magnitude": 4.5,
+		"image-url": "http://messier.seds.org/Jpg/m47.jpg",
+		"desc-url": "http://messier.seds.org/m/m047.html"
+	}, {
+		"number": "M48",
+		"type": "Cluster, open",
+		"distance": 1.5,
+		"constellation": "Hydra",
+		"ngc-number": "NGC 2548",
+		"common-name": " ",
+		"apparent-magnitude": 5.5,
+		"image-url": "http://messier.seds.org/Jpg/m48.jpg",
+		"desc-url": "http://messier.seds.org/m/m048.html"
+	}, {
+		"number": "M49",
+		"type": "Galaxy, elliptical",
+		"distance": 60000.0,
+		"constellation": "Virgo",
+		"ngc-number": "NGC 4472",
+		"common-name": " ",
+		"apparent-magnitude": 10.0,
+		"image-url": "http://messier.seds.org/Jpg/m49.jpg",
+		"desc-url": "http://messier.seds.org/m/m049.html"
+	}, {
+		"number": "M50",
+		"type": "Cluster, open",
+		"distance": 3.0,
+		"constellation": "Monoceros",
+		"ngc-number": "NGC 2323",
+		"common-name": " ",
+		"apparent-magnitude": 7.0,
+		"image-url": "http://messier.seds.org/Jpg/m50.jpg",
+		"desc-url": "http://messier.seds.org/m/m050.html"
+	}, {
+		"number": "M51",
+		"type": "Galaxy, spiral",
+		"distance": 37000.0,
+		"constellation": "Canes Venatici",
+		"ngc-number": "NGC 5194, NGC 5195",
+		"common-name": "Whirlpool Galaxy",
+		"apparent-magnitude": 8.4,
+		"image-url": "http://messier.seds.org/Jpg/m51.jpg",
+		"desc-url": "http://messier.seds.org/m/m051.html"
+	}, {
+		"number": "M52",
+		"type": "Cluster, open",
+		"distance": 7.0,
+		"constellation": "Cassiopeia",
+		"ngc-number": "NGC 7654",
+		"common-name": " ",
+		"apparent-magnitude": 8.0,
+		"image-url": "http://messier.seds.org/Jpg/m52.jpg",
+		"desc-url": "http://messier.seds.org/m/m052.html"
+	}, {
+		"number": "M53",
+		"type": "Cluster, globular",
+		"distance": 56.0,
+		"constellation": "Coma Berenices",
+		"ngc-number": "NGC 5024",
+		"common-name": " ",
+		"apparent-magnitude": 8.5,
+		"image-url": "http://messier.seds.org/Jpg/m53.jpg",
+		"desc-url": "http://messier.seds.org/m/m053.html"
+	}, {
+		"number": "M54",
+		"type": "Cluster, globular",
+		"distance": 83.0,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6715",
+		"common-name": " ",
+		"apparent-magnitude": 8.5,
+		"image-url": "http://messier.seds.org/Jpg/m54.jpg",
+		"desc-url": "http://messier.seds.org/m/m054.html"
+	}, {
+		"number": "M55",
+		"type": "Cluster, globular",
+		"distance": 17.0,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6809",
+		"common-name": " ",
+		"apparent-magnitude": 7.0,
+		"image-url": "http://messier.seds.org/Jpg/m55.jpg",
+		"desc-url": "http://messier.seds.org/m/m055.html"
+	}, {
+		"number": "M56",
+		"type": "Cluster, globular",
+		"distance": 32.0,
+		"constellation": "Lyra",
+		"ngc-number": "NGC 6779",
+		"common-name": " ",
+		"apparent-magnitude": 9.5,
+		"image-url": "http://messier.seds.org/Jpg/m56.jpg",
+		"desc-url": "http://messier.seds.org/m/m056.html"
+	}, {
+		"number": "M57",
+		"type": "Nebula, planetary",
+		"distance": 2.3,
+		"constellation": "Lyra",
+		"ngc-number": "NGC 6720",
+		"common-name": "Ring Nebula",
+		"apparent-magnitude": 8.8,
+		"image-url": "http://messier.seds.org/Jpg/m57.jpg",
+		"desc-url": "http://messier.seds.org/m/m057.html"
+	}, {
+		"number": "M58",
+		"type": "Galaxy, barred spiral",
+		"distance": 60000.0,
+		"constellation": "Virgo",
+		"ngc-number": "NGC 4579",
+		"common-name": " ",
+		"apparent-magnitude": 11.0,
+		"image-url": "http://messier.seds.org/Jpg/m58.jpg",
+		"desc-url": "http://messier.seds.org/m/m058.html"
+	}, {
+		"number": "M59",
+		"type": "Galaxy, elliptical",
+		"distance": 60000.0,
+		"constellation": "Virgo",
+		"ngc-number": "NGC 4621",
+		"common-name": " ",
+		"apparent-magnitude": 11.5,
+		"image-url": "http://messier.seds.org/Jpg/m59.jpg",
+		"desc-url": "http://messier.seds.org/m/m059.html"
+	}, {
+		"number": "M60",
+		"type": "Galaxy, elliptical",
+		"distance": 60000.0,
+		"constellation": "Virgo",
+		"ngc-number": "NGC 4649",
+		"common-name": " ",
+		"apparent-magnitude": 10.5,
+		"image-url": "http://messier.seds.org/Jpg/m60.jpg",
+		"desc-url": "http://messier.seds.org/m/m060.html"
+	}, {
+		"number": "M61",
+		"type": "Galaxy, spiral",
+		"distance": 60000.0,
+		"constellation": "Virgo",
+		"ngc-number": "NGC 4303",
+		"common-name": " ",
+		"apparent-magnitude": 10.5,
+		"image-url": "http://messier.seds.org/Jpg/m61.jpg",
+		"desc-url": "http://messier.seds.org/m/m061.html"
+	}, {
+		"number": "M62",
+		"type": "Cluster, globular",
+		"distance": 22.0,
+		"constellation": "Ophiuchus",
+		"ngc-number": "NGC 6266",
+		"common-name": " ",
+		"apparent-magnitude": 8.0,
+		"image-url": "http://messier.seds.org/Jpg/m62.jpg",
+		"desc-url": "http://messier.seds.org/m/m062.html"
+	}, {
+		"number": "M63",
+		"type": "Galaxy, spiral",
+		"distance": 37000.0,
+		"constellation": "Canes Venatici",
+		"ngc-number": "NGC 5055",
+		"common-name": "Sunflower Galaxy",
+		"apparent-magnitude": 8.5,
+		"image-url": "http://messier.seds.org/Jpg/m63.jpg",
+		"desc-url": "http://messier.seds.org/m/m063.html"
+	}, {
+		"number": "M64",
+		"type": "Galaxy, spiral",
+		"distance": 12000.0,
+		"constellation": "Coma Berenices",
+		"ngc-number": "NGC 4826",
+		"common-name": "Black Eye Galaxy",
+		"apparent-magnitude": 9.0,
+		"image-url": "http://messier.seds.org/Jpg/m64.jpg",
+		"desc-url": "http://messier.seds.org/m/m064.html"
+	}, {
+		"number": "M65",
+		"type": "Galaxy, barred spiral",
+		"distance": 35000.0,
+		"constellation": "Leo",
+		"ngc-number": "NGC 3623",
+		"common-name": "Leo Triplet",
+		"apparent-magnitude": 10.5,
+		"image-url": "http://messier.seds.org/Jpg/m65.jpg",
+		"desc-url": "http://messier.seds.org/m/m065.html"
+	}, {
+		"number": "M66",
+		"type": "Galaxy, barred spiral",
+		"distance": 35000.0,
+		"constellation": "Leo",
+		"ngc-number": "NGC 3627",
+		"common-name": "Leo Triplet",
+		"apparent-magnitude": 10.0,
+		"image-url": "http://messier.seds.org/Jpg/m66.jpg",
+		"desc-url": "http://messier.seds.org/m/m066.html"
+	}, {
+		"number": "M67",
+		"type": "Cluster, open",
+		"distance": 2.25,
+		"constellation": "Cancer",
+		"ngc-number": "NGC 2682",
+		"common-name": " ",
+		"apparent-magnitude": 7.5,
+		"image-url": "http://messier.seds.org/Jpg/m67.jpg",
+		"desc-url": "http://messier.seds.org/m/m067.html"
+	}, {
+		"number": "M68",
+		"type": "Cluster, globular",
+		"distance": 32.0,
+		"constellation": "Hydra",
+		"ngc-number": "NGC 4590",
+		"common-name": " ",
+		"apparent-magnitude": 9.0,
+		"image-url": "http://messier.seds.org/Jpg/m68.jpg",
+		"desc-url": "http://messier.seds.org/m/m068.html"
+	}, {
+		"number": "M69",
+		"type": "Cluster, globular",
+		"distance": 25.0,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6637",
+		"common-name": " ",
+		"apparent-magnitude": 9.0,
+		"image-url": "http://messier.seds.org/Jpg/m69.jpg",
+		"desc-url": "http://messier.seds.org/m/m069.html"
+	}, {
+		"number": "M70",
+		"type": "Cluster, globular",
+		"distance": 28.0,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6681",
+		"common-name": " ",
+		"apparent-magnitude": 9.0,
+		"image-url": "http://messier.seds.org/Jpg/m70.jpg",
+		"desc-url": "http://messier.seds.org/m/m070.html"
+	}, {
+		"number": "M71",
+		"type": "Cluster, globular",
+		"distance": 12.0,
+		"constellation": "Sagitta",
+		"ngc-number": "NGC 6838",
+		"common-name": " ",
+		"apparent-magnitude": 8.5,
+		"image-url": "http://messier.seds.org/Jpg/m71.jpg",
+		"desc-url": "http://messier.seds.org/m/m071.html"
+	}, {
+		"number": "M72",
+		"type": "Cluster, globular",
+		"distance": 53.0,
+		"constellation": "Aquarius",
+		"ngc-number": "NGC 6981",
+		"common-name": " ",
+		"apparent-magnitude": 10.0,
+		"image-url": "http://messier.seds.org/Jpg/m72.jpg",
+		"desc-url": "http://messier.seds.org/m/m072.html"
+	}, {
+		"number": "M73",
+		"type": "Asterism",
+		"constellation": "Aquarius",
+		"ngc-number": "NGC 6994",
+		"common-name": " ",
+		"apparent-magnitude": 9.0,
+		"image-url": "http://messier.seds.org/Jpg/m73.jpg",
+		"desc-url": "http://messier.seds.org/m/m073.html"
+	}, {
+		"number": "M74",
+		"type": "Galaxy, spiral",
+		"distance": 35000.0,
+		"constellation": "Pisces",
+		"ngc-number": "NGC 628",
+		"common-name": " ",
+		"apparent-magnitude": 10.5,
+		"image-url": "http://messier.seds.org/Jpg/m74.jpg",
+		"desc-url": "http://messier.seds.org/m/m074.html"
+	}, {
+		"number": "M75",
+		"type": "Cluster, globular",
+		"distance": 58.0,
+		"constellation": "Sagittarius",
+		"ngc-number": "NGC 6864",
+		"common-name": " ",
+		"apparent-magnitude": 9.5,
+		"image-url": "http://messier.seds.org/Jpg/m75.jpg",
+		"desc-url": "http://messier.seds.org/m/m075.html"
+	}, {
+		"number": "M76",
+		"type": "Nebula, planetary",
+		"distance": 3.4,
+		"constellation": "Perseus",
+		"ngc-number": "NGC 650, NGC 651",
+		"common-name": "Little Dumbbell Nebula",
+		"apparent-magnitude": 10.1,
+		"image-url": "http://messier.seds.org/Jpg/m76.jpg",
+		"desc-url": "http://messier.seds.org/m/m076.html"
+	}, {
+		"number": "M77",
+		"type": "Galaxy, spiral",
+		"distance": 60000.0,
+		"constellation": "Cetus",
+		"ngc-number": "NGC 1068",
+		"common-name": "Cetus A",
+		"apparent-magnitude": 10.5,
+		"image-url": "http://messier.seds.org/Jpg/m77.jpg",
+		"desc-url": "http://messier.seds.org/m/m077.html"
+	}, {
+		"number": "M78",
+		"type": "Nebula, diffuse",
+		"distance": 1.6,
+		"constellation": "Orion",
+		"ngc-number": "NGC 2068",
+		"common-name": " ",
+		"apparent-magnitude": 8.0,
+		"image-url": "http://messier.seds.org/Jpg/m78.jpg",
+		"desc-url": "http://messier.seds.org/m/m078.html"
+	}, {
+		"number": "M79",
+		"type": "Cluster, globular",
+		"distance": 40.0,
+		"constellation": "Lepus",
+		"ngc-number": "NGC 1904",
+		"common-name": " ",
+		"apparent-magnitude": 8.5,
+		"image-url": "http://messier.seds.org/Jpg/m79.jpg",
+		"desc-url": "http://messier.seds.org/m/m079.html"
+	}, {
+		"number": "M80",
+		"type": "Cluster, globular",
+		"distance": 27.0,
+		"constellation": "Scorpius",
+		"ngc-number": "NGC 6093",
+		"common-name": " ",
+		"apparent-magnitude": 8.5,
+		"image-url": "http://messier.seds.org/Jpg/m80.jpg",
+		"desc-url": "http://messier.seds.org/m/m080.html"
+	}, {
+		"number": "M81",
+		"type": "Galaxy, spiral",
+		"distance": 12000.0,
+		"constellation": "Ursa Major",
+		"ngc-number": "NGC 3031",
+		"common-name": "Bode's Galaxy",
+		"apparent-magnitude": 6.9,
+		"image-url": "http://messier.seds.org/Jpg/m81.jpg",
+		"desc-url": "http://messier.seds.org/m/m081.html"
+	}, {
+		"number": "M82",
+		"type": "Galaxy, starburst",
+		"distance": 11000.0,
+		"constellation": "Ursa Major",
+		"ngc-number": "NGC 3034",
+		"common-name": "Cigar Galaxy",
+		"apparent-magnitude": 9.5,
+		"image-url": "http://messier.seds.org/Jpg/m82.jpg",
+		"desc-url": "http://messier.seds.org/m/m082.html"
+	}, {
+		"number": "M83",
+		"type": "Galaxy, barred spiral",
+		"distance": 10000.0,
+		"constellation": "Hydra",
+		"ngc-number": "NGC 5236",
+		"common-name": "Southern Pinwheel Galaxy",
+		"apparent-magnitude": 8.5,
+		"image-url": "http://messier.seds.org/Jpg/m83.jpg",
+		"desc-url": "http://messier.seds.org/m/m083.html"
+	}, {
+		"number": "M84",
+		"type": "Galaxy, lenticular",
+		"distance": 60000.0,
+		"constellation": "Virgo",
+		"ngc-number": "NGC 4374",
+		"common-name": " ",
+		"apparent-magnitude": 11.0,
+		"image-url": "http://messier.seds.org/Jpg/m84.jpg",
+		"desc-url": "http://messier.seds.org/m/m084.html"
+	}, {
+		"number": "M85",
+		"type": "Galaxy, lenticular",
+		"distance": 60000.0,
+		"constellation": "Coma Berenices",
+		"ngc-number": "NGC 4382",
+		"common-name": " ",
+		"apparent-magnitude": 10.5,
+		"image-url": "http://messier.seds.org/Jpg/m85.jpg",
+		"desc-url": "http://messier.seds.org/m/m085.html"
+	}, {
+		"number": "M86",
+		"type": "Galaxy, lenticular",
+		"distance": 60000.0,
+		"constellation": "Virgo",
+		"ngc-number": "NGC 4406",
+		"common-name": " ",
+		"apparent-magnitude": 11.0,
+		"image-url": "http://messier.seds.org/Jpg/m86.jpg",
+		"desc-url": "http://messier.seds.org/m/m086.html"
+	}, {
+		"number": "M87",
+		"type": "Galaxy, elliptical",
+		"distance": 60000.0,
+		"constellation": "Virgo",
+		"ngc-number": "NGC 4486",
+		"common-name": "Virgo A",
+		"apparent-magnitude": 11.0,
+		"image-url": "http://messier.seds.org/Jpg/m87.jpg",
+		"desc-url": "http://messier.seds.org/m/m087.html"
+	}, {
+		"number": "M88",
+		"type": "Galaxy, spiral",
+		"distance": 60000.0,
+		"constellation": "Coma Berenices",
+		"ngc-number": "NGC 4501",
+		"common-name": " ",
+		"apparent-magnitude": 11.0,
+		"image-url": "http://messier.seds.org/Jpg/m88.jpg",
+		"desc-url": "http://messier.seds.org/m/m088.html"
+	}, {
+		"number": "M89",
+		"type": "Galaxy, elliptical",
+		"distance": 60000.0,
+		"constellation": "Virgo",
+		"ngc-number": "NGC 4552",
+		"common-name": " ",
+		"apparent-magnitude": 11.5,
+		"image-url": "http://messier.seds.org/Jpg/m89.jpg",
+		"desc-url": "http://messier.seds.org/m/m089.html"
+	}, {
+		"number": "M90",
+		"type": "Galaxy, spiral",
+		"distance": 60000.0,
+		"constellation": "Virgo",
+		"ngc-number": "NGC 4569",
+		"common-name": " ",
+		"apparent-magnitude": 11.0,
+		"image-url": "http://messier.seds.org/Jpg/m90.jpg",
+		"desc-url": "http://messier.seds.org/m/m090.html"
+	}, {
+		"number": "M91",
+		"type": "Galaxy, barred spiral",
+		"distance": 60000.0,
+		"constellation": "Coma Berenices",
+		"ngc-number": "NGC 4548",
+		"common-name": " ",
+		"apparent-magnitude": 11.0,
+		"image-url": "http://messier.seds.org/Jpg/m91.jpg",
+		"desc-url": "http://messier.seds.org/m/m091.html"
+	}, {
+		"number": "M92",
+		"type": "Cluster, globular",
+		"distance": 26.0,
+		"constellation": "Hercules",
+		"ngc-number": "NGC 6341",
+		"common-name": " ",
+		"apparent-magnitude": 7.5,
+		"image-url": "http://messier.seds.org/Jpg/m92.jpg",
+		"desc-url": "http://messier.seds.org/m/m092.html"
+	}, {
+		"number": "M93",
+		"type": "Cluster, open",
+		"distance": 4.5,
+		"constellation": "Puppis",
+		"ngc-number": "NGC 2447",
+		"common-name": " ",
+		"apparent-magnitude": 6.5,
+		"image-url": "http://messier.seds.org/Jpg/m93.jpg",
+		"desc-url": "http://messier.seds.org/m/m093.html"
+	}, {
+		"number": "M94",
+		"type": "Galaxy, spiral",
+		"distance": 14500.0,
+		"constellation": "Canes Venatici",
+		"ngc-number": "NGC 4736",
+		"common-name": " ",
+		"apparent-magnitude": 9.5,
+		"image-url": "http://messier.seds.org/Jpg/m94.jpg",
+		"desc-url": "http://messier.seds.org/m/m094.html"
+	}, {
+		"number": "M95",
+		"type": "Galaxy, barred spiral",
+		"distance": 38000.0,
+		"constellation": "Leo",
+		"ngc-number": "NGC 3351",
+		"common-name": " ",
+		"apparent-magnitude": 11.0,
+		"image-url": "http://messier.seds.org/Jpg/m95.jpg",
+		"desc-url": "http://messier.seds.org/m/m095.html"
+	}, {
+		"number": "M96",
+		"type": "Galaxy, spiral",
+		"distance": 38000.0,
+		"constellation": "Leo",
+		"ngc-number": "NGC 3368",
+		"common-name": " ",
+		"apparent-magnitude": 10.5,
+		"image-url": "http://messier.seds.org/Jpg/m96.jpg",
+		"desc-url": "http://messier.seds.org/m/m096.html"
+	}, {
+		"number": "M97",
+		"type": "Nebula, planetary",
+		"distance": 2.6,
+		"constellation": "Ursa Major",
+		"ngc-number": "NGC 3587",
+		"common-name": "Owl Nebula",
+		"apparent-magnitude": 9.9,
+		"image-url": "http://messier.seds.org/Jpg/m97.jpg",
+		"desc-url": "http://messier.seds.org/m/m097.html"
+	}, {
+		"number": "M98",
+		"type": "Galaxy, spiral",
+		"distance": 60000.0,
+		"constellation": "Coma Berenices",
+		"ngc-number": "NGC 4192",
+		"common-name": " ",
+		"apparent-magnitude": 11.0,
+		"image-url": "http://messier.seds.org/Jpg/m98.jpg",
+		"desc-url": "http://messier.seds.org/m/m098.html"
+	}, {
+		"number": "M99",
+		"type": "Galaxy, spiral",
+		"distance": 60000.0,
+		"constellation": "Coma Berenices",
+		"ngc-number": "NGC 4254",
+		"common-name": " ",
+		"apparent-magnitude": 10.5,
+		"image-url": "http://messier.seds.org/Jpg/m99.jpg",
+		"desc-url": "http://messier.seds.org/m/m099.html"
+	}, {
+		"number": "M100",
+		"type": "Galaxy, spiral",
+		"distance": 60000.0,
+		"constellation": "Coma Berenices",
+		"ngc-number": "NGC 4321",
+		"common-name": " ",
+		"apparent-magnitude": 10.5,
+		"image-url": "http://messier.seds.org/Jpg/m100.jpg",
+		"desc-url": "http://messier.seds.org/m/m100.html"
+	}, {
+		"number": "M101",
+		"type": "Galaxy, spiral",
+		"distance": 27000.0,
+		"constellation": "Ursa Major",
+		"ngc-number": "NGC 5457",
+		"common-name": "Pinwheel Galaxy",
+		"apparent-magnitude": 7.9,
+		"image-url": "http://messier.seds.org/Jpg/m101.jpg",
+		"desc-url": "http://messier.seds.org/m/m101.html"
+	}, {
+		"number": "M102",
+		"type": " ",
+		"constellation": " ",
+		"ngc-number": "(Not conclusively identified)[105]",
+		"common-name": " ",
+		"image-url": "http://messier.seds.org/Jpg/m102.jpg",
+		"desc-url": "http://messier.seds.org/m/m102.html"
+	}, {
+		"number": "M103",
+		"type": "Cluster, open",
+		"distance": 8.0,
+		"constellation": "Cassiopeia",
+		"ngc-number": "NGC 581",
+		"common-name": " ",
+		"apparent-magnitude": 7.0,
+		"image-url": "http://messier.seds.org/Jpg/m103.jpg",
+		"desc-url": "http://messier.seds.org/m/m103.html"
+	}, {
+		"number": "M104",
+		"type": "Galaxy, spiral",
+		"distance": 50000.0,
+		"constellation": "Virgo",
+		"ngc-number": "NGC 4594",
+		"common-name": "Sombrero Galaxy",
+		"apparent-magnitude": 9.5,
+		"image-url": "http://messier.seds.org/Jpg/m104.jpg",
+		"desc-url": "http://messier.seds.org/m/m104.html"
+	}, {
+		"number": "M105",
+		"type": "Galaxy, elliptical",
+		"distance": 38000.0,
+		"constellation": "Leo",
+		"ngc-number": "NGC 3379",
+		"common-name": " ",
+		"apparent-magnitude": 11.0,
+		"image-url": "http://messier.seds.org/Jpg/m105.jpg",
+		"desc-url": "http://messier.seds.org/m/m105.html"
+	}, {
+		"number": "M106",
+		"type": "Galaxy, spiral",
+		"distance": 25000.0,
+		"constellation": "Canes Venatici",
+		"ngc-number": "NGC 4258",
+		"common-name": " ",
+		"apparent-magnitude": 9.5,
+		"image-url": "http://messier.seds.org/Jpg/m106.jpg",
+		"desc-url": "http://messier.seds.org/m/m106.html"
+	}, {
+		"number": "M107",
+		"type": "Cluster, globular",
+		"distance": 20.0,
+		"constellation": "Ophiuchus",
+		"ngc-number": "NGC 6171",
+		"common-name": " ",
+		"apparent-magnitude": 10.0,
+		"image-url": "http://messier.seds.org/Jpg/m107.jpg",
+		"desc-url": "http://messier.seds.org/m/m107.html"
+	}, {
+		"number": "M108",
+		"type": "Galaxy, barred spiral",
+		"distance": 45000.0,
+		"constellation": "Ursa Major",
+		"ngc-number": "NGC 3556",
+		"common-name": " ",
+		"apparent-magnitude": 11.0,
+		"image-url": "http://messier.seds.org/Jpg/m108.jpg",
+		"desc-url": "http://messier.seds.org/m/m108.html"
+	}, {
+		"number": "M109",
+		"type": "Galaxy, barred spiral",
+		"distance": 55000.0,
+		"constellation": "Ursa Major",
+		"ngc-number": "NGC 3992",
+		"common-name": " ",
+		"apparent-magnitude": 11.0,
+		"image-url": "http://messier.seds.org/Jpg/m109.jpg",
+		"desc-url": "http://messier.seds.org/m/m109.html"
+	}, {
+		"number": "M110",
+		"type": "Galaxy, dwarf elliptical",
+		"distance": 2200.0,
+		"constellation": "Andromeda",
+		"ngc-number": "NGC 205",
+		"common-name": " ",
+		"apparent-magnitude": 10.0,
+		"image-url": "http://messier.seds.org/Jpg/m110.jpg",
+		"desc-url": "http://messier.seds.org/m/m110.html"
+	}
+]
