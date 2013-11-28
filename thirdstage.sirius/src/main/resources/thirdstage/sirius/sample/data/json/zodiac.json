@@ -1,0 +1,99 @@
+[
+	{
+		"no": 1,
+		"name": "Aries",
+		"name-i18n": {
+			"en": "Ram",
+			"ko": "양"
+		},
+		"wikipedia" : "http://en.wikipedia.org/wiki/Aries_%28astrology%29"
+	}, {
+		"no": 2,
+		"name": "Taurus",
+		"name-i18n": {
+			"en": "Bull",
+			"ko": "황소"
+		},
+		"wikipedia" : "http://en.wikipedia.org/wiki/Taurus_%28astrology%29"
+	}, {
+		"no": 3,
+		"name": "Gemini",
+		"name-i18n": {
+			"en": "Twins",
+			"ko": "쌍둥이"
+		},
+		"wikipedia" : "http://en.wikipedia.org/wiki/Gemini_%28astrology%29"
+	}, {
+		"no": 4,
+		"name": "Cancer",
+		"name-i18n": {
+			"en": "Crab",
+			"ko": "게"
+		},
+		"wikipedia" : "http://en.wikipedia.org/wiki/Cancer_%28astrology%29"
+	}, {
+		"no": 5,
+		"name": "Leo",
+		"name-i18n": {
+			"en": "Lion",
+			"ko": "사자"
+		},
+		"wikipedia" : "http://en.wikipedia.org/wiki/Leo_%28astrology%29"
+	}, {
+		"no": 6,
+		"name": "Virgo",
+		"name-i18n": {
+			"en": "Maiden",
+			"ko": "처녀"
+		},
+		"wikipedia" : "http://en.wikipedia.org/wiki/Virgo_%28astrology%29"
+	}, {
+		"no": 7,
+		"name": "Libra",
+		"name-i18n": {
+			"en": "Scales",
+			"ko": "천칭"
+		},
+		"wikipedia" : "http://en.wikipedia.org/wiki/Libra_%28astrology%29"
+	}, {
+		"no": 8,
+		"name": "Scorpio",
+		"name-i18n": {
+			"en": "Scorpion",
+			"ko": "전갈"
+		},
+		"wikipedia" : "http://en.wikipedia.org/wiki/Scorpio_%28astrology%29"
+	}, {
+		"no": 9,
+		"name": "Sagittarius",
+		"name-i18n": {
+			"en": "Archer",
+			"ko": "궁수"
+		},
+		"wikipedia" : "http://en.wikipedia.org/wiki/Sagittarius_%28astrology%29"
+	}, {
+		"no": 10,
+		"name": "Capricorn",
+		"name-i18n": {
+			"en": "Goat-horned",
+			"ko": "염소"
+		},
+		"wikipedia" : "http://en.wikipedia.org/wiki/Capricorn_%28astrology%29"
+	}, {
+		"no": 11,
+		"name": "Aquarius",
+		"name-i18n": {
+			"en": "Water-Bearer",
+			"ko": "물병"
+		},
+		"wikipedia" : "http://en.wikipedia.org/wiki/Aquarius_%28astrology%29"
+	}, {
+		"no": 12,
+		"name": "Pisces",
+		"name-i18n": {
+			"en": "Fishes",
+			"ko": "물고기"
+		},
+		"wikipedia" : "http://en.wikipedia.org/wiki/Pisces_%28astrology%29"
+	}
+]
