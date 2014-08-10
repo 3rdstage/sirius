@@ -31,6 +31,7 @@
 
 	</target>
 
+	<!-- Running HyperSQL in server mode -->
 	<target name="hsqldb.startup">
 		<java classname="org.hsqldb.server.Server" fork="true">
 			<classpath refId="dependency.classpath" />
