@@ -1,0 +1,1275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<workflow-app xmlns="uri:oozie:workflow:0.2" name="dbm_cdr">
+
+    <start to="check_input_before_wtd_pkt010"/>
+
+<!-- ################################ DW ##################################-->
+
+<!--  Start wtd_pkt010  -->
+
+    <fork name="check_input_before_wtd_pkt010">
+    	<path start="wtd_pkt010_check_input"/>
+    	<path start="wtd_pkt010_ra_check_input"/>
+    	<path start="wtd_pkt010_rb_check_input"/>
+    </fork>
+
+    <action name="wtd_pkt010_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${wtd_pkt010_in_tables}</arg>
+            <arg>${wtd_pkt010_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt010-hdfs-validator-checkOutput"/>
+        <error to="fail"/>
+    </action>
+
+    <decision name="wtd_pkt010-hdfs-validator-checkOutput">
+        <switch>
+            <case to="wtd_pkt010_after_check_input">${wf:actionData('wtd_pkt010_check_input')['all_success'] eq 'true'}</case>
+            <default to="fail"/>
+        </switch>
+    </decision>
+
+
+    <action name="wtd_pkt010_ra_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${wtd_pkt010_ra_in_tables}</arg>
+            <arg>${wtd_pkt010_ra_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt010_ra-hdfs-validator-checkOutput"/>
+        <error to="fail"/>
+    </action>
+
+    <decision name="wtd_pkt010_ra-hdfs-validator-checkOutput">
+        <switch>
+            <case to="wtd_pkt010_after_check_input">${wf:actionData('wtd_pkt010_ra_check_input')['all_success'] eq 'true'}</case>
+            <default to="fail"/>
+        </switch>
+    </decision>
+
+    <action name="wtd_pkt010_rb_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${wtd_pkt010_rb_in_tables}</arg>
+            <arg>${wtd_pkt010_rb_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt010_rb-hdfs-validator-checkOutput"/>
+        <error to="fail"/>
+    </action>
+
+    <decision name="wtd_pkt010_rb-hdfs-validator-checkOutput">
+        <switch>
+            <case to="wtd_pkt010_after_check_input">${wf:actionData('wtd_pkt010_rb_check_input')['all_success'] eq 'true'}</case>
+            <default to="fail"/>
+        </switch>
+    </decision>
+
+    <join name="wtd_pkt010_after_check_input" to="load_data_wtd_pkt010"/>
+
+
+
+    <fork name="load_data_wtd_pkt010">
+    	<path start="wtd_pkt010"/>
+    	<path start="wtd_pkt010_ra"/>
+    	<path start="wtd_pkt010_rb"/>
+    </fork>
+    
+    <action name="wtd_pkt010">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtd_pkt010}</script>
+            <param>db=${db}</param>
+            <param>hdfs_home=${hdfs_home}</param>
+        </hive>
+        <ok to="wtd_pkt010-logUploader"/>
+        <error to="wtd_pkt010-logUploader"/>
+    </action>
+
+    <action name="wtd_pkt010-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtd_pkt010</arg>
+            <arg>wtd_pkt010:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt010-checkResult"/>
+        <error to="wtd_pkt010-checkResult"/>
+    </action>
+
+    <decision name="wtd_pkt010-checkResult">
+        <switch>
+            <case to="fail">${wf:errorCode('wtd_pkt010') != null}</case>
+            <default to="wtd_pkt010_done"/>
+        </switch>
+    </decision>
+
+
+    <action name="wtd_pkt010_ra">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtd_pkt010_ra}</script>
+            <param>db=${db}</param>
+            <param>hdfs_home=${hdfs_home}</param>
+        </hive>
+        <ok to="wtd_pkt010_ra-logUploader"/>
+        <error to="wtd_pkt010_ra-logUploader"/>
+    </action>
+
+    <action name="wtd_pkt010_ra-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtd_pkt010_ra</arg>
+            <arg>wtd_pkt010_ra:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt010_ra-checkResult"/>
+        <error to="wtd_pkt010_ra-checkResult"/>
+    </action>
+
+    <decision name="wtd_pkt010_ra-checkResult">
+        <switch>
+            <case to="fail">${wf:errorCode('wtd_pkt010_ra') != null}</case>
+            <default to="wtd_pkt010_done"/>
+        </switch>
+    </decision>
+
+
+    <action name="wtd_pkt010_rb">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtd_pkt010_rb}</script>
+            <param>db=${db}</param>
+            <param>hdfs_home=${hdfs_home}</param>
+        </hive>
+        <ok to="wtd_pkt010_rb-logUploader"/>
+        <error to="wtd_pkt010_rb-logUploader"/>
+    </action>
+
+    <action name="wtd_pkt010_rb-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtd_pkt010_rb</arg>
+            <arg>wtd_pkt010_rb:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt010_rb-checkResult"/>
+        <error to="wtd_pkt010_rb-checkResult"/>
+    </action>
+
+    <decision name="wtd_pkt010_rb-checkResult">
+        <switch>
+            <case to="fail">${wf:errorCode('wtd_pkt010_rb') != null}</case>
+            <default to="wtd_pkt010_done"/>
+        </switch>
+    </decision>
+
+    <join name="wtd_pkt010_done" to="check_input_before_wtd_pkt030"/>
+
+
+
+<!-- Start wtd_pkt030 -->
+
+
+    <fork name="check_input_before_wtd_pkt030">
+    	<path start="wtd_pkt030_check_input"/>
+    	<path start="wtd_pkt030_ra_check_input"/>
+    	<path start="wtd_pkt030_rb_check_input"/>
+    </fork>
+
+    <action name="wtd_pkt030_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${wtd_pkt030_in_tables}</arg>
+            <arg>${wtd_pkt030_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt030_after_check_input"/>
+        <error to="wtd_pkt030_after_check_input"/>
+    </action>
+
+    <action name="wtd_pkt030_ra_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${wtd_pkt030_ra_in_tables}</arg>
+            <arg>${wtd_pkt030_ra_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt030_after_check_input"/>
+        <error to="wtd_pkt030_after_check_input"/>
+    </action>
+
+    <action name="wtd_pkt030_rb_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${wtd_pkt030_rb_in_tables}</arg>
+            <arg>${wtd_pkt030_rb_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt030_after_check_input"/>
+        <error to="wtd_pkt030_after_check_input"/>
+    </action>
+
+    <join name="wtd_pkt030_after_check_input" to="wtd_pkt030_after_check_input_validator"/>
+
+    <decision name="wtd_pkt030_after_check_input_validator">
+        <switch>
+            <case to="start_wtd_pkt030">${wf:actionData('wtd_pkt030_rb_check_input')['all_success'] eq 'true' and
+                      wf:actionData('wtd_pkt030_ra_check_input')['all_success'] eq 'true' and
+                      wf:actionData('wtd_pkt030_check_input')['all_success'] eq 'true'}</case>
+            <default to="fail"/>
+        </switch>
+    </decision>
+
+
+    <fork name="start_wtd_pkt030">
+    	<path start="wtd_pkt030"/>
+    	<path start="wtd_pkt030_ra"/>
+    	<path start="wtd_pkt030_rb"/>
+    </fork>
+    
+    <action name="wtd_pkt030">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtd_pkt030}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+        </hive>
+        <ok to="wtd_pkt030-logUploader"/>
+        <error to="wtd_pkt030-logUploader"/>
+    </action>
+
+    <action name="wtd_pkt030-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtd_pkt030</arg>
+            <arg>wtd_pkt030:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt030_done"/>
+        <error to="wtd_pkt030_done"/>
+    </action>
+
+    <action name="wtd_pkt030_ra">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtd_pkt030_ra}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+        </hive>
+        <ok to="wtd_pkt030_ra-logUploader"/>
+        <error to="wtd_pkt030_ra-logUploader"/>
+    </action>
+
+    <action name="wtd_pkt030_ra-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtd_pkt030_ra</arg>
+            <arg>wtd_pkt030_ra:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt030_done"/>
+        <error to="wtd_pkt030_done"/>
+    </action>
+
+    <action name="wtd_pkt030_rb">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtd_pkt030_rb}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+        </hive>
+        <ok to="wtd_pkt030_rb-logUploader"/>
+        <error to="wtd_pkt030_rb-logUploader"/>
+    </action>
+
+    <action name="wtd_pkt030_rb-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtd_pkt030_rb</arg>
+            <arg>wtd_pkt030_rb:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt030_done"/>
+        <error to="wtd_pkt030_done"/>
+    </action>
+
+    <join name="wtd_pkt030_done" to="wtd_pkt030_done_validator"/>
+
+    <decision name="wtd_pkt030_done_validator">
+        <switch>
+            <case to="fail">${wf:errorCode('wtd_pkt030_ra') != null ||
+                            wf:errorCode('wtd_pkt030_rb') != null ||
+                            wf:errorCode('wtd_pkt030') != null}</case>
+            <default to="check_input_before_wtd_pkt040_2"/>
+        </switch>
+    </decision>
+
+
+<!-- Start wtd_pkt040_2 -->
+
+    <fork name="check_input_before_wtd_pkt040_2">
+    	<path start="wtd_pkt040_2_check_input"/>
+    	<path start="wtd_pkt040_2_ra_check_input"/>
+    	<path start="wtd_pkt040_2_rb_check_input"/>
+    </fork>
+
+    <action name="wtd_pkt040_2_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${wtd_pkt040_2_in_tables}</arg>
+            <arg>${wtd_pkt040_2_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt040_2_after_check_input"/>
+        <error to="wtd_pkt040_2_after_check_input"/>
+    </action>
+
+    <action name="wtd_pkt040_2_ra_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${wtd_pkt040_2_ra_in_tables}</arg>
+            <arg>${wtd_pkt040_2_ra_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt040_2_after_check_input"/>
+        <error to="wtd_pkt040_2_after_check_input"/>
+    </action>
+
+    <action name="wtd_pkt040_2_rb_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${wtd_pkt040_2_rb_in_tables}</arg>
+            <arg>${wtd_pkt040_2_rb_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt040_2_after_check_input"/>
+        <error to="wtd_pkt040_2_after_check_input"/>
+    </action>
+
+    <join name="wtd_pkt040_2_after_check_input" to="wtd_pkt040_2_after_check_input_validator"/>
+
+    <decision name="wtd_pkt040_2_after_check_input_validator">
+        <switch>
+            <case to="start_wtd_pkt040_2">${wf:actionData('wtd_pkt040_2_rb_check_input')['all_success'] eq 'true' and
+                      wf:actionData('wtd_pkt040_2_ra_check_input')['all_success'] eq 'true' and
+                      wf:actionData('wtd_pkt040_2_check_input')['all_success'] eq 'true'}</case>
+            <default to="fail"/>
+        </switch>
+    </decision>
+
+
+    <fork name="start_wtd_pkt040_2">
+    	<path start="wtd_pkt040_2"/>
+    	<path start="wtd_pkt040_2_ra"/>
+    	<path start="wtd_pkt040_2_rb"/>
+    </fork>
+    
+    <action name="wtd_pkt040_2">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtd_pkt040_2}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+        </hive>
+        <ok to="wtd_pkt040_2-logUploader"/>
+        <error to="wtd_pkt040_2-logUploader"/>
+    </action>
+
+    <action name="wtd_pkt040_2-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtd_pkt040_2</arg>
+            <arg>wtd_pkt040_2:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt040_2_done"/>
+        <error to="wtd_pkt040_2_done"/>
+    </action>
+
+    <action name="wtd_pkt040_2_ra">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtd_pkt040_2_ra}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+        </hive>
+        <ok to="wtd_pkt040_2_ra-logUploader"/>
+        <error to="wtd_pkt040_2_ra-logUploader"/>
+    </action>
+
+    <action name="wtd_pkt040_2_ra-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtd_pkt040_2_ra</arg>
+            <arg>wtd_pkt040_2_ra:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt040_2_done"/>
+        <error to="wtd_pkt040_2_done"/>
+    </action>
+
+    <action name="wtd_pkt040_2_rb">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtd_pkt040_2_rb}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+        </hive>
+        <ok to="wtd_pkt040_2_rb-logUploader"/>
+        <error to="wtd_pkt040_2_rb-logUploader"/>
+    </action>
+
+    <action name="wtd_pkt040_2_rb-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtd_pkt040_2_rb</arg>
+            <arg>wtd_pkt040_2_rb:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt040_2_done"/>
+        <error to="wtd_pkt040_2_done"/>
+    </action>
+
+    <join name="wtd_pkt040_2_done" to="wtd_pkt040_2_done_validator"/>
+
+    <decision name="wtd_pkt040_2_done_validator">
+        <switch>
+            <case to="fail">${wf:errorCode('wtd_pkt040_2_ra') != null ||
+                            wf:errorCode('wtd_pkt040_2_rb') != null ||
+                            wf:errorCode('wtd_pkt040_2') != null}</case>
+            <default to="wtd_pkt050_rb_check_input"/>
+        </switch>
+    </decision>
+
+
+<!-- Start wtd_pkt050_rb -->
+
+    <action name="wtd_pkt050_rb_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${wtd_pkt050_rb_in_tables}</arg>
+            <arg>${wtd_pkt050_rb_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt050_rb"/>
+        <error to="fail"/>
+    </action>
+
+    <action name="wtd_pkt050_rb">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtd_pkt050_rb}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+        </hive>
+        <ok to="wtd_pkt050_rb-logUploader"/>
+        <error to="wtd_pkt050_rb-logUploader"/>
+    </action>
+
+    <action name="wtd_pkt050_rb-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtd_pkt050_rb</arg>
+            <arg>wtd_pkt050_rb:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt050_rb_done"/>
+        <error to="wtd_pkt050_rb_done"/>
+    </action>
+
+    <decision name="wtd_pkt050_rb_done">
+        <switch>
+            <case to="fail">${wf:errorCode('wtd_pkt050_rb') != null}</case>
+            <default to="wtd_pkt050_ra_check_input"/>
+        </switch>
+    </decision>
+
+<!-- Start wtd_pkt050_ra -->
+
+    <action name="wtd_pkt050_ra_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${wtd_pkt050_ra_in_tables}</arg>
+            <arg>${wtd_pkt050_ra_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt050_ra"/>
+        <error to="fail"/>
+    </action>
+
+    <action name="wtd_pkt050_ra">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtd_pkt050_ra}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+        </hive>
+        <ok to="wtd_pkt050_ra-logUploader"/>
+        <error to="wtd_pkt050_ra-logUploader"/>
+    </action>
+
+    <action name="wtd_pkt050_ra-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtd_pkt050_ra</arg>
+            <arg>wtd_pkt050_ra:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtd_pkt050_ra_done"/>
+        <error to="wtd_pkt050_ra_done"/>
+    </action>
+
+    <decision name="wtd_pkt050_ra_done">
+        <switch>
+            <case to="fail">${wf:errorCode('wtd_pkt050_ra') != null}</case>
+            <default to="wtm_pkt100_new_check_input"/>
+        </switch>
+    </decision>
+
+
+<!-- ################################ MART ##################################-->
+
+<!-- Start wtm_pkt100_new -->
+
+    <action name="wtm_pkt100_new_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${wtm_pkt100_new_in_tables}</arg>
+            <arg>${wtm_pkt100_new_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtm_pkt100_new"/>
+        <error to="fail"/>
+    </action>
+
+    <action name="wtm_pkt100_new">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtm_pkt100_new}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+            <param>data_usag_dt_wtm_pkt1x0=${data_usag_dt_wtm_pkt1x0}</param>
+        </hive>
+        <ok to="wtm_pkt100_new-logUploader"/>
+        <error to="wtm_pkt100_new-logUploader"/>
+    </action>
+
+    <action name="wtm_pkt100_new-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtm_pkt100_new</arg>
+            <arg>wtm_pkt100_new:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtm_pkt100_new_done"/>
+        <error to="wtm_pkt100_new_done"/>
+    </action>
+
+    <decision name="wtm_pkt100_new_done">
+        <switch>
+            <case to="fail">${wf:errorCode('wtm_pkt100_new') != null}</case>
+            <default to="wtm_pkt110_new"/>
+        </switch>
+    </decision>
+
+    <action name="wtm_pkt110_new">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtm_pkt110_new}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+            <param>data_usag_dt_wtm_pkt1x0=${data_usag_dt_wtm_pkt1x0}</param>
+        </hive>
+        <ok to="wtm_pkt110_new-logUploader"/>
+        <error to="wtm_pkt110_new-logUploader"/>
+    </action>
+
+    <action name="wtm_pkt110_new-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtm_pkt110_new</arg>
+            <arg>wtm_pkt110_new:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtm_pkt110_new_done"/>
+        <error to="wtm_pkt110_new_done"/>
+    </action>
+
+    <decision name="wtm_pkt110_new_done">
+        <switch>
+            <case to="fail">${wf:errorCode('wtm_pkt110_new') != null}</case>
+            <default to="wtm_pkt120_new"/>
+        </switch>
+    </decision>
+
+    <action name="wtm_pkt120_new">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtm_pkt120_new}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+            <param>data_usag_dt_wtm_pkt1x0=${data_usag_dt_wtm_pkt1x0}</param>
+        </hive>
+        <ok to="wtm_pkt120_new-logUploader"/>
+        <error to="wtm_pkt120_new-logUploader"/>
+    </action>
+
+    <action name="wtm_pkt120_new-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtm_pkt120_new</arg>
+            <arg>wtm_pkt120_new:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtm_pkt120_new_done"/>
+        <error to="wtm_pkt120_new_done"/>
+    </action>
+
+    <decision name="wtm_pkt120_new_done">
+        <switch>
+            <case to="fail">${wf:errorCode('wtm_pkt120_new') != null}</case>
+            <default to="wtm_pkt160_new"/>
+        </switch>
+    </decision>
+
+    <action name="wtm_pkt160_new">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtm_pkt160_new}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+            <param>data_usag_dt_wtm_pkt1x0=${data_usag_dt_wtm_pkt1x0}</param>
+        </hive>
+        <ok to="wtm_pkt160_new-logUploader"/>
+        <error to="wtm_pkt160_new-logUploader"/>
+    </action>
+
+    <action name="wtm_pkt160_new-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtm_pkt160_new</arg>
+            <arg>wtm_pkt160_new:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtm_pkt160_new_done"/>
+        <error to="wtm_pkt160_new_done"/>
+    </action>
+
+    <decision name="wtm_pkt160_new_done">
+        <switch>
+            <case to="fail">${wf:errorCode('wtm_pkt160_new') != null}</case>
+            <default to="wtm_pkt200_new"/>
+        </switch>
+    </decision>
+
+    <action name="wtm_pkt200_new">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${wtm_pkt200_new}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+            <param>data_usag_dt_wtm_pkt1x0=${data_usag_dt_wtm_pkt1x0}</param>
+        </hive>
+        <ok to="wtm_pkt200_new-logUploader"/>
+        <error to="wtm_pkt200_new-logUploader"/>
+    </action>
+
+    <action name="wtm_pkt200_new-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>wtm_pkt200_new</arg>
+            <arg>wtm_pkt200_new:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="wtm_pkt200_new_done"/>
+        <error to="wtm_pkt200_new_done"/>
+    </action>
+
+    <decision name="wtm_pkt200_new_done">
+        <switch>
+            <case to="fail">${wf:errorCode('wtm_pkt200_new') != null}</case>
+            <default to="mtm_pkt360_new_check_input"/>
+        </switch>
+    </decision>
+
+    <action name="mtm_pkt360_new_check_input">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./hdfs_validator.py</arg>
+            <arg>${db}</arg>
+            <arg>${mtm_pkt360_new_in_tables}</arg>
+            <arg>${mtm_pkt360_new_in_partitions}</arg>
+            <file>/user/hdp/cdr_poc/validator/hdfs_validator.py#hdfs_validator.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="mtm_pkt360_new"/>
+        <error to="fail"/>
+    </action>
+
+    <action name="mtm_pkt360_new">
+        <hive xmlns="uri:oozie:hive-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+	    <job-xml>/user/hdp/hive-conf/hive-site.xml</job-xml>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <script>${mtm_pkt360_new}</script>
+            <param>db=${db}</param>
+            <param>date=${date}</param>
+            <param>data_usag_dt_wtm_pkt1x0=${data_usag_dt_wtm_pkt1x0}</param>
+        </hive>
+        <ok to="mtm_pkt360_new-logUploader"/>
+        <error to="mtm_pkt360_new-logUploader"/>
+    </action>
+
+    <action name="mtm_pkt360_new-logUploader">
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+            </configuration>
+            <main-class>Driver</main-class>
+            <arg>./log_uploader.py</arg>
+            <arg>${date}</arg>
+            <arg>cdr_real</arg>
+            <arg>mtm_pkt360_new</arg>
+            <arg>mtm_pkt360_new:ID=${wf:id()}</arg>
+            <file>/user/hdp/cdr_poc/validator/log_uploader.py#log_uploader.py</file>
+            <file>/user/hdp/cdr_poc/validator/driver.jar#driver.jar</file>
+    	    <capture-output/>
+        </java>
+        <ok to="mtm_pkt360_new_done"/>
+        <error to="mtm_pkt360_new_done"/>
+    </action>
+
+    <decision name="mtm_pkt360_new_done">
+        <switch>
+            <case to="fail">${wf:errorCode('mtm_pkt360_new') != null}</case>
+            <default to="end"/>
+        </switch>
+    </decision>
+
+
+    <kill name="fail">
+        <message>Hive failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+    </kill>
+    <end name="end"/>
+</workflow-app>

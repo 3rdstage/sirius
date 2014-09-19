@@ -1,0 +1,65 @@
+<workflow-app xmlns='uri:oozie:workflow:0.1' name='SimpleWorkflow'>
+	<start to='ingestor' />
+	<action name='ingestor'>
+		<java>
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<configuration>
+				<property>
+					<name>mapred.job.queue.name</name>
+					<value>default</value>
+				</property>
+			</configuration>
+			<arg>${driveID}</arg>
+		</java>
+		<ok to='merging' />
+		<error to='fail' />
+	</action>
+	<fork name='merging'>
+		<path start='mergeT1' />
+		<path start='mergeT2' />
+	</fork>
+	<action name='mergeT1'>
+		<java>
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<configuration>
+				<property>
+					<name>mapred.job.queue.name</name>
+					<value>default</value>
+				</property>
+			</configuration>
+			<arg>-drive</arg>
+			<arg>${driveID}</arg>
+			<arg>-type</arg>
+			<arg>T1</arg>
+		</java>
+		<ok to='completed' />
+		<error to='fail' />
+	</action>
+	<action name='mergeT2'>
+		<java>
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<configuration>
+				<property>
+					<name>mapred.job.queue.name</name>
+					<value>default</value>
+				</property>
+			</configuration>
+			<main-class>com.navteq.assetmgmt.hdfs.merge.MergerLoader</main-class>
+			<arg>-drive</arg>
+			<arg>${driveID}</arg>
+			<arg>-type</arg>
+			<arg>T2</arg>
+		</java>
+		<ok to='completed' />
+		<error to='fail' />
+	</action>
+	<join name='completed' to='end' />
+	<kill name='fail'>
+		<message>Java failed, error
+			message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+	</kill>
+	<end name='end' />
+</workflow-app>
