@@ -6,10 +6,12 @@ import java.util.Map;
 import java.util.HashMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.concurrent.NotThreadSafe;
 import javax.annotation.concurrent.ThreadSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@NotThreadSafe
 public class XmlValidationResult{
 
    public enum ItemType{

@@ -16,10 +16,10 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-public class WorkflowDefValidationTest {
+public class XmlParsingTest {
 
    @Test
-   public void testLoadValidDefUsingDomOnly() throws Exception{
+   public void testParseNamespaceUsingDom() throws Exception{
 
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
       dbf.setNamespaceAware(true);
@@ -51,7 +51,7 @@ public class WorkflowDefValidationTest {
    }
 
    @Test
-   public void testLoadValidDefWithPrefixUsingDomOnly() throws Exception{
+   public void testParseNamespaceWithPrefixUsingDom() throws Exception{
 
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
       dbf.setNamespaceAware(true);

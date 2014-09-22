@@ -7,13 +7,16 @@ import java.util.Map;
 import java.util.HashMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.concurrent.NotThreadSafe;
 import javax.annotation.concurrent.ThreadSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXParseException;
+import org.xml.sax.ext.DefaultHandler2;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class CollectiveXmlErrorHandler extends DefaultHandler{
+@NotThreadSafe
+public class CollectiveXmlErrorHandler extends DefaultHandler2{
 
    private List<SAXParseException> fatalErrors = new java.util.ArrayList<SAXParseException>();
 
@@ -80,6 +83,21 @@ public class CollectiveXmlErrorHandler extends DefaultHandler{
       ps.println("Line : " + ex.getLineNumber()
             + ", Column : " + ex.getColumnNumber()
             + " ; " + ex.getMessage());
+   }
+   
+   
+   /**
+    * Gets the {@code XmlValidationResult} object of current state.
+    * The method doesn't cache anything and build the result object 
+    * at each request. 
+    * 
+    * @return
+    */
+   public XmlValidationResult getResult(){
+   	XmlValidationResult result = new XmlValidationResult();
+   	
+   	
+   	return result;
    }
 
 

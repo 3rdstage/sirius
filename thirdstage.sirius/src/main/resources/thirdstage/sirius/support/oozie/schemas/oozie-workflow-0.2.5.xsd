@@ -16,8 +16,8 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:workflow="uri:oozie:workflow:0.4"
-           elementFormDefault="qualified" targetNamespace="uri:oozie:workflow:0.4">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:workflow="uri:oozie:workflow:0.2.5"
+           elementFormDefault="qualified" targetNamespace="uri:oozie:workflow:0.2.5">
 
     <xs:element name="workflow-app" type="workflow:WORKFLOW-APP"/>
 
@@ -29,9 +29,7 @@
 
     <xs:complexType name="WORKFLOW-APP">
         <xs:sequence>
-            <xs:element name="parameters" type="workflow:PARAMETERS" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="global" type="workflow:GLOBAL" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="credentials" type="workflow:CREDENTIALS" minOccurs="0" maxOccurs="1"/>
+        	<xs:element name="credentials" type="workflow:CREDENTIALS" minOccurs="0" maxOccurs="1"/>
             <xs:element name="start" type="workflow:START" minOccurs="1" maxOccurs="1"/>
             <xs:choice minOccurs="0" maxOccurs="unbounded">
                 <xs:element name="decision" type="workflow:DECISION" minOccurs="1" maxOccurs="1"/>
@@ -44,29 +42,6 @@
             <xs:any namespace="uri:oozie:sla:0.1" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
         <xs:attribute name="name" type="xs:string" use="required"/>
-    </xs:complexType>
-    
-    <xs:complexType name="PARAMETERS">
-        <xs:sequence>
-            <xs:element name="property" minOccurs="1" maxOccurs="unbounded">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string"/>
-                        <xs:element name="value" minOccurs="0" maxOccurs="1" type="xs:string"/>
-                        <xs:element name="description" minOccurs="0" maxOccurs="1" type="xs:string"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:complexType name="GLOBAL">
-    	<xs:sequence>
-            <xs:element name="job-tracker" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="name-node" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="job-xml" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="configuration" type="workflow:CONFIGURATION" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="START">
@@ -158,20 +133,18 @@
         </xs:sequence>
         <xs:attribute name="name" type="workflow:IDENTIFIER" use="required"/>
         <xs:attribute name="cred" type="xs:string"/>
-        <xs:attribute name="retry-max" type="xs:string"/>
-        <xs:attribute name="retry-interval" type="xs:string"/>
     </xs:complexType>
 
     <xs:complexType name="MAP-REDUCE">
         <xs:sequence>
-            <xs:element name="job-tracker" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="name-node" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="job-tracker" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="name-node" type="xs:string" minOccurs="1" maxOccurs="1"/>
             <xs:element name="prepare" type="workflow:PREPARE" minOccurs="0" maxOccurs="1"/>
             <xs:choice minOccurs="0" maxOccurs="1">
                 <xs:element name="streaming" type="workflow:STREAMING" minOccurs="0" maxOccurs="1"/>
                 <xs:element name="pipes" type="workflow:PIPES" minOccurs="0" maxOccurs="1"/>
             </xs:choice>
-            <xs:element name="job-xml" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="job-xml" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="configuration" type="workflow:CONFIGURATION" minOccurs="0" maxOccurs="1"/>
             <xs:element name="file" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="archive" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
@@ -180,10 +153,10 @@
 
     <xs:complexType name="PIG">
         <xs:sequence>
-            <xs:element name="job-tracker" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="name-node" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="job-tracker" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="name-node" type="xs:string" minOccurs="1" maxOccurs="1"/>
             <xs:element name="prepare" type="workflow:PREPARE" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="job-xml" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="job-xml" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="configuration" type="workflow:CONFIGURATION" minOccurs="0" maxOccurs="1"/>
             <xs:element name="script" type="xs:string" minOccurs="1" maxOccurs="1"/>
             <xs:element name="param" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
@@ -202,32 +175,23 @@
     </xs:complexType>
 
     <xs:complexType name="FS">
-	<xs:sequence>
-            <xs:element name="name-node" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="job-xml" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="configuration" type="workflow:CONFIGURATION" minOccurs="0" maxOccurs="1"/>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">                
-                <xs:element name="delete" type="workflow:DELETE"/>
-                <xs:element name="mkdir" type="workflow:MKDIR"/>
-                <xs:element name="move" type="workflow:MOVE"/>
-                <xs:element name="chmod" type="workflow:CHMOD"/>
-                <xs:element name="touchz" type="workflow:TOUCHZ"/>
-            </xs:choice>
-        </xs:sequence>
+	<xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="delete" type="workflow:DELETE"/>
+            <xs:element name="mkdir" type="workflow:MKDIR"/>
+            <xs:element name="move" type="workflow:MOVE"/>
+            <xs:element name="chmod" type="workflow:CHMOD"/>
+        </xs:choice>
     </xs:complexType>
 
     <xs:complexType name="JAVA">
         <xs:sequence>
-            <xs:element name="job-tracker" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="name-node" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="job-tracker" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="name-node" type="xs:string" minOccurs="1" maxOccurs="1"/>
             <xs:element name="prepare" type="workflow:PREPARE" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="job-xml" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="job-xml" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="configuration" type="workflow:CONFIGURATION" minOccurs="0" maxOccurs="1"/>
             <xs:element name="main-class" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            <xs:choice minOccurs="0" maxOccurs="1">
-            	<xs:element name="java-opts" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            	<xs:element name="java-opt" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
-            </xs:choice>
+            <xs:element name="java-opts" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="arg" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="file" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="archive" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
@@ -293,16 +257,9 @@
     </xs:complexType>
 
     <xs:complexType name="CHMOD">
-        <xs:sequence>
-            <xs:element name="recursive" type="workflow:FLAG" minOccurs="0" maxOccurs="1"></xs:element>
-        </xs:sequence>
         <xs:attribute name="path" type="xs:string" use="required"/>
         <xs:attribute name="permissions" type="xs:string" use="required"/>
         <xs:attribute name="dir-files" type="xs:string"/>
-    </xs:complexType>
-    
-    <xs:complexType name="TOUCHZ">
-        <xs:attribute name="path" type="xs:string" use="required"/>
     </xs:complexType>
     
     <xs:complexType name="CREDENTIALS">             
@@ -326,4 +283,6 @@
         <xs:attribute name="name" type="xs:string" use="required"/>
         <xs:attribute name="type" type="xs:string" use="required"/>
     </xs:complexType>
+   	
+
 </xs:schema>
