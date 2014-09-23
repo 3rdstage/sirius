@@ -11,18 +11,21 @@ import javax.annotation.concurrent.NotThreadSafe;
 import javax.annotation.concurrent.ThreadSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.ext.DefaultHandler2;
 import org.xml.sax.helpers.DefaultHandler;
+import thirdstage.sirius.support.xml.XmlErrorBundle.Item;
+import thirdstage.sirius.support.xml.XmlErrorBundle.ItemType;
 
 @NotThreadSafe
-public class CollectiveXmlErrorHandler extends DefaultHandler2{
+public class CollectiveSaxErrorHandler implements ErrorHandler{
 
-   private List<SAXParseException> fatalErrors = new java.util.ArrayList<SAXParseException>();
+   private final List<SAXParseException> fatalErrors = new java.util.ArrayList<SAXParseException>();
 
-   private List<SAXParseException> errors = new java.util.ArrayList<SAXParseException>();
+   private final List<SAXParseException> errors = new java.util.ArrayList<SAXParseException>();
 
-   private List<SAXParseException> warnings = new java.util.ArrayList<SAXParseException>();
+   private final List<SAXParseException> warnings = new java.util.ArrayList<SAXParseException>();
 
    public List<SAXParseException> getFatalErrors(){
       return this.fatalErrors;
@@ -93,9 +96,30 @@ public class CollectiveXmlErrorHandler extends DefaultHandler2{
     * 
     * @return
     */
-   public XmlValidationResult getResult(){
-   	XmlValidationResult result = new XmlValidationResult();
+   public XmlErrorBundle getErrorBundle(){
+   	XmlErrorBundle result = new XmlErrorBundle();
    	
+   	XmlErrorBundle.Item item = null;
+   	for(SAXParseException ex : this.fatalErrors){
+   	   item = new Item().setType(ItemType.FATAL)
+   	         .setLine(ex.getLineNumber()).setColumn(ex.getColumnNumber())
+   	         .setTitle(ex.getMessage()).setDesc(ex.getMessage());
+   	   result.addItem(item);
+   	}
+   	
+      for(SAXParseException ex : this.errors){
+         item = new Item().setType(ItemType.ERROR)
+               .setLine(ex.getLineNumber()).setColumn(ex.getColumnNumber())
+               .setTitle(ex.getMessage()).setDesc(ex.getMessage());
+         result.addItem(item);
+      }
+   	
+      for(SAXParseException ex : this.warnings){
+         item = new Item().setType(ItemType.WARN)
+               .setLine(ex.getLineNumber()).setColumn(ex.getColumnNumber())
+               .setTitle(ex.getMessage()).setDesc(ex.getMessage());
+         result.addItem(item);
+      }
    	
    	return result;
    }

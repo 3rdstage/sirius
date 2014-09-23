@@ -1,0 +1,270 @@
+<workflow-app xmlns="uri:oozie:workflow:0.2" name="ooziedemo-wf">
+   <start to="timeCheck" />
+
+   <!-- Shell action to execute shell script on HDFS -->
+   <action name="timeCheck">
+      <shell xmlns="uri:oozie:shell-action:0.1">
+         <job-tracker>${jobTracker}</job-tracker>
+         <name-node>${nameNode}</name-node>
+         <configuration>
+            <property>
+               <name>mapred.job.queue.name</name>
+               <value>${queueName}</value>
+            </property>
+         </configurations>
+         <exec>${sqoopUpdTrack}</exec>
+         <argument>${tableName}</argument>
+         <file>${sqoopUpdTrackPath}#${sqoopUpdTrack}</file>
+         <capture-output />
+      </shell>
+      <ok to="sqoopIncrImport" />
+      <error to="fail" />
+   </action>
+
+   <!-- Sqoop Action for Incremental Import -->
+   <action name="sqoopIncrImport">
+      <sqoop xmlns="uri:oozie:sqoop-action:0.2">
+         <job-tracker>${jobTracker}
+         <name-node>${nameNode}</name-node>
+         <prepare>
+            <delete path="${s3BucketLoc}/${tableName}/incr" />
+            <mkdir path="${s3BucketLoc}/${tableName}" />
+         </prepare>
+         <configuration>
+            <property>
+               <name>mapred.job.queue.name</name>
+               <value>${queueName}</value>
+            </property>
+         </configuration>
+         <arg>import</arg>
+         <arg>--connect</arg>
+         <arg>${dbURL}</arg>
+         <arg>--driver</arg>
+         <arg>${mySqlDriver}</arg>
+         <arg>--username</arg>
+         <arg>${user}</arg>
+         <arg>--table</arg>
+         <arg>${wf:actionData('timeCheck')['tableName']}</arg>
+         <arg>--target-dir</arg>
+         <arg>${s3BucketLoc}/${tableName}/incr</arg>
+         <arg>--check-column</arg>
+         <arg>LAST_UPD</arg>
+         <arg>--incremental</arg>
+         <arg>lastmodified</arg>
+         <arg>--last-value</arg>
+         <arg>${wf:actionData('timeCheck')['sqoopLstUpd']}</arg>
+         <arg>--m</arg>
+         <arg>1</arg>
+      </sqoop>
+      <ok to="sqoopMetaUpdate" />
+      <error to="fail" />
+   </action>
+
+   <!-- Java action for updating Sqoop metadata -->
+   <action name="sqoopMetaUpdate">
+      <java>
+         <job-tracker>${jobTracker}</job-tracker>
+         <name-node>${nameNode}</name-node>
+         <configuration>
+            <property>
+               <name>mapred.job.queue.name</name>
+               <value>${queueName}</value>
+            </property>
+         </configuration>
+         <main-class>SqoopMetaUtil</main-class>
+         <java-opts></java-opts>
+         <arg>${tableName}</arg>
+         <archive>${mySqlDriverPath}</archive>
+      </java>
+      <ok to="hiveSwitch" />
+      <error to="fail" />
+   </action>
+
+   <!-- Shell action to retrieve Sqoop metadata needed for hive switch -->
+   <action name="hiveSwitch">
+      <shell xmlns="uri:oozie:shell-action:0.1">
+         <job-tracker>${jobTracker}</job-tracker>
+         <name-node>${nameNode}</name-node>
+         <configuration>
+            <property>
+               <name>mapred.job.queue.name</name>
+               <value>${queueName}</value>
+            </property>
+         </configuration>
+         <exec>${hiveSwitchScript}</exec>
+         <argument>${tableName}</argument>
+         <file>${hiveSwitchScriptPath}#${hiveSwitchScript}</file>
+         <capture-output />
+      </shell>
+      <ok to="master-decision" />
+      <error to="fail" />
+   </action>
+
+   <!-- Oozie decision control action -->
+   <decision name="master-decision">
+      <switch>
+         <case to="sqoopMerge1">
+            ${wf:actionData('hiveSwitch')['paramNum'] eq 1}
+         </case>
+         <default to="sqoopMerge2" />
+      </switch>
+   </decision>
+
+   <!-- Sqoop action for merge -->
+   <action name="sqoopMerge1">
+      <sqoop xmlns="uri:oozie:sqoop-action:0.2">
+         <job-tracker>${jobTracker}</job-tracker>
+         <name-node>${nameNode}</name-node>
+         <prepare>
+            <delete path="${s3BucketLoc}/${tableName}/master1" />
+            <mkdir path="${s3BucketLoc}/${tableName}" />
+         </prepare>
+         <configuration>
+            <property>
+               <name>mapred.job.queue.name</name>
+               <value>${queueName}</value>
+            </property>
+         </configuration>
+         <arg>merge</arg>
+         <arg>--new-data</arg>
+         <arg>${s3incr}</arg>
+         <arg>--onto</arg>
+         <arg>${s3BucketLoc}/${tableName}/master2</arg>
+         <arg>--target-dir</arg>
+         <arg>${s3BucketLoc}/${tableName}/master1</arg>
+         <arg>--jar-file</arg>
+         <arg>${tableJarLoc}/${tableName}.jar</arg>
+         <arg>--class-name</arg>
+         <arg>${tableName}</arg>
+         <arg>--merge-key</arg>
+         <arg>ROW_ID</arg>
+      </sqoop>
+      <ok to="hive-master1" />
+      <error to="fail" />
+   </action>
+
+   <!-- Sqoop action for merge -->
+   <action name="sqoopMerge2">
+      <sqoop xmlns="uri:oozie:sqoop-action:0.2">
+         <job-tracker>${jobTracker}</job-tracker>
+         <name-node>${nameNode}</name-node>
+         <prepare>
+            <delete path="${s3BucketLoc}/${tableName}/master2" />
+            <mkdir path="${s3BucketLoc}/${tableName}" />
+         </prepare>
+
+         <configuration>
+            <property>
+               <name>mapred.job.queue.name</name>
+               <value>${queueName}</value>
+            </property>
+         </configuration>
+         <arg>merge</arg>
+         <arg>--new-data</arg>
+         <arg>${s3incr}</arg>
+         <arg>--onto</arg>
+         <arg>${s3BucketLoc}/${tableName}/master1</arg>
+         <arg>--target-dir</arg>
+         <arg>${s3BucketLoc}/${tableName}/master2</arg>
+         <arg>--jar-file</arg>
+         <arg>${tableJarLoc}/${tableName}.jar</arg>
+         <arg>--class-name</arg>
+         <arg>${tableName}</arg>
+         <arg>--merge-key</arg>
+         <arg>ROW_ID</arg>
+      </sqoop>
+      <ok to="hive-master2" />
+      <error to="fail" />
+   </action>
+
+   <!-- Hive action to execute hive script -->
+   <action name="hive-master1">
+      <hive xmlns="uri:oozie:hive-action:0.2">
+         <job-tracker>${jobTracker}</job-tracker>
+         <name-node>${nameNode}</name-node>
+         <job-xml>/user/hive/conf/hive-default.xml</job-xml>
+         <configuration>
+            <property>
+               <name>mapred.job.queue.name</name>
+               <value>${queueName}</value>
+            </property>
+         </configuration>
+         <script>${tableName}_master1.q</script>
+      </hive>
+      <ok to="javaDBUpdate" />
+      <error to="fail" />
+   </action>
+
+   <!-- Hive action to execute hive script -->
+   <action name="hive-master2">
+      <hive xmlns="uri:oozie:hive-action:0.2">
+         <job-tracker>${jobTracker}</job-tracker>
+         <name-node>${nameNode}</name-node>
+         <job-xml>/user/hive/conf/hive-default.xml</job-xml>
+         <configuration>
+            <property>
+               <name>mapred.job.queue.name</name>
+               <value>${queueName}</value>
+            </property>
+         </configuration>
+         <script>${tableName}_master2.q</script>
+      </hive>
+      <ok to="javaDBUpdate" />
+      <error to="fail" />
+   </action>
+
+   <!-- Java action to update Sqoop metadata -->
+   <action name="javaDBUpdate">
+      <java>
+         <job-tracker>${jobTracker}</job-tracker>
+         <name-node>${nameNode}</name-node>
+         <configuration>
+            <property>
+               <name>mapred.job.queue.name</name>
+               <value>${queueName}</value>
+            </property>
+         </configuration>
+         <main-class>HiveSwitcher</main-class>
+         <java-opts></java-opts>
+         <arg>${tableName}</arg>
+         <archive>${mySqlDriverPath}</archive>
+      </java>
+      <ok to="jProperties" />
+      <error to="fail" />
+   </action>
+
+   <!-- Java action to set values as output property -->
+   <action name="jProperties">
+      <java>
+         <job-tracker>${jobTracker}</job-tracker>
+         <name-node>${nameNode}</name-node>
+         <configuration>
+            <property>
+               <name>mapred.job.queue.name</name>
+               <value>${queueName}</value>
+            </property>
+         </configuration>
+         <main-class>PropertyExplorer</main-class>
+         <java-opts></java-opts>
+         <capture-output />
+      </java>
+      <ok to="email" />
+      <error to="fail" />
+   </action>
+
+   <!-- Email action to retrieve Java output property and trigger emails -->
+   <action name="email">
+      <email xmlns="uri:oozie:email-action:0.1">
+         <to>surajit.paul@autodesk.com</to>
+         <subject>Oozie workflow finished successfully!</subject>
+         <body>${wf:actionData('jProperties')['name']} | ${wf:actionData('jProperties')['address']}</body>
+      </email>
+      <ok to="end" />
+      <error to="fail" />
+   </action>
+
+   <kill name="fail">
+      <message>Workflow failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+   </kill>
+   <end name="end" />
+</workflow-app>

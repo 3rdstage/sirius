@@ -25,8 +25,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
-import thirdstage.sirius.support.xml.CollectiveXmlErrorHandler;
-import thirdstage.sirius.support.xml.XmlValidationResult;
+import org.xml.sax.SAXParseException;
+import thirdstage.sirius.support.xml.CollectiveSaxErrorHandler;
+import thirdstage.sirius.support.xml.XmlErrorBundle;
+import thirdstage.sirius.support.xml.XmlErrorBundle.ItemType;
 
 
 /**
@@ -34,6 +36,7 @@ import thirdstage.sirius.support.xml.XmlValidationResult;
  * @see <a href="https://github.com/apache/oozie/tree/branch-4.0/client/src/main/resources">XML Schemas for Oozie 4.0</a>
  * @see <a href="https://github.com/apache/oozie/blob/master/core/src/main/java/org/apache/oozie/service/SchemaService.java">org.apache.oozie.service.SchemaService.java</a>
  */
+@ThreadSafe
 public class OozieDefinitionValidator{
 
 	protected static String schemaLocBase = "thirdstage/sirius/support/oozie/schemas";
@@ -157,22 +160,35 @@ public class OozieDefinitionValidator{
 	
 	public OozieDefinitionValidator(){}
 	
-	
-	public XmlValidationResult validateWorkflowDefinition(@Nonnull String resourceLoc){
-
+	/**
+	 * The return value is NOT {@code null} but empty, when the specified XML is valid.
+	 * 
+	 * 
+	 * @param resourceLoc
+	 * @return XmlErrorBundle object that contains illformedness or non-validness.
+	 */
+	@Nonnull
+	public XmlErrorBundle validateWorkflowDefinition(@Nonnull String resourceLoc){
+	   CollectiveSaxErrorHandler errHandler = new CollectiveSaxErrorHandler();
+	   
+	   //@todo Consider just using Xerces2 implementation.
+	   //@todo Try pull parsers.  http://www.xmlpull.org/impls.shtml
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setNamespaceAware(true);
 		dbf.setValidating(false);
 		DocumentBuilder db = null;
 		InputStream is = null;
 		Document doc = null;
-		
+
 		try{
 			db = dbf.newDocumentBuilder();
+			db.setErrorHandler(errHandler);
 			is = ClassLoader.getSystemResourceAsStream(resourceLoc);
 			doc = db.parse(is);
 		}catch(RuntimeException ex){
 			throw ex;
+		}catch(SAXParseException ex){
+		   if(doc == null) return errHandler.getErrorBundle();
 		}catch(Exception ex){
 			throw new RuntimeException("Fail to parse the XML document at " + resourceLoc, ex);
 		}finally{
@@ -182,17 +198,17 @@ public class OozieDefinitionValidator{
 		}
 		
 		Validator validator = workflowSchema.newValidator();
-		
-		CollectiveXmlErrorHandler errHandler = new CollectiveXmlErrorHandler();
 		validator.setErrorHandler(errHandler);
 		try{
 			validator.validate(new DOMSource(doc));
 			
-			return errHandler.getResult();
+			return errHandler.getErrorBundle();
 		}catch(RuntimeException ex){
-			throw ex;
+		   if(errHandler.getErrorBundle() != null){ return errHandler.getErrorBundle(); }
+		   else{ throw ex; }
 		}catch(Exception ex){
-			throw new RuntimeException("Fail to validate the XML document at " + resourceLoc, ex);
+		   if(errHandler.getErrorBundle() != null){ return errHandler.getErrorBundle(); }
+		   else{ throw new RuntimeException("Fail to validate the XML document at " + resourceLoc, ex); }
 		}
 		
 	}

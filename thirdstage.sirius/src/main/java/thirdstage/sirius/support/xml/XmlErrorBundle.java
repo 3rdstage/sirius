@@ -1,18 +1,20 @@
 package thirdstage.sirius.support.xml;
 
+import java.io.PrintStream;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.WillNotClose;
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.annotation.concurrent.ThreadSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @NotThreadSafe
-public class XmlValidationResult{
+public class XmlErrorBundle{
 
    public enum ItemType{
       FATAL,
@@ -72,7 +74,7 @@ public class XmlValidationResult{
 
    private final List<Item> items = new ArrayList<Item>();
 
-   public XmlValidationResult addItem(@Nonnull Item item){
+   public XmlErrorBundle addItem(@Nonnull Item item){
       if(item == null) throw new IllegalArgumentException("Item to add shouldn't be null.");
       this.items.add(item);
       return this;
@@ -82,5 +84,21 @@ public class XmlValidationResult{
       return this.items;
    }
 
+   public boolean isEmpty(){
+      return this.items.isEmpty();
+   }
+   
+   public void print(@Nonnull @WillNotClose PrintStream ps){
+      if(ps == null) return;
+      
+      StringBuilder sb = new StringBuilder();
+      for(Item item : items){
+         sb.append("L:").append(item.getLine())
+            .append("C:").append(item.getColumn())
+            .append(", ").append(item.getDesc()).append("\n");
+      }
+      
+      ps.print(sb.toString());
+   }
 
 }
