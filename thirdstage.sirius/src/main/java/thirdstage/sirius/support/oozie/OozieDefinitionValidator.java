@@ -21,11 +21,18 @@ import javax.xml.transform.sax.SAXSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
+
+import org.oclc.purl.dsdl.svrl.FailedAssert;
+import org.oclc.purl.dsdl.svrl.SchematronOutputType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXParseException;
+
+import com.helger.schematron.ISchematronResource;
+import com.helger.schematron.pure.SchematronResourcePure;
+
 import thirdstage.sirius.support.xml.CollectiveSaxErrorHandler;
 import thirdstage.sirius.support.xml.XmlErrorBundle;
 import thirdstage.sirius.support.xml.XmlErrorBundle.ItemType;
@@ -42,6 +49,8 @@ public class OozieDefinitionValidator{
 	protected static String schemaLocBase = "thirdstage/sirius/support/oozie/schemas";
 
 	protected static Schema workflowSchema; //thread-safe 
+	
+	protected static ISchematronResource workflowSchematron; //should use thread-safe impplementation
 
 	public final static String WORKFLOW_NID = "oozie:workflow"; //Namespace Identifier
 
@@ -74,6 +83,8 @@ public class OozieDefinitionValidator{
 	public final static String SSH_ACTION_NID = "oozie:ssh-action";
 
 	public final static Set<String> SSH_ACTION_NAMESPACES;
+	
+
 
 
 	static{
@@ -126,8 +137,19 @@ public class OozieDefinitionValidator{
 		}catch(Exception ex){
 			Logger logger = LoggerFactory.getLogger(OozieDefinitionValidator.class);
 			logger.error("Fail to initialize OozieDefinitionValidator class.", ex);
+			throw new IllegalStateException(ex);
 		}
-
+		
+		//classpath relative path of the schematron rule for workflow definition
+		String path = "thirdstage/sirius/support/oozie/schematron/workflow-0.1.sch"; 
+		
+		workflowSchematron = SchematronResourcePure.fromClassPath(path);
+		if(!workflowSchematron.isValidSchematron()){
+			RuntimeException ex = new IllegalStateException("Fail to initialize OozieDefinitionValidator class. - Invalid Scehmatron at " + path); 
+			Logger logger = LoggerFactory.getLogger(OozieDefinitionValidator.class);
+			logger.error(ex.getMessage(), ex);
+			throw ex;
+		}
 
 	}
 
@@ -179,7 +201,9 @@ public class OozieDefinitionValidator{
 		DocumentBuilder db = null;
 		InputStream is = null;
 		Document doc = null;
-
+		
+		//Parse the definition with DOM Parser.
+		//This process include checking well-formedness of the definition.
 		try{
 			db = dbf.newDocumentBuilder();
 			db.setErrorHandler(errHandler);
@@ -197,20 +221,47 @@ public class OozieDefinitionValidator{
 			}
 		}
 		
+		//Check the validity of the definition using XML Schema
 		Validator validator = workflowSchema.newValidator();
 		validator.setErrorHandler(errHandler);
+		DOMSource ds = new DOMSource(doc);
 		try{
-			validator.validate(new DOMSource(doc));
+			validator.validate(ds);
 			
-			return errHandler.getErrorBundle();
+			//return errHandler.getErrorBundle();
 		}catch(RuntimeException ex){
-		   if(errHandler.getErrorBundle() != null){ return errHandler.getErrorBundle(); }
+		   if(errHandler.getErrorBundle() != null){ 
+			   //return errHandler.getErrorBundle(); 
+		   }
 		   else{ throw ex; }
 		}catch(Exception ex){
-		   if(errHandler.getErrorBundle() != null){ return errHandler.getErrorBundle(); }
+		   if(errHandler.getErrorBundle() != null){ 
+			   //return errHandler.getErrorBundle(); 
+		   }
 		   else{ throw new RuntimeException("Fail to validate the XML document at " + resourceLoc, ex); }
 		}
 		
+		
+		//Check the additional validity of the definition using Schematron.
+		SchematronOutputType output = null;
+		XmlErrorBundle bundle = errHandler.getErrorBundle();
+		try{
+			output = workflowSchematron.applySchematronValidationToSVRL(ds);
+		}catch(Exception ex){
+			throw new RuntimeException("Fail to validate the XML document at " + resourceLoc, ex);
+		}
+		
+		if(output != null){
+			List<Object> objs = output.getActivePatternAndFiredRuleAndFailedAssert();
+			for(Object obj : objs){
+				if(obj instanceof FailedAssert){
+					bundle.addItem(new XmlErrorBundle.Item()
+							.setDesc(((FailedAssert)obj).getLocation()));
+				}
+			}
+		}
+		
+		return bundle;
 	}
 
 
