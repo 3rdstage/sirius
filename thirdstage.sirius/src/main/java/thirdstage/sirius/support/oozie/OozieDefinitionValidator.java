@@ -127,6 +127,8 @@ public class OozieDefinitionValidator{
 			wfSchLocs.addAll(getSchemaLocations(SQOOP_ACTION_NAMESPACES));
 			wfSchLocs.addAll(getSchemaLocations(SSH_ACTION_NAMESPACES));
 
+			//@todo Review over using StreamSource which can be constructed using File instance
+			//instead of InputStream instance.
 			Set<SAXSource> wfSchSrcs = new HashSet<SAXSource>();
 			for(String loc : wfSchLocs){
 				wfSchSrcs.add(new SAXSource(new InputSource(ClassLoader.getSystemResourceAsStream(loc))));
