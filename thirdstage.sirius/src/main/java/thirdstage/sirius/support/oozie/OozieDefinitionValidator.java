@@ -51,7 +51,7 @@ public class OozieDefinitionValidator{
 	protected static Schema workflowSchema; //thread-safe 
 	
 	protected static ISchematronResource workflowSchematron; //should use thread-safe impplementation
-
+	
 	public final static String WORKFLOW_NID = "oozie:workflow"; //Namespace Identifier
 
 	public final static Set<String> WORKFLOW_NAMESPACES;
@@ -196,7 +196,7 @@ public class OozieDefinitionValidator{
 	   //@todo Consider just using Xerces2 implementation.
 	   //@todo Try pull parsers.  http://www.xmlpull.org/impls.shtml
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		dbf.setNamespaceAware(true);
+		dbf.setNamespaceAware(true); //Definitely should be TRUE for XML Schema validation.
 		dbf.setValidating(false);
 		DocumentBuilder db = null;
 		InputStream is = null;
@@ -255,8 +255,7 @@ public class OozieDefinitionValidator{
 			List<Object> objs = output.getActivePatternAndFiredRuleAndFailedAssert();
 			for(Object obj : objs){
 				if(obj instanceof FailedAssert){
-					bundle.addItem(new XmlErrorBundle.Item()
-							.setDesc(((FailedAssert)obj).getLocation()));
+					bundle.addItem(buildXmlErrorItemFromFailedAssert((FailedAssert)obj));
 				}
 			}
 		}
@@ -264,5 +263,11 @@ public class OozieDefinitionValidator{
 		return bundle;
 	}
 
+	private XmlErrorBundle.Item buildXmlErrorItemFromFailedAssert(final FailedAssert failed){
+		
+		return new XmlErrorBundle.Item()
+			.setDesc(failed.getText());
+		
+	}
 
 }

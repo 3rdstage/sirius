@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="2413804" started-at="2014-10-01T09:00:53Z" finished-at="2014-10-01T09:41:07Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="2413804" started-at="2014-10-01T09:00:53Z" finished-at="2014-10-01T09:41:07Z">
+      <class name="thirdstage.sirius.support.oozie.JaxenTest">
+        <test-method status="PASS" signature="testXPathEvaluation1()[pri:0, instance:thirdstage.sirius.support.oozie.JaxenTest@35f03691]" name="testXPathEvaluation1" duration-ms="2413788" started-at="2014-10-01T04:30:53Z" finished-at="2014-10-01T05:11:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testXPathEvaluation1 -->
+      </class> <!-- thirdstage.sirius.support.oozie.JaxenTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
