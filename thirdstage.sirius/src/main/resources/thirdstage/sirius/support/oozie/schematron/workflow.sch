@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:dc="http://purl.org/dc/elements/1.1/">
 
    <dc:title>Schematron schema for Oozie workflow definition</dc:title>
@@ -63,6 +64,7 @@
             Non-existing node name '<value-of select="string(.)" />' at ....
             Number of nodeNames : <value-of select="count($nodeNames)"/>
             Number of wantedNodeNames : <value-of select="count($wantedNodeNames)"/>
+
          </assert>
       </rule>
    </pattern>
