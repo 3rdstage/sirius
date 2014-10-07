@@ -13,6 +13,13 @@ import javax.annotation.concurrent.ThreadSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+/**
+ * 
+ * @version 1.0 2014-10-03, initial
+ * @author Sangmoon Oh
+ * @since 2014-10-03 
+ */
 @NotThreadSafe
 public class XmlErrorBundle{
 

@@ -36,12 +36,20 @@ import com.helger.schematron.xslt.SchematronResourceXSLT;
 public class PhSchematronTest {
 
    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+   
+   private static final String schematronLocBase = "thirdstage/sirius/support/oozie/schematrons/";
+   private static final String sampleLocBase = "thirdstage/sirius/support/oozie/samples/";
+   
+   private static final String schematron0Loc = schematronLocBase + "workflow.sch";
+   private static final String schematron1Loc = schematronLocBase + "workflow-0.1.sch";
+   
+   private static final String sample1Loc = sampleLocBase + "workflow-sample-linkbroken-1.xml";
 
    @Test(expectedExceptions={java.lang.IllegalStateException.class})
    public void testErrorHandler1() throws Exception{
 
-      String schPath = "thirdstage/sirius/support/oozie/schematron/workflow-0.1.sch"; 
-      String xmlPath = "thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
+      String schPath = schematron1Loc;
+      String xmlPath = sample1Loc;
 
       SchematronResourcePure workflowSchematron = SchematronResourcePure.fromClassPath(schPath);
       if(!workflowSchematron.isValidSchematron()){
@@ -63,11 +71,8 @@ public class PhSchematronTest {
 
    @Test
    public void testErrorHandler2() throws Exception{
-
-
-      String schPath = "thirdstage/sirius/support/oozie/schematron/workflow-0.1.sch"; 
-      String xmlPath = "thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
-
+      String schPath = schematron1Loc; 
+      String xmlPath = sample1Loc;
 
       ClassPathResource schRes = new ClassPathResource(schPath);
       CollectingPSErrorHandler errHandler = new CollectingPSErrorHandler();
@@ -82,14 +87,12 @@ public class PhSchematronTest {
       SchematronOutputType output = null;
 
       output = workflowSchematron.applySchematronValidationToSVRL(src);
-
    }	
 
    @Test
    public void testOutputTypeUsingStreamSource() throws Exception{
-
-      String schPath = "thirdstage/sirius/support/oozie/schematron/workflow-0.1.sch"; 
-      String xmlPath = "thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
+      String schPath = schematron1Loc; 
+      String xmlPath = sample1Loc;
 
       SchematronResourcePure workflowSchematron = SchematronResourcePure.fromClassPath(schPath);
       if(!workflowSchematron.isValidSchematron()){
@@ -101,8 +104,12 @@ public class PhSchematronTest {
       Source src = new StreamSource(new File(ClassLoader.getSystemResource(xmlPath).toURI()));
       SchematronOutputType output = null;
 
-
       output = workflowSchematron.applySchematronValidationToSVRL(src);
+      List<SVRLFailedAssert> fails = SVRLUtils.getAllFailedAssertions(output);
+
+      for(SVRLFailedAssert fail : fails){
+         logger.info("{}, {}", fail.getLocation(), fail.getText());
+      }
 
       Assert.assertTrue(output.getActivePatternAndFiredRuleAndFailedAssert().size() > 0);
    }
@@ -110,10 +117,8 @@ public class PhSchematronTest {
    @Test
    public void testValidationUsingSchematronResourcePureAndDom() throws Exception{
       //using SchematronResourcePure and DOM
-      //seems to end with 1st failure
-
-      String schPath = "thirdstage/sirius/support/oozie/schematron/workflow-0.1.sch"; 
-      String xmlPath = "thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
+      String schPath = schematron1Loc; 
+      String xmlPath = sample1Loc;
 
       SchematronResourcePure workflowSchematron = SchematronResourcePure.fromClassPath(schPath);
       if(!workflowSchematron.isValidSchematron()){
@@ -131,24 +136,26 @@ public class PhSchematronTest {
       SchematronOutputType output = null;
 
       output = workflowSchematron.applySchematronValidation(doc);
-      String path = "D:/home/git/repos/sirius/thirdstage.sirius/target/test-classes/thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
-      path = "D:\\home\\git\\repos\\sirius\\thirdstage.sirius\\target\\test-classes\\thirdstage\\sirius\\support\\oozie\\samples\\workflow-sample-1.xml";
+      String path = new File(ClassLoader.getSystemResource(xmlPath).toURI()).getCanonicalPath();
+      //path = "D:\\home\\git\\repos\\sirius\\thirdstage.sirius\\target\\test-classes\\thirdstage\\sirius\\support\\oozie\\samples\\workflow-sample-1.xml";
 
       IResourceErrorGroup errGroups = SchematronHelper.convertToResourceErrorGroup(output, path);
 
       List<SVRLFailedAssert> fails = SVRLUtils.getAllFailedAssertions(output);
+      for(SVRLFailedAssert fail : fails){
+         logger.info("{}, {}", fail.getLocation(), fail.getText());
+      }
 
       Assert.assertTrue(fails.size() > 0);
    }	
 
    @Test
    public void testValidationUsingSchematronResourcePureAndDom2() throws Exception{
-
       //using SchematronResourcePure and DOM
       //seems to fire single assertion just one time and catch all the failures
       
-      String schPath = "thirdstage/sirius/support/oozie/schematron/workflow.sch"; 
-      String xmlPath = "thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
+      String schPath = schematron0Loc; 
+      String xmlPath = sample1Loc;
 
       SchematronResourcePure workflowSchematron = SchematronResourcePure.fromClassPath(schPath);
       if(!workflowSchematron.isValidSchematron()){
@@ -166,15 +173,18 @@ public class PhSchematronTest {
       SchematronOutputType output = null;
 
       output = workflowSchematron.applySchematronValidation(doc);
-
+      List<SVRLFailedAssert> fails = SVRLUtils.getAllFailedAssertions(output);
+      for(SVRLFailedAssert fail : fails){
+         logger.info("{}, {}", fail.getLocation(), fail.getText());
+      }
+      
       Assert.assertTrue(output.getActivePatternAndFiredRuleAndFailedAssert().size() > 0);
    }  
 
    @Test
    public void testValidationUsingSchematronResourcePureAndDom3() throws Exception{
-
-      String schPath = "thirdstage/sirius/support/oozie/schematron/workflow.sch"; 
-      String xmlPath = "thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
+      String schPath = schematron0Loc; 
+      String xmlPath = sample1Loc;
 
       SchematronResourcePure workflowSchematron = SchematronResourcePure.fromClassPath(schPath);
       if(!workflowSchematron.isValidSchematron()){
@@ -192,19 +202,19 @@ public class PhSchematronTest {
       Document output = null;
 
       output = workflowSchematron.applySchematronValidation(new DOMSource(doc));
+      logger.info(output.getChildNodes().toString());
 
       Assert.assertTrue(output.getChildNodes().getLength() > 0);
    }  
 
 
-   @Test
+   @Test(expectedExceptions={java.lang.IllegalStateException.class})
    public void testValidationUsingSchematronResourceSchAndReadableResource() throws Exception{
-
     //using SchematronResourceSCH and IReadableResource
     //seems to fire single assertion multiple times that could be inefficient.
       
-      String schPath = "thirdstage/sirius/support/oozie/schematron/workflow.sch"; 
-      String xmlPath = "thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
+      String schPath = schematron0Loc; 
+      String xmlPath = sample1Loc;
 
       SchematronResourceSCH workflowSchematron = SchematronResourceSCH.fromClassPath(schPath);
       if(!workflowSchematron.isValidSchematron()){
@@ -217,7 +227,7 @@ public class PhSchematronTest {
 
       IReadableResource rr = new ClassPathResource(xmlPath);
       output = workflowSchematron.applySchematronValidationToSVRL(rr);
-      String path = "D:/home/git/repos/sirius/thirdstage.sirius/target/test-classes/thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
+      String path = new File(ClassLoader.getSystemResource(xmlPath).toURI()).getCanonicalPath();
 
       IResourceErrorGroup errGroups = SchematronHelper.convertToResourceErrorGroup(output, path);
 
@@ -227,13 +237,13 @@ public class PhSchematronTest {
 
    }  
    
-   @Test
+   @Test(expectedExceptions={java.lang.IllegalStateException.class})
    public void testValidationUsingSchematronResourceSchAndDomSource() throws Exception{
 
       //using SchematronResourceSCH and DOMSource
       //seems to fire single assertion multiple times that could be inefficient.
-      String schPath = "thirdstage/sirius/support/oozie/schematron/workflow.sch"; 
-      String xmlPath = "thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
+      String schPath = schematron0Loc; 
+      String xmlPath = sample1Loc;
 
       SchematronResourceSCH workflowSchematron = SchematronResourceSCH.fromClassPath(schPath);
       if(!workflowSchematron.isValidSchematron()){
@@ -261,18 +271,15 @@ public class PhSchematronTest {
       
       Assert.assertTrue(output.getActivePatternAndFiredRuleAndFailedAssertCount() > 0);
       Assert.assertTrue(fails.size() > 0);
-      
-      
-      
    }     
 
-   @Test(expectedExceptions={java.lang.Exception.class})
+   @Test(expectedExceptions={java.lang.IllegalStateException.class})
    public void testValidationUsingSchematronResourceXsltAndReadableResource() throws Exception{
       //using SchematronResourceXSLT and IReadableResource
       //thows exception
       
-      String schPath = "thirdstage/sirius/support/oozie/schematron/workflow.sch"; 
-      String xmlPath = "thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
+      String schPath = schematron0Loc; 
+      String xmlPath = sample1Loc;
 
       SchematronResourceXSLT workflowSchematron = SchematronResourceXSLT.fromClassPath(schPath);
       if(!workflowSchematron.isValidSchematron()){
@@ -298,7 +305,6 @@ public class PhSchematronTest {
       List<SVRLFailedAssert> fails = SVRLUtils.getAllFailedAssertions(output);
 
       Assert.assertTrue(fails.size() > 0);      
-
    }  
    
    
@@ -313,8 +319,8 @@ public class PhSchematronTest {
       //XPathFunctionResolver
       //IPSValidationHandler
       
-      String schPath = "thirdstage/sirius/support/oozie/schematron/workflow.sch"; 
-      String xmlPath = "thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
+      String schPath = schematron0Loc; 
+      String xmlPath = sample1Loc;
       
       final PSSchema sch = new PSReader(new ClassPathResource(schPath)).readSchema();
       if(!sch.isValid()){
@@ -345,9 +351,6 @@ public class PhSchematronTest {
       
       Assert.assertTrue(output.getActivePatternAndFiredRuleAndFailedAssertCount() > 0);
       Assert.assertTrue(fails.size() > 0);
-      
-      
-      
    }  
 
 }

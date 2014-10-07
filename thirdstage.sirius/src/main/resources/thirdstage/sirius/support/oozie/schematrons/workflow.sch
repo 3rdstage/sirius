@@ -56,7 +56,7 @@
    <let name="actionErrorTo" 
       value="/*[local-name()='workflow-app']/*[local-name()='action']/*[local-name()='error']/@to/string()"/>
    <let name="wantedNodeNames" 
-         value="($startTo, $joinTo, $forkPathStart)"/>
+         value="($startTo, $joinTo)"/>
 
    <pattern id='linkage'>
       <rule context="/*[local-name()='workflow-app']/*[local-name()='action']/*[local-name()='ok']/@to">

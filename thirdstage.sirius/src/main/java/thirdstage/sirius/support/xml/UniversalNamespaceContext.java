@@ -20,8 +20,6 @@ import org.w3c.dom.Document;
  * Borrowed by the Holger Kraus's article at IBM developerWorks which can be found
  * at <a href="http://www.ibm.com/developerworks/xml/library/x-nmspccontext/index.html">Using the Java language NamespaceContext object with XPath</a>
  * 
- * @author 3rdstage
- *
  */
 public class UniversalNamespaceContext implements NamespaceContext {
 	

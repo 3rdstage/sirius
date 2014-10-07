@@ -39,7 +39,10 @@ import thirdstage.sirius.support.xml.XmlErrorBundle.ItemType;
 
 
 /**
- * @author 3rdstage
+ * 
+ * @version 0.8 2014-10-03, initial
+ * @author Sangmoon Oh
+ * @since
  * @see <a href="https://github.com/apache/oozie/tree/branch-4.0/client/src/main/resources">XML Schemas for Oozie 4.0</a>
  * @see <a href="https://github.com/apache/oozie/blob/master/core/src/main/java/org/apache/oozie/service/SchemaService.java">org.apache.oozie.service.SchemaService.java</a>
  */
@@ -47,6 +50,9 @@ import thirdstage.sirius.support.xml.XmlErrorBundle.ItemType;
 public class OozieDefinitionValidator{
 
 	protected static String schemaLocBase = "thirdstage/sirius/support/oozie/schemas";
+	
+	//classpath relative path of the schematron rule for workflow definition
+	protected static String schematronLoc = "thirdstage/sirius/support/oozie/schematrons/workflow.sch";
 
 	protected static Schema workflowSchema; //thread-safe 
 	
@@ -83,9 +89,6 @@ public class OozieDefinitionValidator{
 	public final static String SSH_ACTION_NID = "oozie:ssh-action";
 
 	public final static Set<String> SSH_ACTION_NAMESPACES;
-	
-
-
 
 	static{
 		//init namespace constants		
@@ -142,12 +145,9 @@ public class OozieDefinitionValidator{
 			throw new IllegalStateException(ex);
 		}
 		
-		//classpath relative path of the schematron rule for workflow definition
-		String path = "thirdstage/sirius/support/oozie/schematron/workflow-0.1.sch"; 
-		
-		workflowSchematron = SchematronResourcePure.fromClassPath(path);
+		workflowSchematron = SchematronResourcePure.fromClassPath(schematronLoc);
 		if(!workflowSchematron.isValidSchematron()){
-			RuntimeException ex = new IllegalStateException("Fail to initialize OozieDefinitionValidator class. - Invalid Scehmatron at " + path); 
+			RuntimeException ex = new IllegalStateException("Fail to initialize OozieDefinitionValidator class. - Invalid Scehmatron at " + schematronLoc); 
 			Logger logger = LoggerFactory.getLogger(OozieDefinitionValidator.class);
 			logger.error(ex.getMessage(), ex);
 			throw ex;
