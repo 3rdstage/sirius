@@ -46,7 +46,7 @@
    <let name="joinTo" 
       value="/*[local-name()='workflow-app']/*[local-name()='join']/@to/string()" />
    <let name="forkPathStart" 
-      value="/*[local-name()='workflow-app']/*[local-name()='fork']/*[loal-name()='path']/@start/string()"/>
+      value="/*[local-name()='workflow-app']/*[local-name()='fork']/*[local-name()='path']/@start/string()"/>
    <let name="decisionCaseTo"
       value="/*[local-name()='workflow-app']/*[local-name()='decision']/*[local-name()='switch']/*[local-name()='case']/@to/string()"/>
    <let name="decisionDefaultTo"
@@ -56,15 +56,14 @@
    <let name="actionErrorTo" 
       value="/*[local-name()='workflow-app']/*[local-name()='action']/*[local-name()='error']/@to/string()"/>
    <let name="wantedNodeNames" 
-         value="($startTo, $joinTo, $forkPathStart)"/>
+         value="($startTo, $joinTo, $forkPathStart, $decisionCaseTo, $decisionDefaultTo, $actionOkTo, $actionErrorTo)"/>
 
    <pattern id='linkage'>
       <rule context="/*[local-name()='workflow-app']/*[local-name()='action']/*[local-name()='ok']/@to">
          <assert test=".[index-of($nodeNames, string(.)) lt 1]">
-            Non-existing node name '<value-of select="string(.)" />' at ....
+            Non-existing node name '<value-of select="string(.)" />' at  '<value-of select="./parent::node()/name()"/>'
             Number of nodeNames : <value-of select="count($nodeNames)"/>
-            Number of wantedNodeNames : <value-of select="count($wantedNodeNames)"/>
-
+            Number of wantedNodeNames : <value-of select="string-join($wantedNodeNames, ' ')"/>
          </assert>
       </rule>
    </pattern>

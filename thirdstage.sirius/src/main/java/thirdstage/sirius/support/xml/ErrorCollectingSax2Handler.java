@@ -6,6 +6,12 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.ext.DefaultHandler2;
 
+/**
+ * 
+ * @version 1.0 2014-10-03, initial
+ * @author Sangmoon Oh
+ * @since 2014-10-03 
+ */
 public class ErrorCollectingSax2Handler extends DefaultHandler2{
    
    private final CollectiveSaxErrorHandler errorHandler = new CollectiveSaxErrorHandler();

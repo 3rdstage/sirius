@@ -17,6 +17,12 @@ import javax.xml.xpath.XPathFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 
+ * @version 0.5 2014-10-03, initial
+ * @author Sangmoon Oh
+ * @since  
+ */
 public class XPathUtils {
 	
 	/**

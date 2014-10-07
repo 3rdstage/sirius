@@ -8,7 +8,10 @@ import thirdstage.sirius.support.xml.XmlErrorBundle;
 public class OozieDefinitionValidatorTest {
 
    private OozieDefinitionValidator validator = new OozieDefinitionValidator();
-
+   
+   private final static String sampleLocBase ="thirdstage/sirius/support/oozie/samples/";
+   private final static String validSample1Loc = sampleLocBase + "workflow-sample-1.xml";
+   private final static String illformedSample1Loc = sampleLocBase + "workflow-sample-illformed-1.xml";
 
    @Test
    public void testStaticMemebers(){
@@ -45,9 +48,7 @@ public class OozieDefinitionValidatorTest {
    @Test
    public void testValidateWorkflowDefinitionWithValidDefinition1(){
 
-      String loc = "thirdstage/sirius/support/oozie/samples/workflow-sample-1.xml";
-
-      XmlErrorBundle errors = validator.validateWorkflowDefinition(loc);
+      XmlErrorBundle errors = validator.validateWorkflowDefinition(validSample1Loc);
       errors.print(System.out);
       Assert.assertEquals(errors.getItems().size(), 0);
    }
@@ -56,9 +57,7 @@ public class OozieDefinitionValidatorTest {
    @Test
    public void testValidateWorkflowDefinitionWithIllformedDefinition1(){
 
-      String loc = "thirdstage/sirius/support/oozie/samples/workflow-sample-illformed-1.xml";
-
-      XmlErrorBundle errors = validator.validateWorkflowDefinition(loc);
+      XmlErrorBundle errors = validator.validateWorkflowDefinition(illformedSample1Loc);
       errors.print(System.out);
       Assert.assertTrue(errors.getItems().size() > 0);
    }

@@ -18,6 +18,12 @@ import org.xml.sax.helpers.DefaultHandler;
 import thirdstage.sirius.support.xml.XmlErrorBundle.Item;
 import thirdstage.sirius.support.xml.XmlErrorBundle.ItemType;
 
+/**
+ * 
+ * @version 1.0 2014-10-03, initial
+ * @author Sangmoon Oh
+ * @since 2014-10-03 
+ */
 @NotThreadSafe
 public class CollectiveSaxErrorHandler implements ErrorHandler{
 

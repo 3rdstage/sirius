@@ -139,6 +139,12 @@
          <type>jar</type>
          <scope>compile</scope>
       </dependency>
+<!--       <dependency>
+         <groupId>net.sf.saxon</groupId>
+         <artifactId>Saxon-HE</artifactId>
+         <version>9.6.0-1</version>
+      </dependency>
+ -->
       <dependency>
          <groupId>com.helger</groupId>
          <artifactId>ph-schematron</artifactId>
