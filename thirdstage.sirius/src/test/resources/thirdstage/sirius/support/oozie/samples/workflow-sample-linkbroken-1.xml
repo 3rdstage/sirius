@@ -267,4 +267,5 @@
       <message>Workflow failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
    </kill>
    <end name="end" />
+>>>>>>> branch 'master' of https://github.com/3rdstage/sirius.git
 </workflow-app>

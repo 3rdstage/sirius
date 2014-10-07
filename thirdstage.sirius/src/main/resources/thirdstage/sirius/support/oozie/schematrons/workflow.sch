@@ -64,6 +64,7 @@
             Non-existing node name '<value-of select="string(.)" />' at  '<value-of select="./parent::node()/name()"/>'
             Number of nodeNames : <value-of select="count($nodeNames)"/>
             Number of wantedNodeNames : <value-of select="string-join($wantedNodeNames, ' ')"/>
+
          </assert>
       </rule>
    </pattern>
