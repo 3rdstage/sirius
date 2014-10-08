@@ -1,5 +1,31 @@
 <workflow-app xmlns="uri:oozie:workflow:0.2" name="ooziedemo-wf">
-   <start to="timeCheck" />
+   <start to="timeCheck0" />
+
+   <!-- 
+   Abnomality
+      - Non-existing target :
+         'timeCheck0' at start/@to 
+         'hive-master2' at action[@name='sqoopMerge1']/ok/@to 
+         'end' at action[@name='email']/@ok
+         'fail-early' at action[@name='timeCheck']/error/@to
+         'fail-to-email' at action[@name='email']/error/@to
+         'sqoopMerge2' at decision[@name='master-decision']/case[1]/@to
+         'sqoopMerge2' at decision[@name='master-decision']/case[2]/@to
+         'sqoopMerge3' at decision[@name='master-decision']/case[3]/@to 
+         'sqoopMerge3' at decision[@name='master-decision']/case[4]/@to 
+         'sqoopMerge4' at decision[@name='master-decision']/default/@to 
+         
+      - Duplicate node name : 
+         'sqoopMerge1'
+         'hive-master1'
+         
+      - Isolated node : 
+         'timeCheck' at action[@name='timeCheck']
+         'finish' at end[@name='completed']
+         
+       - Duplicate decision case :
+         'sqoopMerge2', 'sqoopMerge3' inside decision[@name='master-decision']    
+   -->
 
    <!-- Shell action to execute shell script on HDFS -->
    <action name="timeCheck">
@@ -18,7 +44,7 @@
          <capture-output />
       </shell>
       <ok to="sqoopIncrImport" />
-      <error to="fail" />
+      <error to="fail-early" />
    </action>
 
    <!-- Sqoop Action for Incremental Import -->
@@ -106,7 +132,19 @@
          <case to="sqoopMerge1">
             ${wf:actionData('hiveSwitch')['paramNum'] eq 1}
          </case>
-         <default to="sqoopMerge2" />
+         <case to="sqoopMerge2">
+            ${wf:actionData('hiveSwitch')['paramNum'] eq 1}
+         </case>
+         <case to="sqoopMerge2">
+            ${wf:actionData('hiveSwitch')['paramNum'] eq 1}
+         </case>
+         <case to="sqoopMerge3">
+            ${wf:actionData('hiveSwitch')['paramNum'] eq 1}
+         </case>
+         <case to="sqoopMerge3">
+            ${wf:actionData('hiveSwitch')['paramNum'] eq 1}
+         </case>
+         <default to="sqoopMerge4" />
       </switch>
    </decision>
 
@@ -144,7 +182,7 @@
    </action>
 
    <!-- Sqoop action for merge -->
-   <action name="sqoopMerge2">
+   <action name="sqoopMerge1">
       <sqoop xmlns="uri:oozie:sqoop-action:0.2">
          <job-tracker>${jobTracker}</job-tracker>
          <name-node>${nameNode}</name-node>
@@ -196,7 +234,7 @@
    </action>
 
    <!-- Hive action to execute hive script -->
-   <action name="hive-master2">
+   <action name="hive-master1">
       <hive xmlns="uri:oozie:hive-action:0.2">
          <job-tracker>${jobTracker}</job-tracker>
          <name-node>${nameNode}</name-node>
@@ -260,12 +298,11 @@
          <body>${wf:actionData('jProperties')['name']} | ${wf:actionData('jProperties')['address']}</body>
       </email>
       <ok to="end" />
-      <error to="fail" />
+      <error to="fail-to-email" />
    </action>
 
    <kill name="fail">
       <message>Workflow failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
    </kill>
-   <end name="end" />
->>>>>>> branch 'master' of https://github.com/3rdstage/sirius.git
+   <end name="completed" />
 </workflow-app>
