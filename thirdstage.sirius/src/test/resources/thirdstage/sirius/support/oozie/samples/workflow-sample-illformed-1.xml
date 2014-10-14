@@ -1,5 +1,12 @@
 <workflow-app xmlns="uri:oozie:workflow:0.2" name="ooziedemo-wf">
    <start to="timeCheck" />
+   
+   <!-- 
+   illformedness
+      at //action[0]/shell/configuration : unmatched(configuration/configurations) tag pair.
+      at //action[1]/sqoop/prepare : unclosed tag
+   
+    -->
 
    <!-- Shell action to execute shell script on HDFS -->
    <action name="timeCheck">
@@ -29,7 +36,6 @@
          <prepare>
             <delete path="${s3BucketLoc}/${tableName}/incr" />
             <mkdir path="${s3BucketLoc}/${tableName}" />
-         </prepare>
          <configuration>
             <property>
                <name>mapred.job.queue.name</name>

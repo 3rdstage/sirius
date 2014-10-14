@@ -1,6 +1,10 @@
 package thirdstage.sirius.support.oozie;
 
+import java.io.File;
 import java.util.Set;
+import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import thirdstage.sirius.support.xml.XmlErrorBundle;
@@ -8,10 +12,13 @@ import thirdstage.sirius.support.xml.XmlErrorBundle;
 public class OozieDefinitionValidatorTest {
 
    private OozieDefinitionValidator validator = new OozieDefinitionValidator();
-   
+
+   private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
    private final static String sampleLocBase ="thirdstage/sirius/support/oozie/samples/";
    private final static String validSample1Loc = sampleLocBase + "workflow-sample-1.xml";
    private final static String illformedSample1Loc = sampleLocBase + "workflow-sample-illformed-1.xml";
+   private static final String linkBrokenSample1Loc = sampleLocBase + "workflow-sample-linkbroken-1.xml";
 
    @Test
    public void testStaticMemebers(){
@@ -46,19 +53,74 @@ public class OozieDefinitionValidatorTest {
    }
 
    @Test
-   public void testValidateWorkflowDefinitionWithValidDefinition1(){
+   public void testValidateWfDefOnClasspathWithValidDef1(){
 
-      XmlErrorBundle errors = validator.validateWorkflowDefinition(validSample1Loc);
+      XmlErrorBundle errors = validator.validateWorkflowDefinitionOnClasspath(validSample1Loc);
       errors.print(System.out);
       Assert.assertEquals(errors.getItems().size(), 0);
    }
 
 
    @Test
-   public void testValidateWorkflowDefinitionWithIllformedDefinition1(){
+   public void testValidateWfDefOnClasspathWithIllformedDef1(){
 
-      XmlErrorBundle errors = validator.validateWorkflowDefinition(illformedSample1Loc);
+      XmlErrorBundle errors = validator.validateWorkflowDefinitionOnClasspath(illformedSample1Loc);
       errors.print(System.out);
+      Assert.assertTrue(errors.getItems().size() > 0);
+   }
+
+   @Test
+   public void testValidateWfDefOnClasspathWithLinkBrokenDef1(){
+
+      XmlErrorBundle errors = validator.validateWorkflowDefinitionOnClasspath(linkBrokenSample1Loc);
+
+      for(XmlErrorBundle.Item item : errors.getItems()){
+         logger.error("L{}C{}, {}, {}", new Object[]{item.getLine(), item.getColumn(), item.getLocationHint(), item.getMessage()});
+      }
+      Assert.assertTrue(errors.getItems().size() > 0);
+   }
+
+   @Test
+   public void testValidateWfDefStringWithValidDef1() throws Exception{
+
+      File f = new File(ClassLoader.getSystemResource(validSample1Loc).toURI());
+      String str = FileUtils.readFileToString(f, "utf-8");
+
+      XmlErrorBundle errors = validator.validateWorkflowDefinitionString(str);
+
+      for(XmlErrorBundle.Item item : errors.getItems()){
+         logger.error("{}, L{}C{}, {}, {}", new Object[]{item.getType().toString(), item.getLine(), item.getColumn(), item.getLocationHint(), item.getMessage()});
+      }
+      Assert.assertEquals(errors.getItems().size(), 0);
+   }
+
+   @Test
+   public void testValidateWfDefStringWithIllformedDef1() throws Exception{
+
+      File f = new File(ClassLoader.getSystemResource(illformedSample1Loc).toURI());
+      String str = FileUtils.readFileToString(f, "utf-8");
+
+      XmlErrorBundle errors = validator.validateWorkflowDefinitionString(str);
+
+      for(XmlErrorBundle.Item item : errors.getItems()){
+         logger.error("{}, L{}C{}, {}, {}", new Object[]{item.getType().toString(), item.getLine(), item.getColumn(), item.getLocationHint(), item.getMessage()});
+      }
+      Assert.assertTrue(errors.getItems().size() > 0);
+   }
+
+
+   @Test
+   public void testValidateWfDefStringWithLinkBrokenDef1() throws Exception{
+
+      File f = new File(ClassLoader.getSystemResource(linkBrokenSample1Loc).toURI());
+      String str = FileUtils.readFileToString(f, "utf-8");
+
+      XmlErrorBundle errors = validator.validateWorkflowDefinitionString(str);
+
+      for(XmlErrorBundle.Item item : errors.getItems()){
+         logger.error("{}, L{}C{}, {}, {}", new Object[]{item.getType().toString(), item.getLine(), item.getColumn(), item.getLocationHint(), item.getMessage()});
+      }
+
       Assert.assertTrue(errors.getItems().size() > 0);
    }
 

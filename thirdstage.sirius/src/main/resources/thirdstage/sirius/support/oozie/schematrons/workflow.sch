@@ -12,7 +12,7 @@
    
    * title : Schematron schema for Oozie workflow definition
    * creator : Oh Sangmoon
-   * date : 2014-10-02
+   * version : 0.9, 2014-10-13
    * subject : Rules for Oozie workflow definition
    * type : Schematron schema
    * summary
@@ -160,13 +160,16 @@
          </assert>
       </rule>
    </pattern>
-   
+ 
+  
    <pattern id="fork">
       <rule context="/*[local-name()='workflow-app']/*[local-name()='fork']">
-      
-      
-      
+         <let name="pathStartLocal" value="./*[local-name()='path']/@start/string()"/>
+         <let name="duplicatePathStartLocal" value="distinct-values(for $x in $pathStartLocal return (if (exists(index-of($pathStartLocal, $x)[2])) then $x else ()))"/>
+         <assert test="count($duplicatePathStartLocal) eq 0"
+            role="fork-path-unduplicated">
+            fork[@name='<value-of select="./@name/string()"/>'] has duplicated case : <value-of select="string-join($duplicatePathStartLocal, ', ')"/>
+         </assert>
       </rule>
-   </pattern>
- 
+   </pattern> 
 </schema>

@@ -21,10 +21,14 @@
          
       - Isolated node : 
          'timeCheck' at action[@name='timeCheck']
+         'sqoopFork' at fork[@name='sqoopFork']
          'finish' at end[@name='completed']
          
        - Duplicate decision case :
-         'sqoopMerge2', 'sqoopMerge3' inside decision[@name='master-decision']    
+         'sqoopMerge2', 'sqoopMerge3' inside decision[@name='master-decision']
+       
+       - Duplicate fork path :
+         'sqoopMerge1' inside fork[@name='sqoopFork']
    -->
 
    <!-- Shell action to execute shell script on HDFS -->
@@ -147,6 +151,13 @@
          <default to="sqoopMerge4" />
       </switch>
    </decision>
+
+   <fork name="sqoopFork">
+      <path start="sqoopMerge1" />
+      <path start="sqoopMerge1" />
+      <path start="sqoopMerge1" />
+      <path start="hive-master1" />
+   </fork>
 
    <!-- Sqoop action for merge -->
    <action name="sqoopMerge1">
