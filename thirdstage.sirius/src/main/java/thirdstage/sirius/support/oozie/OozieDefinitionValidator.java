@@ -17,9 +17,12 @@ import javax.annotation.concurrent.ThreadSafe;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
@@ -32,13 +35,16 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXParseException;
+import org.xml.sax.XMLReader;
 
+import com.helger.commons.io.resource.inmemory.ReadableResourceInputStream;
 import com.helger.schematron.ISchematronResource;
 import com.helger.schematron.pure.SchematronResourcePure;
 import com.helger.schematron.svrl.SVRLFailedAssert;
 import com.helger.schematron.svrl.SVRLUtils;
 
 import thirdstage.sirius.support.xml.CollectiveSaxErrorHandler;
+import thirdstage.sirius.support.xml.InputSourceProvider;
 import thirdstage.sirius.support.xml.XmlErrorBundle;
 import thirdstage.sirius.support.xml.XmlErrorBundle.Item;
 import thirdstage.sirius.support.xml.XmlErrorBundle.ItemType;
@@ -54,6 +60,8 @@ import thirdstage.sirius.support.xml.XmlErrorBundle.ItemType;
  */
 @ThreadSafe
 public class OozieDefinitionValidator{
+   
+   private Logger logger = LoggerFactory.getLogger(this.getClass());
 
    //@todo Make the schemaLocBase and schematronLoc could be overwritten by system variable at VM start-up time.
 
@@ -261,6 +269,94 @@ public class OozieDefinitionValidator{
 
       return bundle;
    }	
+   
+   @Nonnull
+   private XmlErrorBundle validateWorkflowDefinition(@Nonnull Object base, @Nonnull InputSourceProvider provider){
+      if(base == null || provider == null) throw new IllegalArgumentException("The input should not be null.");
+
+      CollectiveSaxErrorHandler errHandler = new CollectiveSaxErrorHandler();
+
+      //@todo Consider just using Xerces2 implementation.
+      //@todo Try pull parsers.  http://www.xmlpull.org/impls.shtml
+      SAXParserFactory spf = SAXParserFactory.newInstance();
+      spf.setNamespaceAware(true);
+      spf.setValidating(false);
+      
+      SAXParser sp = null; //JAXP SAX parser interface
+      XMLReader parser = null;  //standard SAX2 parser interface
+      
+      //Parse the definition with DOM Parser.
+      //This process include checking well-formedness of the definition.
+      try{
+         spf.setFeature("http://xml.org/sax/features/validation", false);
+         sp = spf.newSAXParser();
+         parser = sp.getXMLReader(); //standard SAX2 parser
+         parser.setErrorHandler(errHandler);
+         parser.parse(provider.getInputSourceFrom(base));
+      }catch(RuntimeException ex){
+         throw ex;
+      }catch(SAXParseException ex){
+         //this.logger.error("Fail to parser the XML document", ex);
+         return errHandler.getErrorBundle();
+      }catch(Exception ex){
+         throw new RuntimeException("Fail to parse the XML document", ex);
+      }
+
+      //Check the validity of the definition using XML Schema
+      //reuse of SAXParser is enabled through reset() 
+      Validator validator = workflowSchema.newValidator();
+      validator.setErrorHandler(errHandler);
+      //reuse of InputSource is guaranteed by SAX standard. 
+      //Refer http://docs.oracle.com/javase/6/docs/api/index.html?org/xml/sax/InputSource.html 
+      Source input = new SAXSource(parser, provider.getInputSourceFrom(base));
+      try{
+         validator.validate(input);
+      }catch(RuntimeException ex){
+         if(errHandler.getErrorBundle() != null){ 
+            //this.logger.error("Fail to parser the XML document", ex);
+            return errHandler.getErrorBundle(); 
+         }
+         else{ throw ex; }
+      }catch(Exception ex){
+         if(errHandler.getErrorBundle() != null){ 
+            //this.logger.error("Fail to parser the XML document", ex);
+            return errHandler.getErrorBundle(); 
+         }
+         else{ throw new RuntimeException("Fail to validate the XML document.", ex); }
+      }
+
+      //Check the additional validity of the definition using Schematron.
+      SchematronOutputType output = null;
+      XmlErrorBundle bundle = errHandler.getErrorBundle();
+      InputStream is = null;
+      ReadableResourceInputStream rris = null;
+      try{
+         
+         /* SAXSource is not supported
+         output = ((SchematronResourcePure)workflowSchematron).applySchematronValidationToSVRL(
+                     new SAXSource(provider.getInputSourceFrom(base))); */
+         
+         /*
+         is = provider.getInputSourceFrom(base).getByteStream(); //InputSource is reused again.
+         rris = new ReadableResourceInputStream(is);
+         output = ((SchematronResourcePure)workflowSchematron).applySchematronValidationToSVRL(rris);
+         */
+
+         output = ((SchematronResourcePure)workflowSchematron).applySchematronValidationToSVRL(
+                     new StreamSource(provider.getInputSourceFrom(base).getByteStream()));
+      }catch(Exception ex){
+         throw new RuntimeException("Fail to validate the XML documentat using Schematron at " + schematronLoc, ex);
+      }
+
+      List<SVRLFailedAssert> fails = SVRLUtils.getAllFailedAssertions(output); //output is guaranteed non-null from the API 
+      for(SVRLFailedAssert fail : fails){
+         bundle.addItem(new Item().setLocationHint(fail.getLocation())
+               .setType(ItemType.ERROR).setMessage(StringUtils.trim(fail.getText())));
+
+      }
+
+      return bundle;
+   }     
 
    /**
     * The return value is NOT {@code null} but empty, when the specified XML is valid.
@@ -270,12 +366,20 @@ public class OozieDefinitionValidator{
     * @return XmlErrorBundle object that contains illformedness or non-validness.
     */
    @Nonnull
-   public XmlErrorBundle validateWorkflowDefinitionOnClasspath(@Nonnull String resourceLoc){
-      if(resourceLoc == null) throw new IllegalArgumentException("The input should not be null.");
+   public XmlErrorBundle validateWorkflowDefinitionOnClasspath(@Nonnull String defLoc){
+      if(defLoc == null) throw new IllegalArgumentException("The input should not be null.");
 
       //InputSource or SAX Parser is to close the stream at end-of-parse cleanup.
       //Refer the API documentation of org.xml.sax.InputSource
-      return this.validateWorkflowDefinition(new InputSource(ClassLoader.getSystemResourceAsStream(resourceLoc)));
+      //return this.validateWorkflowDefinition(new InputSource(ClassLoader.getSystemResourceAsStream(defLoc)));
+      return this.validateWorkflowDefinition(defLoc, 
+            new InputSourceProvider(){
+               
+               @Override public InputSource getInputSourceFrom(Object base){
+                  String loc = (String)base;
+                  return new InputSource(ClassLoader.getSystemResourceAsStream(loc));
+               }
+      });
    }
 
    /**
@@ -291,7 +395,20 @@ public class OozieDefinitionValidator{
 
       //InputSource or SAX Parser is to close the stream at end-of-parse cleanup.
       //Refer the API documentation of org.xml.sax.InputSource
-      return this.validateWorkflowDefinition(new InputSource(new StringReader(def)));
+      //return this.validateWorkflowDefinition(new InputSource(new StringReader(def)));
+      
+      return this.validateWorkflowDefinition(def, 
+            new InputSourceProvider(){
+               
+               @Override public InputSource getInputSourceFrom(Object base){
+                  return new InputSource(new StringReader((String)base));
+               }
+      });
    }
 
+   
+
 }
+
+
+

@@ -18,6 +18,7 @@ public class OozieDefinitionValidatorTest {
    private final static String sampleLocBase ="thirdstage/sirius/support/oozie/samples/";
    private final static String validSample1Loc = sampleLocBase + "workflow-sample-1.xml";
    private final static String illformedSample1Loc = sampleLocBase + "workflow-sample-illformed-1.xml";
+   private final static String invalidSample1Loc = sampleLocBase + "workflow-sample-invalid-1.xml";
    private static final String linkBrokenSample1Loc = sampleLocBase + "workflow-sample-linkbroken-1.xml";
 
    @Test
@@ -70,6 +71,14 @@ public class OozieDefinitionValidatorTest {
    }
 
    @Test
+   public void testValidateWfDefOnClasspathWithInvalidDef1(){
+
+      XmlErrorBundle errors = validator.validateWorkflowDefinitionOnClasspath(invalidSample1Loc);
+      errors.print(System.out);
+      Assert.assertTrue(errors.getItems().size() > 0);
+   }   
+   
+   @Test
    public void testValidateWfDefOnClasspathWithLinkBrokenDef1(){
 
       XmlErrorBundle errors = validator.validateWorkflowDefinitionOnClasspath(linkBrokenSample1Loc);
@@ -108,6 +117,19 @@ public class OozieDefinitionValidatorTest {
       Assert.assertTrue(errors.getItems().size() > 0);
    }
 
+   @Test
+   public void testValidateWfDefStringWithInvalidDef1() throws Exception{
+
+      File f = new File(ClassLoader.getSystemResource(invalidSample1Loc).toURI());
+      String str = FileUtils.readFileToString(f, "utf-8");
+
+      XmlErrorBundle errors = validator.validateWorkflowDefinitionString(str);
+
+      for(XmlErrorBundle.Item item : errors.getItems()){
+         logger.error("{}, L{}C{}, {}, {}", new Object[]{item.getType().toString(), item.getLine(), item.getColumn(), item.getLocationHint(), item.getMessage()});
+      }
+      Assert.assertTrue(errors.getItems().size() > 0);
+   }   
 
    @Test
    public void testValidateWfDefStringWithLinkBrokenDef1() throws Exception{
