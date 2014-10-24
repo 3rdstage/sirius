@@ -52,6 +52,7 @@ import thirdstage.sirius.support.xml.XmlErrorBundle.ItemType;
 
 /**
  * 
+ * @version 0.9 2014-10-24, make the XML Schema based valiation provide correct location for the items.
  * @version 0.8 2014-10-03, initial
  * @author Sangmoon Oh
  * @since
@@ -201,8 +202,7 @@ public class OozieDefinitionValidator{
    public OozieDefinitionValidator(){}
 
 
-
-   @Nonnull
+   @Deprecated @Nonnull
    private XmlErrorBundle validateWorkflowDefinition(@Nonnull InputSource src){
       if(src == null) throw new IllegalArgumentException("The input should not be null.");
 
@@ -270,6 +270,16 @@ public class OozieDefinitionValidator{
       return bundle;
    }	
    
+   /**
+    * The {@code InputSource} object provided by the given {@code InputSourceProvider} should 
+    * have non-null stream or non-null reader for the source.
+    * The {@code InputSourceProvider} should garantee repeated access to the input source (by calling
+    * {@code getInputSourceFrom()}) provide a valid input source object to the same source.
+    * 
+    * @param base
+    * @param provider
+    * @return
+    */
    @Nonnull
    private XmlErrorBundle validateWorkflowDefinition(@Nonnull Object base, @Nonnull InputSourceProvider provider){
       if(base == null || provider == null) throw new IllegalArgumentException("The input should not be null.");
@@ -328,8 +338,6 @@ public class OozieDefinitionValidator{
       //Check the additional validity of the definition using Schematron.
       SchematronOutputType output = null;
       XmlErrorBundle bundle = errHandler.getErrorBundle();
-      InputStream is = null;
-      ReadableResourceInputStream rris = null;
       try{
          
          /* SAXSource is not supported
@@ -337,13 +345,19 @@ public class OozieDefinitionValidator{
                      new SAXSource(provider.getInputSourceFrom(base))); */
          
          /*
-         is = provider.getInputSourceFrom(base).getByteStream(); //InputSource is reused again.
-         rris = new ReadableResourceInputStream(is);
+         InputStream is = provider.getInputSourceFrom(base).getByteStream();
+         ReadableResourceInputStream rris = new ReadableResourceInputStream(is);
          output = ((SchematronResourcePure)workflowSchematron).applySchematronValidationToSVRL(rris);
          */
 
-         output = ((SchematronResourcePure)workflowSchematron).applySchematronValidationToSVRL(
-                     new StreamSource(provider.getInputSourceFrom(base).getByteStream()));
+         InputSource is = provider.getInputSourceFrom(base);
+         StreamSource ss = null;
+         if(is.getByteStream() != null){ ss = new StreamSource(is.getByteStream()); }
+         else if(is.getCharacterStream() != null){ ss = new StreamSource(is.getCharacterStream()); }
+         else{
+            throw new IllegalArgumentException("The input source should provide at least stream or reader for the source.");
+         }
+         output = ((SchematronResourcePure)workflowSchematron).applySchematronValidationToSVRL(ss);
       }catch(Exception ex){
          throw new RuntimeException("Fail to validate the XML documentat using Schematron at " + schematronLoc, ex);
       }

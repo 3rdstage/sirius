@@ -74,17 +74,15 @@
          value="($startTo, $joinTo, $forkPathStart, $decisionCaseTo, $decisionDefaultTo, $actionOkTo, $actionErrorTo)"/>
 
    <pattern id='node-target'>
-      <rule context="/*[local-name()='workflow-app']/*[local-name()='start']"
+      <rule context="/*[local-name()='workflow-app']/*[local-name()='start'][@to]"
             role="start-target-existence">
          <assert test="exists(index-of($nodeNames, ./@to/string()))"
             role="start-target-existence"
             subject=".">
             start/@to node has non-existing node name of '<value-of select="./@to/string()" />'.
-            nodeNames : <value-of select="string-join($nodeNames, ', ')"/>
-            wantedNodeNames : <value-of select="string-join($wantedNodeNames, ', ')"/>
          </assert>
       </rule>
-      <rule context="/*[local-name()='workflow-app']/*[local-name()='action']/*[local-name()='ok']"
+      <rule context="/*[local-name()='workflow-app']/*[local-name()='action']/*[local-name()='ok'][@to]"
             role="action-ok-target-existence">
          <assert test="exists(index-of($nodeNames, ./@to/string()))"
             role="action-ok-target-existence"
@@ -92,7 +90,7 @@
             action[@name='<value-of select="../@name/string()"/>']/ok/@to has non-existing node name of '<value-of select="./@to/string()" />'.
          </assert>
       </rule>
-      <rule context="/*[local-name()='workflow-app']/*[local-name()='action']/*[local-name()='error']"
+      <rule context="/*[local-name()='workflow-app']/*[local-name()='action']/*[local-name()='error'][@to]"
             role="action-error-target-existence">
          <assert test="exists(index-of($nodeNames, ./@to/string()))"
             role="action-error-target-existence"
@@ -100,7 +98,7 @@
             action[@name='<value-of select="../@name/string()"/>']/error/@to has non-existing node name of '<value-of select="./@to/string()" />'.
          </assert>
       </rule>
-      <rule context="/*[local-name()='workflow-app']/*[local-name()='decision']/*[local-name()='switch']/*[local-name()='case']"
+      <rule context="/*[local-name()='workflow-app']/*[local-name()='decision']/*[local-name()='switch']/*[local-name()='case'][@to]"
             role="decision-case-target-existence">
          <assert test="exists(index-of($nodeNames, ./@to/string()))"
             role="decision-case-target-existence"
@@ -108,7 +106,7 @@
             decision[@name='<value-of select="../../@name/string()"/>']/switch/case/@to has non-existing node name of '<value-of select="./@to/string()" />'.
          </assert>
       </rule>
-      <rule context="/*[local-name()='workflow-app']/*[local-name()='decision']/*[local-name()='switch']/*[local-name()='default']"
+      <rule context="/*[local-name()='workflow-app']/*[local-name()='decision']/*[local-name()='switch']/*[local-name()='default'][@to]"
             role="decision-default-target-existence">
          <assert test="exists(index-of($nodeNames, ./@to/string()))"
             role="decision-default-target-existence"
@@ -117,7 +115,7 @@
          </assert>
       </rule>
       
-      <rule context="/*[local-name()='workflow-app']/*[local-name()='fork']/*[local-name()='path']"
+      <rule context="/*[local-name()='workflow-app']/*[local-name()='fork']/*[local-name()='path'][@start]"
             role="fork-path-target-existence">
          <assert test="exists(index-of($nodeNames, ./@start/string()))"
             role="fork-path-target-existence"
@@ -125,7 +123,7 @@
             fork[@name='<value-of select="../@name/string()"/>']/path/@start has non-existing node name of '<value-of select="./@start/string()" />'.
          </assert>
       </rule>
-      <rule context="/*[local-name()='workflow-app']/*[local-name()='join']"
+      <rule context="/*[local-name()='workflow-app']/*[local-name()='join'][@to]"
             role="join-target-existence">
          <assert test="exists(index-of($nodeNames, ./@to/string()))"
             role="join-target-existence"
@@ -136,7 +134,7 @@
    </pattern>
    
    <pattern id="node-name">
-      <rule context="/*[local-name()='workflow-app']/*[exists(index-of($nodeTags, local-name()))]">
+      <rule context="/*[local-name()='workflow-app']/*[exists(index-of($nodeTags, local-name()))][@name]">
          <assert test="exists(index-of($wantedNodeNames, ./@name/string()))"
             role="node-unisolated" subject=".">
             <value-of select="node-name(.)"/>[@name='<value-of select="./@name/string()"/>'] is isolated (not linked with any other node in the workflow).
