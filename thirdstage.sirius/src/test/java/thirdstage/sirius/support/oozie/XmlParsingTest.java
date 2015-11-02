@@ -165,7 +165,7 @@ public class XmlParsingTest {
             }catch(XMLStreamException ex){
                errors.addItem(new XmlErrorBundle.Item().setLine(ex.getLocation().getLineNumber())
                      .setColumn(ex.getLocation().getColumnNumber())
-                     .setTitle(ex.getMessage()).setDesc(ex.getMessage()));
+                     .setTitle(ex.getMessage()).setMessage(ex.getMessage()));
                if(errors.getItems().size() > 1000) break;
             }catch(Exception ex){
                break;
@@ -175,7 +175,7 @@ public class XmlParsingTest {
       }catch(XMLStreamException ex){
          errors.addItem(new XmlErrorBundle.Item().setLine(ex.getLocation().getLineNumber())
                .setColumn(ex.getLocation().getColumnNumber())
-               .setTitle(ex.getMessage()).setDesc(ex.getMessage()));
+               .setTitle(ex.getMessage()).setMessage(ex.getMessage()));
       }catch(Exception ex){
          throw ex;
       }

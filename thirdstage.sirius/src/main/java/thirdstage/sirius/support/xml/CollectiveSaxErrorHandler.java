@@ -102,6 +102,7 @@ public class CollectiveSaxErrorHandler implements ErrorHandler{
     * 
     * @return
     */
+   @Nonnull
    public XmlErrorBundle getErrorBundle(){
    	XmlErrorBundle result = new XmlErrorBundle();
    	
@@ -109,21 +110,21 @@ public class CollectiveSaxErrorHandler implements ErrorHandler{
    	for(SAXParseException ex : this.fatalErrors){
    	   item = new Item().setType(ItemType.FATAL)
    	         .setLine(ex.getLineNumber()).setColumn(ex.getColumnNumber())
-   	         .setTitle(ex.getMessage()).setDesc(ex.getMessage());
+   	         .setMessage(ex.getMessage());
    	   result.addItem(item);
    	}
    	
       for(SAXParseException ex : this.errors){
          item = new Item().setType(ItemType.ERROR)
                .setLine(ex.getLineNumber()).setColumn(ex.getColumnNumber())
-               .setTitle(ex.getMessage()).setDesc(ex.getMessage());
+               .setMessage(ex.getMessage());
          result.addItem(item);
       }
    	
       for(SAXParseException ex : this.warnings){
          item = new Item().setType(ItemType.WARN)
                .setLine(ex.getLineNumber()).setColumn(ex.getColumnNumber())
-               .setTitle(ex.getMessage()).setDesc(ex.getMessage());
+               .setTitle(ex.getMessage()).setMessage(ex.getMessage());
          result.addItem(item);
       }
    	

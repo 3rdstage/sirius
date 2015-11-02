@@ -2,11 +2,13 @@ package thirdstage.sirius.support.oozie;
 
 import java.io.File;
 import java.util.List;
+import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamSource;
+import javax.xml.xpath.XPathVariableResolver;
 import org.oclc.purl.dsdl.svrl.SchematronOutputType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import com.helger.commons.error.IResourceErrorGroup;
 import com.helger.commons.io.IReadableResource;
 import com.helger.commons.io.resource.ClassPathResource;
 import com.helger.commons.xml.serialize.DOMReader;
+import com.helger.schematron.ISchematronResource;
 import com.helger.schematron.SchematronHelper;
 import com.helger.schematron.pure.SchematronResourcePure;
 import com.helger.schematron.pure.binding.IPSQueryBinding;
@@ -114,10 +117,10 @@ public class PhSchematronTest {
       Assert.assertTrue(output.getActivePatternAndFiredRuleAndFailedAssert().size() > 0);
    }
 
-   @Test
+   @Test @Deprecated
    public void testValidationUsingSchematronResourcePureAndDom() throws Exception{
       //using SchematronResourcePure and DOM
-      String schPath = schematron1Loc; 
+      String schPath = schematron0Loc; 
       String xmlPath = sample1Loc;
 
       SchematronResourcePure workflowSchematron = SchematronResourcePure.fromClassPath(schPath);
@@ -163,7 +166,7 @@ public class PhSchematronTest {
          logger.error(ex.getMessage(), ex);
          throw ex;
       }
-
+      
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
       dbf.setNamespaceAware(true);
       dbf.setValidating(false);
@@ -181,7 +184,7 @@ public class PhSchematronTest {
       Assert.assertTrue(output.getActivePatternAndFiredRuleAndFailedAssert().size() > 0);
    }  
 
-   @Test
+   @Test @Deprecated
    public void testValidationUsingSchematronResourcePureAndDom3() throws Exception{
       String schPath = schematron0Loc; 
       String xmlPath = sample1Loc;
@@ -208,7 +211,7 @@ public class PhSchematronTest {
    }  
 
 
-   @Test(expectedExceptions={java.lang.IllegalStateException.class})
+   @Test(expectedExceptions={})
    public void testValidationUsingSchematronResourceSchAndReadableResource() throws Exception{
     //using SchematronResourceSCH and IReadableResource
     //seems to fire single assertion multiple times that could be inefficient.
@@ -216,7 +219,7 @@ public class PhSchematronTest {
       String schPath = schematron0Loc; 
       String xmlPath = sample1Loc;
 
-      SchematronResourceSCH workflowSchematron = SchematronResourceSCH.fromClassPath(schPath);
+      ISchematronResource workflowSchematron = SchematronResourceSCH.fromClassPath(schPath);
       if(!workflowSchematron.isValidSchematron()){
          RuntimeException ex = new IllegalStateException("Fail to initialize OozieDefinitionValidator class. - Invalid Scehmatron at " + schPath); 
          logger.error(ex.getMessage(), ex);
@@ -229,7 +232,7 @@ public class PhSchematronTest {
       output = workflowSchematron.applySchematronValidationToSVRL(rr);
       String path = new File(ClassLoader.getSystemResource(xmlPath).toURI()).getCanonicalPath();
 
-      IResourceErrorGroup errGroups = SchematronHelper.convertToResourceErrorGroup(output, path);
+      //IResourceErrorGroup errGroups = SchematronHelper.convertToResourceErrorGroup(output, path);
 
       List<SVRLFailedAssert> fails = SVRLUtils.getAllFailedAssertions(output);
 
@@ -237,7 +240,7 @@ public class PhSchematronTest {
 
    }  
    
-   @Test(expectedExceptions={java.lang.IllegalStateException.class})
+   @Test(expectedExceptions={})
    public void testValidationUsingSchematronResourceSchAndDomSource() throws Exception{
 
       //using SchematronResourceSCH and DOMSource
@@ -245,7 +248,7 @@ public class PhSchematronTest {
       String schPath = schematron0Loc; 
       String xmlPath = sample1Loc;
 
-      SchematronResourceSCH workflowSchematron = SchematronResourceSCH.fromClassPath(schPath);
+      ISchematronResource  workflowSchematron = SchematronResourceSCH.fromClassPath(schPath);
       if(!workflowSchematron.isValidSchematron()){
          RuntimeException ex = new IllegalStateException("Fail to initialize OozieDefinitionValidator class. - Invalid Scehmatron at " + schPath); 
          logger.error(ex.getMessage(), ex);
@@ -273,6 +276,12 @@ public class PhSchematronTest {
       Assert.assertTrue(fails.size() > 0);
    }     
 
+   /**
+    * {@code SchematronResourceXSLT} needs precompiled XSLT script of Schematron.
+    * Without it, exception occurs.
+    * 
+    * @throws Exception
+    */
    @Test(expectedExceptions={java.lang.IllegalStateException.class})
    public void testValidationUsingSchematronResourceXsltAndReadableResource() throws Exception{
       //using SchematronResourceXSLT and IReadableResource
