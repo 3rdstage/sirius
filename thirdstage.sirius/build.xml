@@ -1,0 +1,68 @@
+<project name="thirdstage.sirius" basedir="." default="echo.env" 
+   xmlns:artifact="antlib:org.apache.maven.artifact.ant" 
+   xmlns:antelope="antlib:ise.antelope.tasks"
+   xmlns:antcontrib="antlib:net.sf.antcontrib">
+     
+   <property environment="env" />
+     
+   <typedef resource="org/apache/maven/artifact/ant/antlib.xml" 
+      uri="antlib:org.apache.maven.artifact.ant" classpath="lib/maven-ant-tasks-2.1.3.jar">
+   </typedef>
+
+   <artifact:dependencies pathId="ant-only.classpath">
+      <dependency groupId="ant-contrib" artifactId="ant-contrib" version="1.0b3" />
+      <dependency groupId="ise.antelope" artifactId="ant-antelope-tasks" version="3.5.0" />
+      <dependency groupId="org.umlgraph" artifactId="umlgraph" version="5.6.6" />
+      <dependency groupId="com.lunatech.jax-doclets" artifactId="doclets" version="0.10.0" />
+      <remoteRepository id="centeral2" url="http://repo2.maven.org/maven2/" />
+      <remoteRepository id="maven2-repository.dev.java.net" url="http://download.java.net/maven/2/" />
+   </artifact:dependencies>
+     
+   <taskdef resource="net/sf/antcontrib/antlib.xml" 
+      uri="antlib:net.sf.antcontrib" classpathref="ant-only.classpath" />
+   <taskdef name="stringutil" classname="ise.antelope.tasks.StringUtilTask" 
+      uri="antlib:ise.antelope.tasks" classpathref="ant-only.classpath" />
+   <taskdef name="if" classname="ise.antelope.tasks.IfTask" 
+      uri="antlib:ise.antelope.tasks" classpathref="ant-only.classpath" />
+   <taskdef name="var" classname="ise.antelope.tasks.Variable" 
+      uri="antlib:ise.antelope.tasks" classpathref="ant-only.classpath" />
+     
+   <artifact:pom id="project.pom" file="${basedir}/pom.xml" />
+   <artifact:dependencies pomRefId="project.pom" pathId="project.classpath" />
+
+   <target name="echo.env">
+      <pathconvert pathsep="${line.separator}" refid="project.classpath" property="project.classpath.list">
+         <mapper type="regexp" from="(.*\\\.m2\\repository\\)?(.*)" to="  \2" />
+      </pathconvert>
+
+      <echo>Defined properties : </echo>
+      <echoproperties />
+      <echo>
+      </echo>
+      <echo>Classpath : </echo>
+      <echo>${project.classpath.list}</echo>
+   </target>
+
+   <target name="check.env">
+      <fail unless="env.MAVEN_HOME">Environment variable MAVEN_HOME should be specified properly.</fail>
+   </target>
+   
+   <target name="draw.schema.svg.onem2m">
+      <property name="onem2m.schemas.basedir" 
+         value="${basedir}/src/main/resources/thirdstage/sirius/support/onem2m/schemas"/>
+      
+      <mkdir dir="${project.pom.build.directory}/onem2m/schema-svg"/>
+      <java classname="xsdvi.XsdVi"
+         fork="true" dir="${project.pom.build.directory}/onem2m/schema-svg">
+         <classpath>
+            <pathelement location="${xsdvi:xsdvi:jar}"/>
+            <pathelement location="${xerces:xercesImpl:jar}"/>
+         </classpath>
+         <arg value="${onem2m.schemas.basedir}/CDT-CSEBase-v1_0_0.xsd"/>
+         <arg value="${onem2m.schemas.basedir}/CDT-node-v1_0_0.xsd"/>
+         <arg value="-embodyStyle"/>
+      </java>
+   </target>
+
+
+</project>
