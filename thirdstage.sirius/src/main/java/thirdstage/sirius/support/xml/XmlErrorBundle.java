@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * 
+ * @version 1.1 2014-10-13, Add {@code Item.xPath} field {@code toJson} method.
  * @version 1.0 2014-10-03, initial
  * @author Sangmoon Oh
  * @since 2014-10-03 
@@ -33,14 +33,15 @@ public class XmlErrorBundle{
 
       private int line = -1; //line number of the location for this item.
       private int col = -1; //column number of the location for this item.
+      private String locationHint = ""; //hint for the location of this item, such as XPath.
       private String title = ""; //short intuitive string for this item.
       private ItemType type;
-      private String desc = ""; //description of this item.
+      private String message = ""; //detail of this item.
 
       public Item(){}
 
       /**
-       * @return The line number of the lotation for this item in 1 base, or -1
+       * @return The line number of the location for this item in 1 base, or -1
        *         when the location is not clear.
        */
       public int getLine(){ return this.line; }
@@ -50,7 +51,7 @@ public class XmlErrorBundle{
       }
 
       /**
-       * @return The column number of the loation for this item in 1 base, or -1
+       * @return The column number of the location for this item in 1 base, or -1
        *         when the location is not clear;
        */
       public int getColumn(){ return this.col; }
@@ -58,6 +59,21 @@ public class XmlErrorBundle{
          this.col = c;
          return this;
       }
+      
+      /**
+       * @return Hint for the location of this item, such as XPath.
+       * @since 1.1
+       */
+      public String getLocationHint(){ return this.locationHint; }
+      
+      /**
+       * @since 1.1
+       */
+      public Item setLocationHint(String hint){
+         this.locationHint = hint;
+         return this;
+      }
+      
 
       public String getTitle(){ return this.title; }
       public Item setTitle(String title){
@@ -71,9 +87,9 @@ public class XmlErrorBundle{
          return this;
       }
 
-      public String getDesc(){ return this.desc; }
-      public Item setDesc(String desc){
-         this.desc = desc;
+      public String getMessage(){ return this.message; }
+      public Item setMessage(String msg){
+         this.message = msg;
          return this;
       }
    }
@@ -87,6 +103,7 @@ public class XmlErrorBundle{
       return this;
    }
 
+   @Nonnull
    public List<Item> getItems(){
       return this.items;
    }
@@ -102,10 +119,20 @@ public class XmlErrorBundle{
       for(Item item : items){
          sb.append("L:").append(item.getLine())
             .append("C:").append(item.getColumn())
-            .append(", ").append(item.getDesc()).append("\n");
+            .append(", ").append(item.getLocationHint())
+            .append(", ").append(item.getMessage()).append("\n");
       }
       
       ps.print(sb.toString());
+   }
+   
+   /**
+    * @return
+    * @since 1.1
+    */
+   public String toJson(){
+      
+      return null;
    }
 
 }

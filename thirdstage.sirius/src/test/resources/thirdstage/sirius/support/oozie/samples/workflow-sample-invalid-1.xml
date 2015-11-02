@@ -1,12 +1,15 @@
 <workflow-app xmlns="uri:oozie:workflow:0.2" name="ooziedemo-wf">
-   <start to="timeCheck" />
-   
+
+
    <!-- 
-   illformedness
-      at //action[0]/shell/configuration : unmatched(configuration/configurations) tag pair.
-      at //action[1]/sqoop/prepare : unclosed tag
-   
+   invalidness
+      at //start[0] : invalid attribute name 'target'
+      at //start[1] : only 1 start tag can be defined.
+      at //action[0]/ok[1] : action tag can have only 1 ok child.
+      at //decision[0] : decision should have one default child.
     -->
+   <start target="timeCheck" />
+   <start to="timeCheck"/>
 
    <!-- Shell action to execute shell script on HDFS -->
    <action name="timeCheck">
@@ -18,24 +21,26 @@
                <name>mapred.job.queue.name</name>
                <value>${queueName}</value>
             </property>
-         </configurations>
+         </configuration>
          <exec>${sqoopUpdTrack}</exec>
          <argument>${tableName}</argument>
          <file>${sqoopUpdTrackPath}#${sqoopUpdTrack}</file>
          <capture-output />
       </shell>
       <ok to="sqoopIncrImport" />
+      <ok to="sqoopMetaUpdate"/>
       <error to="fail" />
    </action>
 
    <!-- Sqoop Action for Incremental Import -->
    <action name="sqoopIncrImport">
       <sqoop xmlns="uri:oozie:sqoop-action:0.2">
-         <job-tracker>${jobTracker}
+         <job-tracker>${jobTracker}</job-tracker>
          <name-node>${nameNode}</name-node>
          <prepare>
             <delete path="${s3BucketLoc}/${tableName}/incr" />
             <mkdir path="${s3BucketLoc}/${tableName}" />
+         </prepare>
          <configuration>
             <property>
                <name>mapred.job.queue.name</name>
@@ -112,7 +117,10 @@
          <case to="sqoopMerge1">
             ${wf:actionData('hiveSwitch')['paramNum'] eq 1}
          </case>
-         <default to="sqoopMerge2" />
+         <case to="sqoopMerge2">
+            ${wf:actionData('hiveSwitch')['paramNum'] eq 2}
+         </case>
+         <!-- <default to="sqoopMerge2" /> -->
       </switch>
    </decision>
 

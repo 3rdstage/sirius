@@ -1,4 +1,13 @@
-/target
-/bin
-/build
-/test-output
+bin/
+target/
+output/
+Debug/
+Release/
+x86/
+x64/
+obj/
+log/
+logs/
+test-output/
+reports/
+*.log
