@@ -123,7 +123,6 @@
 
 
   <target name="generate.schemadoc.onem2m" description="Generate XML schema documentation (Javadoc like) for oneM2M">
-
     <antelope:if>
       <bool>
         <not>
@@ -161,8 +160,7 @@
 
     <antcontrib:for param="xsd">
       <path>
-        <fileset dir="${onem2m.schemas.basedir}" includes="CDT-CSEBase-v1_0_0.xsd CDT-node-v1_0_0.xsd">
-        </fileset>
+        <fileset dir="${onem2m.schemas.basedir}" includes="*.xsd"/>
       </path>
       <sequential>
         <antelope:grep in="@{xsd}" regex=".*(CDT-\w*-v1_0_0)\.xsd" group="1" property="name" dotall="true" />
@@ -190,7 +188,6 @@
         </java>
       </sequential>
     </antcontrib:for>
-
   </target>
 
 
