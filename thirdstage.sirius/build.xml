@@ -1,68 +1,194 @@
-<project name="thirdstage.sirius" basedir="." default="echo.env" 
-   xmlns:artifact="antlib:org.apache.maven.artifact.ant" 
-   xmlns:antelope="antlib:ise.antelope.tasks"
-   xmlns:antcontrib="antlib:net.sf.antcontrib">
-     
-   <property environment="env" />
-     
-   <typedef resource="org/apache/maven/artifact/ant/antlib.xml" 
-      uri="antlib:org.apache.maven.artifact.ant" classpath="lib/maven-ant-tasks-2.1.3.jar">
-   </typedef>
+<project name="thirdstage.sirius"
+         basedir="."
+         default="echo.env"
+         xmlns:artifact="antlib:org.apache.maven.artifact.ant"
+         xmlns:antelope="antlib:ise.antelope.tasks"
+         xmlns:antcontrib="antlib:net.sf.antcontrib">
 
-   <artifact:dependencies pathId="ant-only.classpath">
-      <dependency groupId="ant-contrib" artifactId="ant-contrib" version="1.0b3" />
-      <dependency groupId="ise.antelope" artifactId="ant-antelope-tasks" version="3.5.0" />
-      <dependency groupId="org.umlgraph" artifactId="umlgraph" version="5.6.6" />
-      <dependency groupId="com.lunatech.jax-doclets" artifactId="doclets" version="0.10.0" />
-      <remoteRepository id="centeral2" url="http://repo2.maven.org/maven2/" />
-      <remoteRepository id="maven2-repository.dev.java.net" url="http://download.java.net/maven/2/" />
-   </artifact:dependencies>
-     
-   <taskdef resource="net/sf/antcontrib/antlib.xml" 
-      uri="antlib:net.sf.antcontrib" classpathref="ant-only.classpath" />
-   <taskdef name="stringutil" classname="ise.antelope.tasks.StringUtilTask" 
-      uri="antlib:ise.antelope.tasks" classpathref="ant-only.classpath" />
-   <taskdef name="if" classname="ise.antelope.tasks.IfTask" 
-      uri="antlib:ise.antelope.tasks" classpathref="ant-only.classpath" />
-   <taskdef name="var" classname="ise.antelope.tasks.Variable" 
-      uri="antlib:ise.antelope.tasks" classpathref="ant-only.classpath" />
-     
-   <artifact:pom id="project.pom" file="${basedir}/pom.xml" />
-   <artifact:dependencies pomRefId="project.pom" pathId="project.classpath" />
 
-   <target name="echo.env">
-      <pathconvert pathsep="${line.separator}" refid="project.classpath" property="project.classpath.list">
-         <mapper type="regexp" from="(.*\\\.m2\\repository\\)?(.*)" to="  \2" />
-      </pathconvert>
+  <property environment="env" />
+  <property name="onem2m.schemas.basedir"
+            value="${basedir}/src/main/resources/thirdstage/sirius/support/onem2m/schemas" />
 
-      <echo>Defined properties : </echo>
-      <echoproperties />
-      <echo>
-      </echo>
-      <echo>Classpath : </echo>
-      <echo>${project.classpath.list}</echo>
-   </target>
+  <typedef resource="org/apache/maven/artifact/ant/antlib.xml"
+           uri="antlib:org.apache.maven.artifact.ant"
+           classpath="lib/maven-ant-tasks-2.1.3.jar">
+  </typedef>
 
-   <target name="check.env">
-      <fail unless="env.MAVEN_HOME">Environment variable MAVEN_HOME should be specified properly.</fail>
-   </target>
-   
-   <target name="draw.schema.svg.onem2m">
-      <property name="onem2m.schemas.basedir" 
-         value="${basedir}/src/main/resources/thirdstage/sirius/support/onem2m/schemas"/>
-      
-      <mkdir dir="${project.pom.build.directory}/onem2m/schema-svg"/>
-      <java classname="xsdvi.XsdVi"
-         fork="true" dir="${project.pom.build.directory}/onem2m/schema-svg">
-         <classpath>
-            <pathelement location="${xsdvi:xsdvi:jar}"/>
-            <pathelement location="${xerces:xercesImpl:jar}"/>
-         </classpath>
-         <arg value="${onem2m.schemas.basedir}/CDT-CSEBase-v1_0_0.xsd"/>
-         <arg value="${onem2m.schemas.basedir}/CDT-node-v1_0_0.xsd"/>
-         <arg value="-embodyStyle"/>
-      </java>
-   </target>
+  <artifact:dependencies pathId="ant-only.classpath">
+    <dependency groupId="ant-contrib" artifactId="ant-contrib" version="1.0b3" />
+    <dependency groupId="ise.antelope" artifactId="ant-antelope-tasks" version="3.5.0" />
+    <dependency groupId="xalan" artifactId="xalan" version="2.5.1" />
+    <dependency groupId="org.umlgraph" artifactId="umlgraph" version="5.6.6" />
+    <dependency groupId="com.lunatech.jax-doclets" artifactId="doclets" version="0.10.0" />
+    <remoteRepository id="centeral2" url="http://repo2.maven.org/maven2/" />
+    <remoteRepository id="maven2-repository.dev.java.net" url="http://download.java.net/maven/2/" />
+  </artifact:dependencies>
+
+  <taskdef resource="net/sf/antcontrib/antlib.xml" uri="antlib:net.sf.antcontrib" classpathref="ant-only.classpath" />
+  <taskdef name="if"
+           classname="ise.antelope.tasks.IfTask"
+           uri="antlib:ise.antelope.tasks"
+           classpathref="ant-only.classpath" />
+  <taskdef name="var"
+           classname="ise.antelope.tasks.Variable"
+           uri="antlib:ise.antelope.tasks"
+           classpathref="ant-only.classpath" />
+  <taskdef name="stringutil"
+           classname="ise.antelope.tasks.StringUtilTask"
+           uri="antlib:ise.antelope.tasks"
+           classpathref="ant-only.classpath" />
+  <taskdef name="grep"
+           classname="ise.antelope.tasks.Find"
+           uri="antlib:ise.antelope.tasks"
+           classpathref="ant-only.classpath" />
+
+  <artifact:pom id="project.pom" file="${basedir}/pom.xml" />
+  <artifact:dependencies pomRefId="project.pom" pathId="project.classpath" />
+
+  <target name="echo.env">
+    <pathconvert pathsep="${line.separator}" refid="project.classpath" property="project.classpath.list">
+      <mapper type="regexp" from="(.*\\\.m2\\repository\\)?(.*)" to="  \2" />
+    </pathconvert>
+
+    <echo>Defined properties : </echo>
+    <echoproperties />
+    <echo>
+    </echo>
+    <echo>Classpath : </echo>
+    <echo>${project.classpath.list}</echo>
+  </target>
+
+  <target name="check.env">
+    <fail unless="env.MAVEN_HOME">Environment variable MAVEN_HOME should be specified properly.</fail>
+  </target>
+
+  <target name="draw.schema.svg.onem2m" description="Generate SVG based diagrams for XML schemas of oneM2M">
+
+    <mkdir dir="${project.pom.build.directory}/onem2m/schema-svg" />
+    <java classname="xsdvi.XsdVi" fork="true" dir="${project.pom.build.directory}/onem2m/schema-svg">
+      <classpath>
+        <pathelement location="${xsdvi:xsdvi:jar}" />
+        <pathelement location="${xerces:xercesImpl:jar}" />
+      </classpath>
+      <arg value="${onem2m.schemas.basedir}/CDT-accessControlPolicy-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-activeCmdhPolicy-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-AE-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-areaNwkDeviceInfo-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-areaNwkInfo-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-battery-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-cmdhBuffer-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-cmdhDefaults-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-cmdhDefEcValue-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-cmdhEcDefParamValues-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-cmdhLimits-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-cmdhNetworkAccessRules-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-cmdhNwAccessRule-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-cmdhPolicy-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-commonTypes-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-container-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-contentInstance-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-CSEBase-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-delivery-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-deviceCapability-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-deviceInfo-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-enumerationTypes-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-eventConfig-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-eventLog-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-execInstance-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-firmware-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-group-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-locationPolicy-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-m2mServiceSubscriptionProfile-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-memory-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-mgmtCmd-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-node-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-notification-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-pollingChannel-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-reboot-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-remoteCSE-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-requestPrimitive-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-request-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-responsePrimitive-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-schedule-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-serviceSubscribedAppRule-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-serviceSubscribedNode-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-software-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-statsCollect-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-statsConfig-v1_0_0.xsd" />
+      <arg value="${onem2m.schemas.basedir}/CDT-subscription-v1_0_0.xsd" />
+      <arg value="-embodyStyle" />
+    </java>
+  </target>
+
+
+  <target name="generate.schemadoc.onem2m" description="Generate XML schema documentation (Javadoc like) for oneM2M">
+    <antelope:if>
+      <bool>
+        <not>
+          <available file="${project.pom.build.directory}/xs3p/xs3p.xsl" />
+        </not>
+      </bool>
+      <mkdir dir="${project.pom.build.directory}/xs3p" />
+      <unzip src="${project.pom.basedir}/lib/xs3p-1.1.5.zip" dest="${project.pom.build.directory}/xs3p">
+        <patternset includes="*.xsd *.xsl *.dtd" />
+      </unzip>
+    </antelope:if>
+
+    <mkdir dir="${project.pom.build.directory}/onem2m/schema-doc" />
+    <delete file="${project.pom.build.directory}/onem2m/schema-doc/links.xml" />
+
+    <!-- create links.xml file first -->
+    <echo file="${project.pom.build.directory}/onem2m/schema-doc/links.xml"
+      append="false">&lt;?xml version="1.0"?&gt;</echo>
+    <echo file="${project.pom.build.directory}/onem2m/schema-doc/links.xml"
+      append="true">&lt;links xmlns="http://titanium.dstc.edu.au/xml/xs3p"&gt;
+    </echo>
+    <antcontrib:for param="xsd">
+      <path>
+        <fileset dir="${onem2m.schemas.basedir}" includes="*.xsd" />
+      </path>
+      <sequential>
+        <antelope:grep in="@{xsd}" regex=".*(CDT-\w*-v1_0_0)\.xsd" group="1" property="name" dotall="true" />
+        <echoxml file="${project.pom.build.directory}/onem2m/schema-doc/links.xml" append="true">
+          <schema file-location="${name}.xsd" docfile-location="${name}.html" />
+        </echoxml>
+      </sequential>
+    </antcontrib:for>
+    <echo file="${project.pom.build.directory}/onem2m/schema-doc/links.xml"
+      append="true">&lt;/links&gt;</echo>
+
+    <antcontrib:for param="xsd">
+      <path>
+        <fileset dir="${onem2m.schemas.basedir}" includes="*.xsd"/>
+      </path>
+      <sequential>
+        <antelope:grep in="@{xsd}" regex=".*(CDT-\w*-v1_0_0)\.xsd" group="1" property="name" dotall="true" />
+        <java classname="org.apache.xalan.xslt.Process"
+              fork="true"
+              dir="${project.pom.build.directory}/onem2m/schema-doc">
+          <classpath>
+            <pathelement location="${xalan:xalan:jar}" />
+          </classpath>
+          <arg value="-IN" />
+          <arg value="@{xsd}" />
+          <arg value="-XSL" />
+          <arg value="${project.pom.build.directory}/xs3p/xs3p.xsl" />
+          <arg value="-OUT" />
+          <arg value="${project.pom.build.directory}/onem2m/schema-doc/${name}.html" />
+          <arg value="-PARAM" />
+          <arg value="searchImportedSchemas" />
+          <arg value="true" />
+          <arg value="-PARAM" />
+          <arg value="searchIncludedSchemas" />
+          <arg value="true" />
+          <arg value="-PARAM" />
+          <arg value="linksFile" />
+          <arg value="${project.pom.build.directory}/onem2m/schema-doc/links.xml" />
+        </java>
+      </sequential>
+    </antcontrib:for>
+  </target>
 
 
 </project>
