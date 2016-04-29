@@ -99,8 +99,8 @@ public class WidgetMetaLoader {
 	 * @param tree
 	 * @return
 	 */
-	private PartMeta loadPart(@Nonnull String nodeName, @Nonnull @ReadOnly JsonNode node, 
-			@Nonnull @ReadOnly SchemaTree tree) throws JsonPointerException{
+	private PartMeta loadPart(@Nonnull String nodeName, @Nonnull JsonNode node, 
+			@Nonnull SchemaTree tree) throws JsonPointerException{
 		PartMeta pm = new PartMeta();
 		pm.setName(nodeName);
 		pm.setTitle((node.get("title") != null) ? node.get("title").asText() : "");
