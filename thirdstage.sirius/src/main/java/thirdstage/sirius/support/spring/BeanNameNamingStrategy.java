@@ -12,13 +12,13 @@ import org.springframework.jmx.export.naming.ObjectNamingStrategy;
  * @since 2016-06-30
  *
  */
-public class BeanNameToObjectNameStrategy implements ObjectNamingStrategy{
+public class BeanNameNamingStrategy implements ObjectNamingStrategy{
 
    private final String domain;
 
    private final Hashtable<String, String> baseProps= new Hashtable<String, String>();
 
-   public BeanNameToObjectNameStrategy(@Nullable String domain, @Nullable String type){
+   public BeanNameNamingStrategy(@Nullable String domain, @Nullable String type){
       if(StringUtils.isNotBlank(domain)) this.domain = domain;
       else this.domain = "";
 
