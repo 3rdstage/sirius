@@ -11,6 +11,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.MappedJdbcTypes;
+import org.apache.ibatis.type.MappedTypes;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +27,7 @@ import org.slf4j.LoggerFactory;
  * @since 2016-07-05
  * @see <code>https://github.com/mybatis/mybatis-3/blob/master/src/main/java/org/apache/ibatis/type/BooleanTypeHandler.java</code>
  */
+@MappedTypes(Boolean.class) @MappedJdbcTypes(JdbcType.CHAR)
 public class BooleanStringHandler extends BaseTypeHandler<Boolean>{
 
    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
