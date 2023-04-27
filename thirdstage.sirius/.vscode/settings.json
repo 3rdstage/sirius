@@ -1,0 +1,35 @@
+{
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.snippetSuggestions": "bottom",
+  "editor.wordBasedSuggestions": false,
+  "editor.suggestSelection": "recentlyUsedByPrefix",
+
+  "files.encoding": "utf8",
+  "files.exclude": {
+    "node_modules/[!@]*": true,
+    "node_modules/@[!o]*": true,
+    "node_modules/@openzeppelin/contract-loader": true,
+    "node_modules/@openzeppelin/test*": true,
+    "node_modules/@openzeppelin/contract*/build": true,
+    "contracts/**/artifacts": true,
+    ".pytest_cache": true,
+    "run/ganache/data": true,
+    "run/geth/data": true,
+    "run/besu/data": true
+  },
+
+  "files.watcherExclude": {
+    "node_modules/**": true,
+    "contracts/**/artifacts": true,
+    "run/ganache/data": true,
+    "run/geth/data": true,
+    "run/besu/data": true
+  },
+
+  "maven.executable.preferMavenWrapper" : false,
+
+  "plantuml.exportSubFolder": false,
+  "plantuml.exportOutDir": "."
+}

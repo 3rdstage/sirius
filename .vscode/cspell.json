@@ -1,0 +1,95 @@
+// https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
+// https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker#customization
+// https://github.com/streetsidesoftware/vscode-spell-checker
+{
+  "version": "0.2",
+  "language": "en",
+  "dictionaries" : ["java"],
+  "words": [
+    // General abbreviation
+    "addr", // address
+    "addrs",
+    "apprv", // approval
+    "cntr",
+    "cntrs",
+    "collectn", // collection
+    "contr",
+    "contrs",
+    "descr", // description
+    "fctr", // factory
+    "rslt", // result
+    "scrty", // security
+    "spcl", // special
+    "trasnf", // transfer
+    "mintee",
+    "mintees",
+    "importee",
+    "testcases",
+    "preinstall",
+    "adoc",
+    "addn", // `bn.js`
+    "subn",
+    "pickone", // `chance.js`
+    "pickset",
+    // Blockchain
+    "keccak", 
+    "secp256k1",
+    "hdwallet",
+    "keypair",
+    // Ethereum
+    "mainnet", 
+    "testnet",
+    "chainid",
+    "ropsten",
+    "rinkeby",
+    "kovan",
+    "goerli",
+    "IERC",
+    "ganache",
+    "remix",
+    "remixd",
+    "typechain",
+    "solhint",
+    "mythril",
+    "consensys",
+    // Solidity
+    "struct", 
+    "structs",
+    "bytecode",
+    "inheritdoc",
+    "pausable",
+    // Technology general
+    "websocket", 
+    "ipfs",
+    "slf4j",
+    "springframework",
+    // Misc.
+    "skcc", 
+    "chainz",
+    "frozens",
+    "unfreezed",
+    "exportings",
+    "unexporting",
+    "privilegeds",
+    "unissuable",
+    "ATID", // custom : prefix of async task ID  
+    "Sangmoon"
+  ],
+  "flagWords": [
+    "hte"
+  ],
+  "ignorePaths": ["./.jshintrc"],
+  "patterns": [
+    { "name" : "ipfs-url", "pattern": "/(?:ipfs|http|https)://.*Qm[0-9A-Za-z]*/"}
+  ],
+  "ignoreRegExpList": ["ipfs-url"],
+  "languageSettings": [
+    {
+      "languageId": "python",
+      "allowCompoundWords": true,
+      "dictionaries": [
+        "python"
+      ]
+    }
+  ]
+}
